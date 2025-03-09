@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.CarsList"
+             x:DataType="vm:CarsListViewModel">
+
+	<StackPanel Spacing="10">
+		<TextBlock Text="Lista pojazdów" FontSize="30" HorizontalAlignment="Center" />
+
+		<Button Content="Odśwież" Command="{Binding RefreshCommand}" HorizontalAlignment="Right" />
+
+		<Border Background="#E0E0E0" Padding="10" CornerRadius="8">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="75"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0"/>
+				<TextBlock Text="Marka" FontWeight="Bold" Grid.Column="1"/>
+				<TextBlock Text="Pojemność" FontWeight="Bold" Grid.Column="2"/>
+				<TextBlock Text="Rodzaj paliwa" FontWeight="Bold" Grid.Column="3"/>
+				<TextBlock Text="L. miejsc" FontWeight="Bold" Grid.Column="4"/>
+				<TextBlock Text="Typ nadwozia" FontWeight="Bold" Grid.Column="5"/>
+				<TextBlock Text="Dodatkowe wyposażenie" FontWeight="Bold" Grid.Column="6"/>
+			</Grid>
+		</Border>
+
+		<ItemsControl ItemsSource="{Binding Cars}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Border Background="#F0F0F0" CornerRadius="8" Padding="10" Margin="0,5,0,0">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="75"/>
+								<ColumnDefinition Width="150"/>
+								<ColumnDefinition Width="100"/>
+								<ColumnDefinition Width="150"/>
+								<ColumnDefinition Width="100"/>
+								<ColumnDefinition Width="150"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="{Binding Id}" Grid.Column="0"/>
+							<TextBlock Text="{Binding Brand}" Grid.Column="1"/>
+							<TextBlock Text="{Binding EngineCapacity}" Grid.Column="2"/>
+							<TextBlock Text="{Binding FuelType}" Grid.Column="3"/>
+							<TextBlock Text="{Binding Seats}" Grid.Column="4"/>
+							<TextBlock Text="{Binding CarType}" Grid.Column="5"/>
+							<Border Grid.Column="6" VerticalAlignment="Top">
+								<ItemsControl ItemsSource="{Binding Features}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="• "/>
+												<TextBlock Text="{Binding}"/>
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</Border>
+
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</StackPanel>
+</UserControl>

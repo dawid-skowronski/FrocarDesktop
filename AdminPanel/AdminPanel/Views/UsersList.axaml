@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.UsersList"
+             x:DataType="vm:UsersListViewModel">
+
+	<StackPanel Spacing="10" Width="725">
+		<TextBlock Text="Lista użytkowników" FontSize="30" HorizontalAlignment="Center" />
+		<Button Content="Odśwież" Command="{Binding RefreshCommand}" HorizontalAlignment="Right"/>
+
+		<Border Background="#E0E0E0" Padding="10" CornerRadius="8">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="75"/>
+					<ColumnDefinition Width="250"/>
+					<ColumnDefinition Width="300"/>
+					<ColumnDefinition Width="100"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0"/>
+				<TextBlock Text="Nazwa użytkownika" FontWeight="Bold" Grid.Column="1"/>
+				<TextBlock Text="Email" FontWeight="Bold" Grid.Column="2"/>
+				<TextBlock Text="Rola" FontWeight="Bold" Grid.Column="3"/>
+			</Grid>
+		</Border>
+
+		<ItemsControl ItemsSource="{Binding Users}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Border Background="#F0F0F0" CornerRadius="8" Padding="10" Margin="0,5,0,0">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="75"/>
+								<ColumnDefinition Width="250"/>
+								<ColumnDefinition Width="300"/>
+								<ColumnDefinition Width="100"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Text="{Binding Id}" Grid.Column="0"/>
+							<TextBlock Text="{Binding Username}" Grid.Column="1"/>
+							<TextBlock Text="{Binding Email}" Grid.Column="2"/>
+							<TextBlock Text="{Binding Role}" Grid.Column="3"/>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</StackPanel>
+</UserControl>

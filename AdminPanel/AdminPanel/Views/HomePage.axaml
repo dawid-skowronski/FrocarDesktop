@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.HomePage"
+			 x:DataType="vm:HomePageViewModel">
+
+	<UserControl.Styles>
+		<!-- By default, buttons will have a blue background on hover -->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#a1c2a6"/>
+		</Style>
+	</UserControl.Styles>
+	
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+		<TextBlock Text="Frocar" FontSize="89" FontWeight="Bold" Foreground="#6B9071" />
+		
+		<TextBlock Text="Admin Panel" FontSize="30" HorizontalAlignment="Center" Grid.Row="1" />
+		
+		<Button Content="Zaloguj się" 
+				Command="{Binding LoginCommand}" 
+				Grid.Row="2"
+				HorizontalAlignment="Center"
+				Background="#6B9071"
+				Foreground="White"
+				Padding="10,5"
+				Width="250"
+				BorderBrush="Transparent"
+				CornerRadius="8"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center" />
+		
+		<Button Content="Zarejestruj się" 
+				Command="{Binding RegisterCommand}" 
+				Grid.Row="3"
+				HorizontalAlignment="Center"
+				Background="#6B9071"
+				Foreground="White"
+				Padding="10,5"
+				Width="250"
+				BorderBrush="Transparent"
+				CornerRadius="8"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center" />
+	</StackPanel>
+</UserControl>

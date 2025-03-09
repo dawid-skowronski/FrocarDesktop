@@ -1,0 +1,34 @@
+﻿using ReactiveUI;
+using System.Reactive;
+using AdminPanel.Views;
+
+namespace AdminPanel.ViewModels
+{
+    public class HomePageViewModel : ViewModelBase
+    {
+        public ReactiveCommand<Unit, Unit> LoginCommand { get; }
+        public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
+
+        public HomePageViewModel()
+        {
+            LoginCommand = ReactiveCommand.Create(NavigateToLogin);
+            RegisterCommand = ReactiveCommand.Create(NavigateToRegister);
+        }
+
+        private void NavigateToLogin()
+        {
+            App.MainWindow.Content = new LoginPage
+            {
+                DataContext = new LoginPageViewModel()
+            };
+        }
+
+        private void NavigateToRegister()
+        {
+            App.MainWindow.Content = new RegisterPage
+            {
+                DataContext = new RegisterPageViewModel()
+            };
+        }
+    }
+}

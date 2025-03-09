@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.LoginPage"
+			 x:DataType="vm:LoginPageViewModel">
+
+	<UserControl.Styles>
+		<!-- By default, buttons will have a blue background on hover -->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#a1c2a6"/>
+		</Style>
+	</UserControl.Styles>
+
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+		<TextBlock Text="Zaloguj się" FontSize="30" HorizontalAlignment="Center" />
+		
+		<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}" Width="250" Grid.Row="1"/>
+		
+		<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●" Width="250" Grid.Row="2" />
+		
+		<Button Content="Zaloguj się" 
+				Command="{Binding LoginCommand}" 
+				Grid.Row="3"
+                HorizontalAlignment="Center"
+                Background="#6B9071"
+                Foreground="White"
+                Padding="10,5"
+                Width="250"
+                BorderBrush="Transparent"
+                CornerRadius="8" 
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				/>
+		
+		<Button Content="Powrót" 
+				Command="{Binding GoBackToHomeCommand}" 
+				Grid.Row="4"
+                HorizontalAlignment="Center"
+                Background="#6B9071"
+                Foreground="White"
+                Padding="10,5"
+                Width="250"
+                BorderBrush="Transparent"
+                CornerRadius="8" 
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"/>
+		
+		<TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Grid.Row="5" HorizontalAlignment="Center" />
+	</StackPanel>
+</UserControl>

@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.CreateCar"
+             x:DataType="vm:CreateCarViewModel">
+
+	<UserControl.Styles>
+		<!-- By default, buttons will have a blue background on hover -->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#a1c2a6"/>
+		</Style>
+	</UserControl.Styles>
+	
+	<StackPanel Spacing="10">
+		<TextBlock Text="Dodaj nowy pojazd" FontSize="30" TextAlignment="Center"/>
+
+		<TextBox Watermark="Marka" Text="{Binding Brand}"  Width="250" Grid.Row="1"/>
+		<TextBox Watermark="Pojemność silnika" Text="{Binding EngineCapacity}"  Width="250" Grid.Row="2"/>
+		<TextBox Watermark="Rodzaj paliwa" Text="{Binding FuelType}"  Width="250" Grid.Row="3"/>
+		<TextBox Watermark="Liczba miejsc" Text="{Binding Seats}"  Width="250" Grid.Row="4"/>
+		<TextBox Watermark="Typ nadwozia" Text="{Binding CarType}"  Width="250" Grid.Row="5"/>
+		<TextBox Watermark="Dodatki" Text="{Binding FeaturesText}"  Width="250" Grid.Row="6"/>
+		<TextBox Watermark="Szerokość geograficzna" Text="{Binding Latitude}"  Width="250" Grid.Row="7"/>
+		<TextBox Watermark="Długość geograficzna" Text="{Binding Longitude}"  Width="250" Grid.Row="8"/>
+
+		<Button Content="Dodaj pojazd" 
+				Command="{Binding SubmitCommand}" 
+				Grid.Row="9"
+				HorizontalAlignment="Center"
+				Background="#6B9071"
+				Foreground="White"
+				Padding="10,5"
+				Width="250"
+				BorderBrush="Transparent"
+				CornerRadius="8"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center" />
+		
+		<TextBlock Text="{Binding ErrorMessage}" Grid.Row="10" HorizontalAlignment="Center" Foreground="Red" Margin="10"/>
+	</StackPanel>
+</UserControl>

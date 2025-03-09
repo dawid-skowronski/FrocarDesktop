@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\tescik\\adminpanel\\adminpanel\\views\\carslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\carslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\tescik\\adminpanel\\adminpanel\\views\\userslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\userslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CarsList.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\Views\\CarsList.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\CarsList.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\Views\\CarsList.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\CarsList.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-09T21:06:58.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersList.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\Views\\UsersList.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\UsersList.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\Views\\UsersList.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\UsersList.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-09T21:03:41.271Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
