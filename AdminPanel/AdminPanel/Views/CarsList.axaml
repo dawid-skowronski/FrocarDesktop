@@ -7,67 +7,83 @@
 	<StackPanel Spacing="10">
 		<TextBlock Text="Lista pojazdów" FontSize="30" HorizontalAlignment="Center" />
 
-		<Button Content="Odśwież" Command="{Binding RefreshCommand}" HorizontalAlignment="Right" />
+		<Button Content="Odśwież"
+                Classes="ok"
+                Command="{Binding RefreshCommand}"
+                HorizontalAlignment="Right" />
 
+		<!-- Nagłówek z 8 kolumnami, w tym dla przycisku "Usuń" -->
 		<Border Background="#E0E0E0" Padding="10" CornerRadius="8">
 			<Grid>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="75"/>
-					<ColumnDefinition Width="150"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="150"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="150"/>
-					<ColumnDefinition Width="*"/>
+					<ColumnDefinition MinWidth="75"/>
+					<ColumnDefinition MinWidth="150"/>
+					<ColumnDefinition MinWidth="100"/>
+					<ColumnDefinition MinWidth="150"/>
+					<ColumnDefinition MinWidth="100"/>
+					<ColumnDefinition MinWidth="100"/>
+					<ColumnDefinition MinWidth="200"/>
+					<ColumnDefinition MinWidth="100"/>
 				</Grid.ColumnDefinitions>
-				<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0"/>
-				<TextBlock Text="Marka" FontWeight="Bold" Grid.Column="1"/>
-				<TextBlock Text="Pojemność" FontWeight="Bold" Grid.Column="2"/>
-				<TextBlock Text="Rodzaj paliwa" FontWeight="Bold" Grid.Column="3"/>
-				<TextBlock Text="L. miejsc" FontWeight="Bold" Grid.Column="4"/>
-				<TextBlock Text="Typ nadwozia" FontWeight="Bold" Grid.Column="5"/>
-				<TextBlock Text="Dodatkowe wyposażenie" FontWeight="Bold" Grid.Column="6"/>
+				<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center"/>
+				<TextBlock Text="Marka" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center"/>
+				<TextBlock Text="Poj. silnika" FontWeight="Bold" Grid.Column="2" VerticalAlignment="Center"/>
+				<TextBlock Text="Rodzaj paliwa" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center"/>
+				<TextBlock Text="L. miejsc" FontWeight="Bold" Grid.Column="4" VerticalAlignment="Center"/>
+				<TextBlock Text="Typ" FontWeight="Bold" Grid.Column="5" VerticalAlignment="Center"/>
+				<TextBlock Text="Dodatkowe wyposażenie" FontWeight="Bold" Grid.Column="6" VerticalAlignment="Center"/>
+				<TextBlock Text="Akcja" FontWeight="Bold" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Grid>
 		</Border>
 
-		<ItemsControl ItemsSource="{Binding Cars}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<Border Background="#F0F0F0" CornerRadius="8" Padding="10" Margin="0,5,0,0">
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="75"/>
-								<ColumnDefinition Width="150"/>
-								<ColumnDefinition Width="100"/>
-								<ColumnDefinition Width="150"/>
-								<ColumnDefinition Width="100"/>
-								<ColumnDefinition Width="150"/>
-								<ColumnDefinition Width="*"/>
-							</Grid.ColumnDefinitions>
+		<!-- ScrollViewer z automatycznym paskiem przewijania i marginesem -->
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="800" Padding="0,0,0,5">
+			<ItemsControl ItemsSource="{Binding Cars}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Background="#F0F0F0" CornerRadius="8" Padding="10" Margin="0,0,0,5">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition MinWidth="75"/>
+									<ColumnDefinition MinWidth="150"/>
+									<ColumnDefinition MinWidth="100"/>
+									<ColumnDefinition MinWidth="150"/>
+									<ColumnDefinition MinWidth="100"/>
+									<ColumnDefinition MinWidth="100"/>
+									<ColumnDefinition MinWidth="200"/>
+									<ColumnDefinition MinWidth="100"/>
+								</Grid.ColumnDefinitions>
 
-							<TextBlock Text="{Binding Id}" Grid.Column="0"/>
-							<TextBlock Text="{Binding Brand}" Grid.Column="1"/>
-							<TextBlock Text="{Binding EngineCapacity}" Grid.Column="2"/>
-							<TextBlock Text="{Binding FuelType}" Grid.Column="3"/>
-							<TextBlock Text="{Binding Seats}" Grid.Column="4"/>
-							<TextBlock Text="{Binding CarType}" Grid.Column="5"/>
-							<Border Grid.Column="6" VerticalAlignment="Top">
-								<ItemsControl ItemsSource="{Binding Features}">
-									<ItemsControl.ItemTemplate>
-										<DataTemplate>
-											<StackPanel Orientation="Horizontal">
-												<TextBlock Text="• "/>
-												<TextBlock Text="{Binding}"/>
-											</StackPanel>
-										</DataTemplate>
-									</ItemsControl.ItemTemplate>
-								</ItemsControl>
-							</Border>
-
-						</Grid>
-					</Border>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+								<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding Brand}" Grid.Column="1" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding EngineCapacity, StringFormat=N1}" Grid.Column="2" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding FuelType}" Grid.Column="3" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding Seats}" Grid.Column="4" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding CarType}" Grid.Column="5" VerticalAlignment="Center"/>
+								<Border Grid.Column="6" VerticalAlignment="Center" Margin="0,0,10,0">
+									<ItemsControl ItemsSource="{Binding Features}">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<StackPanel Orientation="Horizontal">
+													<TextBlock Text="• "/>
+													<TextBlock Text="{Binding}"/>
+												</StackPanel>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+									</ItemsControl>
+								</Border>
+								<Button Content="Usuń"
+                                        Command="{Binding DeleteCommand}"
+                                        Classes="delete"
+                                        CommandParameter="{Binding Id}"
+                                        Grid.Column="7"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
 	</StackPanel>
 </UserControl>

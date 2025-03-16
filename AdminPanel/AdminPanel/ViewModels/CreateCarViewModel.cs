@@ -3,25 +3,49 @@ using System.Reactive;
 using System.Threading.Tasks;
 using AdminPanel.Models;
 using AdminPanel.Services;
-using System.Collections.Generic;
 using Avalonia.Controls;
 using System;
 using System.Linq;
-using System.Globalization; // Potrzebne do parsowania
+using System.Globalization;
+using Avalonia.Data;
+using Avalonia.Media;
+using Avalonia;
+using Avalonia.Layout;
+using Avalonia.Styling;
 
 namespace AdminPanel.ViewModels
 {
     public class CreateCarViewModel : ViewModelBase
     {
-
         public string Brand { get; set; } = "";
-        public string EngineCapacity { get; set; } = ""; // String, aby watermark działał
-        public string FuelType { get; set; } = "";
+        public string EngineCapacity { get; set; } = "";
+        private object _fuelTypeItem; // Nowa właściwość dla ComboBoxItem
+        public object FuelTypeItem
+        {
+            get => _fuelTypeItem;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _fuelTypeItem, value);
+                FuelType = (value as ComboBoxItem)?.Content?.ToString(); // Wyciągamy tekst
+            }
+        }
+        public string FuelType { get; set; } // Przechowuje tekst wybranej opcji
         public string Seats { get; set; } = "";
-        public string CarType { get; set; } = "";
-        public string FeaturesText { get; set; } = ""; // Zwykłe pole tekstowe
-        public string Latitude { get; set; } = "";  // String dla watermarka
-        public string Longitude { get; set; } = ""; // String dla watermarka
+        private object _carTypeItem; // Nowa właściwość dla ComboBoxItem
+        public object CarTypeItem
+        {
+            get => _carTypeItem;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _carTypeItem, value);
+                CarType = (value as ComboBoxItem)?.Content?.ToString(); // Wyciągamy tekst
+            }
+        }
+        public string CarType { get; set; } // Przechowuje tekst wybranej opcji
+        public string FeaturesText { get; set; } = "";
+        public string Latitude { get; set; } = "";
+        public string Longitude { get; set; } = "";
+        public string Address { get; set; } = "";
 
         private string _errorMessage = string.Empty;
         public string ErrorMessage
@@ -41,19 +65,20 @@ namespace AdminPanel.ViewModels
         {
             ErrorMessage = string.Empty;
 
+            // Walidacja pól
             if (!double.TryParse(EngineCapacity, out double engineCapacity) ||
                 !int.TryParse(Seats, out int seats) ||
                 !double.TryParse(Latitude, out double latitude) ||
                 !double.TryParse(Longitude, out double longitude) ||
                 string.IsNullOrWhiteSpace(Brand) ||
-                string.IsNullOrWhiteSpace(FuelType) ||
-                string.IsNullOrWhiteSpace(CarType))
+                string.IsNullOrWhiteSpace(FuelType) || // Sprawdzamy tekst
+                string.IsNullOrWhiteSpace(CarType))    // Sprawdzamy tekst
             {
                 ErrorMessage = "Wszystkie pola są wymagane i muszą mieć poprawny format.";
                 return;
             }
 
-            // 🔥 KONWERSJA TEKSTU NA LISTĘ 🔥
+            // Konwersja tekstu na listę
             var featuresList = FeaturesText.Split(',', StringSplitOptions.RemoveEmptyEntries)
                                            .Select(f => f.Trim())
                                            .Where(f => !string.IsNullOrWhiteSpace(f))
@@ -63,10 +88,10 @@ namespace AdminPanel.ViewModels
             {
                 Brand = Brand,
                 EngineCapacity = engineCapacity,
-                FuelType = FuelType,
+                FuelType = FuelType, // Używamy stringa
                 Seats = seats,
-                CarType = CarType,
-                Features = featuresList, // 🚀 Teraz to jest poprawna lista!
+                CarType = CarType,   // Używamy stringa
+                Features = featuresList,
                 Latitude = latitude,
                 Longitude = longitude
             };
@@ -79,18 +104,20 @@ namespace AdminPanel.ViewModels
                 // Resetowanie formularza
                 Brand = "";
                 EngineCapacity = "";
-                FuelType = "";
+                FuelTypeItem = null; // Resetujemy ComboBoxItem
+                FuelType = null;     // Resetujemy string
                 Seats = "";
-                CarType = "";
+                CarTypeItem = null;  // Resetujemy ComboBoxItem
+                CarType = null;      // Resetujemy string
                 Latitude = "";
                 Longitude = "";
-                FeaturesText = ""; // Resetujemy pole tekstowe
+                FeaturesText = "";
 
                 this.RaisePropertyChanged(nameof(Brand));
                 this.RaisePropertyChanged(nameof(EngineCapacity));
-                this.RaisePropertyChanged(nameof(FuelType));
+                this.RaisePropertyChanged(nameof(FuelTypeItem));
                 this.RaisePropertyChanged(nameof(Seats));
-                this.RaisePropertyChanged(nameof(CarType));
+                this.RaisePropertyChanged(nameof(CarTypeItem));
                 this.RaisePropertyChanged(nameof(Latitude));
                 this.RaisePropertyChanged(nameof(Longitude));
                 this.RaisePropertyChanged(nameof(FeaturesText));
@@ -106,25 +133,38 @@ namespace AdminPanel.ViewModels
             var window = new Window
             {
                 Title = title,
-                Width = 300,
-                Height = 150
+                Width = 350,
+                Height = 180,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Background = new SolidColorBrush(Color.FromRgb(240, 240, 240)),
+                CanResize = false,
+                ShowInTaskbar = false
             };
 
-            var stackPanel = new StackPanel();
+            var stackPanel = new StackPanel
+            {
+                Spacing = 15,
+                Margin = new Thickness(20),
+                VerticalAlignment = VerticalAlignment.Center
+            };
 
             var textBlock = new TextBlock
             {
                 Text = message,
-                Margin = new Avalonia.Thickness(10),
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                TextWrapping = Avalonia.Media.TextWrapping.Wrap
+                FontSize = 16,
+                Foreground = new SolidColorBrush(Colors.Black),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                TextAlignment = TextAlignment.Center,
+                TextWrapping = TextWrapping.Wrap
             };
 
             var okButton = new Button
             {
                 Content = "OK",
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Width = 100
             };
+            okButton.Classes.Add("ok"); // Dodajemy klasę "ok"
 
             okButton.Click += (_, _) => window.Close();
 
@@ -132,6 +172,9 @@ namespace AdminPanel.ViewModels
             stackPanel.Children.Add(okButton);
 
             window.Content = stackPanel;
+
+            window.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
+            window.Background = new SolidColorBrush(Color.FromArgb(200, 240, 240, 240));
 
             await window.ShowDialog(App.MainWindow);
         }

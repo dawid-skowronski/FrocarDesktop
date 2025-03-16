@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {}
+    "C:\\FrocarDesktop\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {
+    "C:\\FrocarDesktop\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
+        "projectUniqueName": "C:\\FrocarDesktop\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
         "projectName": "AdminPanel",
-        "projectPath": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
+        "projectPath": "C:\\FrocarDesktop\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
         "packagesPath": "C:\\Users\\vidsontoziomal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vidsontoziomal\\Desktop\\tescik\\AdminPanel\\AdminPanel\\obj\\",
+        "outputPath": "C:\\FrocarDesktop\\AdminPanel\\AdminPanel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -73,6 +73,14 @@
             "Avalonia.Themes.Fluent": {
               "target": "Package",
               "version": "[11.2.5, )"
+            },
+            "Mapsui": {
+              "target": "Package",
+              "version": "[4.1.8, )"
+            },
+            "Mapsui.Avalonia": {
+              "target": "Package",
+              "version": "[4.1.8, )"
             },
             "RestSharp": {
               "target": "Package",

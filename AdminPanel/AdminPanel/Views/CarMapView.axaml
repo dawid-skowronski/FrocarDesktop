@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             xmlns:mapsui="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
+             x:Class="AdminPanel.Views.CarMapView"
+             x:DataType="vm:CarMapViewModel">
+
+	<StackPanel Spacing="10">
+		<TextBlock Text="Mapa pojazdów" FontSize="30" TextAlignment="Center"/>
+
+		<mapsui:MapControl x:Name="CarMap"
+                          Height="900"
+                          Width="1300"/>
+
+		<TextBlock Text="{Binding ErrorMessage}"
+                  HorizontalAlignment="Center"
+                  Foreground="Red"
+                  Margin="10"/>
+	</StackPanel>
+</UserControl>

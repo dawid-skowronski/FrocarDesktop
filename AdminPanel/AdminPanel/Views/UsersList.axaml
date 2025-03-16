@@ -6,7 +6,7 @@
 
 	<StackPanel Spacing="10" Width="725">
 		<TextBlock Text="Lista użytkowników" FontSize="30" HorizontalAlignment="Center" />
-		<Button Content="Odśwież" Command="{Binding RefreshCommand}" HorizontalAlignment="Right"/>
+		<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" HorizontalAlignment="Right"/>
 
 		<Border Background="#E0E0E0" Padding="10" CornerRadius="8">
 			<Grid>

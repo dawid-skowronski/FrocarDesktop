@@ -24,6 +24,8 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.5" />
+    <PackageReference Include="Mapsui" Version="4.1.8" />
+    <PackageReference Include="Mapsui.Avalonia" Version="4.1.8" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.1" />
   </ItemGroup>

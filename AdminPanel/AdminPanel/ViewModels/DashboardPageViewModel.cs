@@ -17,15 +17,12 @@ namespace AdminPanel.ViewModels
         }
 
         public ReactiveCommand<Unit, Unit> ShowHomePageCommand { get; }
-
-
         //users
         public ReactiveCommand<Unit, Unit> ShowUsersListCommand { get; }
-
         //cars
         public ReactiveCommand<Unit, Unit> ShowCreateCarCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowCarsListCommand { get; }
-
+        public ReactiveCommand<Unit, Unit> ShowCarMapCommand { get; } // Nowa komenda
 
         public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
 
@@ -34,11 +31,12 @@ namespace AdminPanel.ViewModels
             // Domyślny widok po zalogowaniu
             CurrentView = new HomePageAdmin();
 
-            // Poprawione komendy (teraz nie zwracają UserControl)
+            // Poprawione komendy
             ShowHomePageCommand = ReactiveCommand.Create(() => ChangeView(new HomePageAdmin()));
             ShowUsersListCommand = ReactiveCommand.Create(() => ChangeView(new UsersList()));
             ShowCreateCarCommand = ReactiveCommand.Create(() => ChangeView(new CreateCar()));
             ShowCarsListCommand = ReactiveCommand.Create(() => ChangeView(new CarsList()));
+            ShowCarMapCommand = ReactiveCommand.Create(() => ChangeView(new CarMapView())); // Obsługa nowego widoku
             LogoutCommand = ReactiveCommand.Create(Logout);
         }
 
@@ -47,6 +45,7 @@ namespace AdminPanel.ViewModels
         {
             CurrentView = newView;
         }
+
         private void Logout()
         {
             TokenService.ClearToken();
@@ -55,6 +54,5 @@ namespace AdminPanel.ViewModels
                 DataContext = new HomePageViewModel()
             };
         }
-
     }
 }

@@ -11,5 +11,52 @@
   
     <Application.Styles>
         <FluentTheme />
+
+		<!-- Styl dla przycisków z klasą "ok" -->
+		<Style Selector="Button.ok">
+			<Setter Property="Background" Value="#6B9071"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="20,10"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+
+		<!-- Styl dla stanu najechania myszą dla przycisków z klasą "ok" -->
+		<Style Selector="Button.ok:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#A1C2A6"/>
+		</Style>
+
+		<!-- Styl dla stanu kliknięcia -->
+		<Style Selector="Button.ok:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="#557A5A"/>
+			<!-- Przy kliknięciu (ciemniejszy odcień #6B9071) -->
+		</Style>
+
+
+
+		<!-- Styl dla przycisków z klasą "delete" -->
+		<Style Selector="Button.delete">
+			<Setter Property="Background" Value="#DC143C"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="20,10"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+
+		<!-- Styl dla stanu najechania myszą dla przycisków z klasą "delete" -->
+		<Style Selector="Button.delete:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#B22222"/>
+		</Style>
+
+		<!-- Styl dla stanu kliknięcia -->
+		<Style Selector="Button.delete:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="#720D0D"/>
+			<!-- Przy kliknięciu (ciemniejszy odcień #720D0D) -->
+		</Style>
+		
     </Application.Styles>
 </Application>

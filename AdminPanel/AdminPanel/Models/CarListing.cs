@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +22,8 @@ namespace AdminPanel.Models
         public int UserId { get; set; }
 
         public string FeaturesAsString => string.Join(", ", Features);
+        public ReactiveCommand<int, Unit>? DeleteCommand { get; set; }
+
 
     }
 

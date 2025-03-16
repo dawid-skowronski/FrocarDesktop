@@ -150,5 +150,22 @@ namespace AdminPanel.Services
             return new List<CarListing>(); // Pusta lista w razie błędu
         }
 
+
+        public static async Task<(bool IsSuccess, string Message)> DeleteCarListing(int carId)
+        {
+            var request = new RestRequest($"api/CarListings/{carId}", Method.Delete);
+            request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+
+            var response = await _client.ExecuteAsync(request);
+
+            if (response.IsSuccessful)
+            {
+                return (true, "Pojazd usunięty pomyślnie");
+            }
+
+            return (false, response.Content ?? "Błąd podczas usuwania pojazdu");
+        }
+
+
     }
 }
