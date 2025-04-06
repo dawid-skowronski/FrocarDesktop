@@ -3,87 +3,79 @@
              xmlns:vm="clr-namespace:AdminPanel.ViewModels"
              x:Class="AdminPanel.Views.CarsList"
              x:DataType="vm:CarsListViewModel">
+	<StackPanel Spacing="20" Margin="20" HorizontalAlignment="Center">
+		<TextBlock Text="Lista pojazdów" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
 
-	<StackPanel Spacing="10">
-		<TextBlock Text="Lista pojazdów" FontSize="30" HorizontalAlignment="Center" />
+		<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" HorizontalAlignment="Right" Width="150" Margin="0,0,0,20"/>
 
-		<Button Content="Odśwież"
-                Classes="ok"
-                Command="{Binding RefreshCommand}"
-                HorizontalAlignment="Right" />
+		<!-- Cała tabela w jednym białym polu -->
+		<Border Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A" Padding="20">
+			<StackPanel>
+				<!-- Nagłówki tabeli -->
+				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="15" Margin="0,0,0,5" CornerRadius="8 8 0 0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="75"/>
+							<ColumnDefinition Width="150"/>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="150"/>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="100"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Marka" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Poj. silnika" FontWeight="Bold" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Rodzaj paliwa" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="L. miejsc" FontWeight="Bold" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Typ" FontWeight="Bold" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Dodatkowe wyposażenie" FontWeight="Bold" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Akcja" FontWeight="Bold" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					</Grid>
+				</Border>
 
-		<!-- Nagłówek z 8 kolumnami, w tym dla przycisku "Usuń" -->
-		<Border Background="#E0E0E0" Padding="10" CornerRadius="8">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition MinWidth="75"/>
-					<ColumnDefinition MinWidth="150"/>
-					<ColumnDefinition MinWidth="100"/>
-					<ColumnDefinition MinWidth="150"/>
-					<ColumnDefinition MinWidth="100"/>
-					<ColumnDefinition MinWidth="100"/>
-					<ColumnDefinition MinWidth="200"/>
-					<ColumnDefinition MinWidth="100"/>
-				</Grid.ColumnDefinitions>
-				<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center"/>
-				<TextBlock Text="Marka" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center"/>
-				<TextBlock Text="Poj. silnika" FontWeight="Bold" Grid.Column="2" VerticalAlignment="Center"/>
-				<TextBlock Text="Rodzaj paliwa" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center"/>
-				<TextBlock Text="L. miejsc" FontWeight="Bold" Grid.Column="4" VerticalAlignment="Center"/>
-				<TextBlock Text="Typ" FontWeight="Bold" Grid.Column="5" VerticalAlignment="Center"/>
-				<TextBlock Text="Dodatkowe wyposażenie" FontWeight="Bold" Grid.Column="6" VerticalAlignment="Center"/>
-				<TextBlock Text="Akcja" FontWeight="Bold" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-			</Grid>
-		</Border>
-
-		<!-- ScrollViewer z automatycznym paskiem przewijania i marginesem -->
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="800" Padding="0,0,0,5">
-			<ItemsControl ItemsSource="{Binding Cars}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<Border Background="#F0F0F0" CornerRadius="8" Padding="10" Margin="0,0,0,5">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition MinWidth="75"/>
-									<ColumnDefinition MinWidth="150"/>
-									<ColumnDefinition MinWidth="100"/>
-									<ColumnDefinition MinWidth="150"/>
-									<ColumnDefinition MinWidth="100"/>
-									<ColumnDefinition MinWidth="100"/>
-									<ColumnDefinition MinWidth="200"/>
-									<ColumnDefinition MinWidth="100"/>
-								</Grid.ColumnDefinitions>
-
-								<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center"/>
-								<TextBlock Text="{Binding Brand}" Grid.Column="1" VerticalAlignment="Center"/>
-								<TextBlock Text="{Binding EngineCapacity, StringFormat=N1}" Grid.Column="2" VerticalAlignment="Center"/>
-								<TextBlock Text="{Binding FuelType}" Grid.Column="3" VerticalAlignment="Center"/>
-								<TextBlock Text="{Binding Seats}" Grid.Column="4" VerticalAlignment="Center"/>
-								<TextBlock Text="{Binding CarType}" Grid.Column="5" VerticalAlignment="Center"/>
-								<Border Grid.Column="6" VerticalAlignment="Center" Margin="0,0,10,0">
-									<ItemsControl ItemsSource="{Binding Features}">
-										<ItemsControl.ItemTemplate>
-											<DataTemplate>
-												<StackPanel Orientation="Horizontal">
-													<TextBlock Text="• "/>
-													<TextBlock Text="{Binding}"/>
-												</StackPanel>
-											</DataTemplate>
-										</ItemsControl.ItemTemplate>
-									</ItemsControl>
+				<!-- Lista pojazdów z przewijaniem -->
+				<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="600">
+					<ItemsControl ItemsSource="{Binding Cars}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border Padding="15" Margin="0,0,0,5" Background="{DynamicResource ThemeControlLowBrush}">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="75"/>
+											<ColumnDefinition Width="150"/>
+											<ColumnDefinition Width="100"/>
+											<ColumnDefinition Width="150"/>
+											<ColumnDefinition Width="100"/>
+											<ColumnDefinition Width="100"/>
+											<ColumnDefinition Width="200"/>
+											<ColumnDefinition Width="100"/>
+										</Grid.ColumnDefinitions>
+										<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Brand}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding EngineCapacity, StringFormat=N1}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding FuelType}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Seats}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding CarType}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<ItemsControl ItemsSource="{Binding Features}" Grid.Column="6" Margin="10,0">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<StackPanel Orientation="Horizontal">
+														<TextBlock Text="• "/>
+														<TextBlock Text="{Binding}" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+													</StackPanel>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+										<Button Content="Usuń" Classes="delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding Id}" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									</Grid>
 								</Border>
-								<Button Content="Usuń"
-                                        Command="{Binding DeleteCommand}"
-                                        Classes="delete"
-                                        CommandParameter="{Binding Id}"
-                                        Grid.Column="7"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
-							</Grid>
-						</Border>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</ScrollViewer>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</StackPanel>
+		</Border>
 	</StackPanel>
 </UserControl>

@@ -15,41 +15,47 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AdminPanel
-build_property.ProjectDir = C:\FrocarDesktop\AdminPanel\AdminPanel\
+build_property.ProjectDir = C:\Users\vidsontoziomal\Desktop\AdminPanel — kopia — kopia — kopia\AdminPanel\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/App.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/CarMapView.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/CarMapView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/CarsList.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/CarsList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/CreateCar.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/ConfirmMessageBoxView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/DashboardPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/CreateCar.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/HomePage.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/DashboardPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/HomePageAdmin.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/HomePage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/LoginPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/HomePageAdmin.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/MainWindow.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/LoginPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/RegisterPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/FrocarDesktop/AdminPanel/AdminPanel/Views/UsersList.axaml]
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/MessageBoxView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/RegisterPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/vidsontoziomal/Desktop/AdminPanel — kopia — kopia — kopia/AdminPanel/Views/UsersList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

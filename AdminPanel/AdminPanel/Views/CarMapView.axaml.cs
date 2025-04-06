@@ -9,6 +9,9 @@ using Mapsui.Styles;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Avalonia.ReactiveUI;
+using ReactiveUI;
+using AdminPanel.Models;
 
 namespace AdminPanel.Views
 {
@@ -17,6 +20,7 @@ namespace AdminPanel.Views
         private readonly MapControl _mapControl;
         private readonly CarMapViewModel _viewModel;
         private MemoryLayer _carsLayer;
+        private bool _isInitialZoom = true;
 
         public CarMapView()
         {
@@ -27,8 +31,10 @@ namespace AdminPanel.Views
             _mapControl = this.FindControl<MapControl>("CarMap");
             _mapControl.Map = CreateMap();
 
-            // £adujemy dane po inicjalizacji
+            _mapControl.Info += MapControl_Info;
             LoadCarsOnMap();
+
+            _viewModel.WhenAnyValue(x => x.FilteredCars).Subscribe(_ => UpdateMap());
         }
 
         private Mapsui.Map CreateMap()
@@ -39,20 +45,12 @@ namespace AdminPanel.Views
             _carsLayer = new MemoryLayer
             {
                 Name = "CarsLayer",
-                Features = Array.Empty<IFeature>(),
-                Style = new SymbolStyle
-                {
-                    SymbolType = SymbolType.Ellipse,
-                    Fill = new Brush(Color.Blue), // Niebieskie elipsy
-                    Outline = new Pen(Color.White, 2), // Bia³a obwódka
-                    SymbolScale = 0.4
-                }
+                IsMapInfoLayer = true
             };
             map.Layers.Add(_carsLayer);
 
-            // Domyœlne centrum na Legnicê
             (double x, double y) = SphericalMercator.FromLonLat(16.17950, 51.20800);
-            map.Home = n => n.CenterOnAndZoomTo(new MPoint(x, y), 10); // Mniejszy zoom dla widoku ogólnego
+            map.Home = n => n.CenterOnAndZoomTo(new MPoint(x, y), 10);
 
             return map;
         }
@@ -60,39 +58,111 @@ namespace AdminPanel.Views
         private async void LoadCarsOnMap()
         {
             await _viewModel.LoadCarsAsync();
+            UpdateMap();
+        }
 
-            if (_viewModel.Cars != null && _viewModel.Cars.Any())
+        private void UpdateMap()
+        {
+            if (_viewModel.FilteredCars != null && _viewModel.FilteredCars.Any())
             {
-                var features = _viewModel.Cars.Select(car =>
+                var features = _viewModel.FilteredCars.Select(car =>
                 {
                     var position = SphericalMercator.FromLonLat(car.Longitude, car.Latitude);
-                    return new PointFeature(new MPoint(position.x, position.y));
+                    var feature = new PointFeature(new MPoint(position.x, position.y));
+                    feature["CarData"] = car;
+                    var color = car.IsAvailable ? new Color(0, 255, 0) : new Color(255, 165, 0);
+                    feature.Styles = new List<IStyle>
+            {
+                new SymbolStyle
+                {
+                    SymbolType = SymbolType.Ellipse,
+                    Fill = new Brush(color),
+                    Outline = new Pen(Color.White, 2), // Zakomentowane - brak obwódki
+                    SymbolScale = 0.4
+                }
+            };
+                    return feature;
                 }).ToList();
 
                 _carsLayer.Features = features;
+                _carsLayer.Style = null; // Wy³¹czamy jakikolwiek domyœlny styl warstwy
 
-                // Automatyczne dopasowanie widoku do wszystkich punktów
-                if (features.Any())
+                if (_isInitialZoom && features.Any())
                 {
                     var bounds = CalculateBounds(features);
                     _mapControl.Map.Navigator.ZoomToBox(bounds);
+                    _isInitialZoom = false;
                 }
 
                 _mapControl.Refresh();
             }
+            else
+            {
+                _carsLayer.Features = Array.Empty<IFeature>();
+                _carsLayer.Style = null; // Wy³¹czamy styl równie¿ w przypadku pustej listy
+                _mapControl.Refresh();
+            }
         }
+
+        private void MapControl_Info(object sender, MapInfoEventArgs e)
+        {
+            if (e.MapInfo?.Layer == _carsLayer && e.MapInfo.Feature is PointFeature feature)
+            {
+                if (feature["CarData"] is CarListing car)
+                {
+                    var carInfo = _viewModel.GetCarInfo(car);
+                    var flyout = new Flyout();
+                    flyout.Placement = PlacementMode.Pointer;
+
+                    var border = new Border
+                    {
+                        BorderBrush = Avalonia.Media.Brush.Parse("#2E7D32"),
+                        BorderThickness = new Avalonia.Thickness(2),
+                        CornerRadius = new Avalonia.CornerRadius(8),
+                        Background = Avalonia.Media.Brush.Parse("#FAFAFA"),
+                        Child = new StackPanel
+                        {
+                            Margin = new Avalonia.Thickness(15),
+                            Spacing = 15,
+                            Children =
+                            {
+                                new TextBlock
+                                {
+                                    Text = carInfo,
+                                    FontSize = 14,
+                                    Foreground = Avalonia.Media.Brush.Parse("#333333"),
+                                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                                    MaxWidth = 300,
+                                    TextAlignment = Avalonia.Media.TextAlignment.Left
+                                },
+                                new Button
+                                {
+                                    Content = "Zamknij",
+                                    Classes = { "ok" },
+                                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                                    Command = ReactiveCommand.Create(() => flyout.Hide())
+                                }
+                            }
+                        }
+                    };
+
+                    flyout.Content = border;
+                    flyout.ShowAt(_mapControl);
+                }
+            }
+        }
+
         private MRect CalculateBounds(IEnumerable<IFeature> features)
         {
-            // Konwertujemy IFeature na PointFeature i u¿ywamy w³aœciwoœci Point
             var points = features
-                .OfType<PointFeature>() // Filtrujemy tylko PointFeature
-                .Select(f => f.Point) // U¿ywamy Point zamiast Geometry
-                .Where(p => p != null) // Sprawdzamy null
+                .OfType<PointFeature>()
+                .Select(f => f.Point)
+                .Where(p => p != null)
                 .ToList();
 
             if (!points.Any())
             {
-                return new MRect(0, 0, 0, 0); // Domyœlny prostok¹t
+                return new MRect(0, 0, 0, 0);
             }
 
             var minX = points.Min(p => p.X);

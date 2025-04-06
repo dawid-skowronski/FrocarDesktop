@@ -3,18 +3,76 @@
              xmlns:vm="clr-namespace:AdminPanel.ViewModels"
              xmlns:mapsui="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
              x:Class="AdminPanel.Views.CarMapView"
-             x:DataType="vm:CarMapViewModel">
+             x:DataType="vm:CarMapViewModel"
+             Background="{DynamicResource ThemeBackgroundBrush}">
 
-	<StackPanel Spacing="10">
-		<TextBlock Text="Mapa pojazdów" FontSize="30" TextAlignment="Center"/>
+	<Grid Margin="20" RowDefinitions="*,Auto">
+		<!-- Main content -->
+		<Grid Grid.Row="0" ColumnDefinitions="1*,2*">
+			<!-- Filters -->
+			<Border Grid.Column="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8,0,0,8" BoxShadow="0 2 4 0 #0000001A">
+				<ScrollViewer>
+					<StackPanel Spacing="20" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="350">
+						<TextBlock Text="Filtry" FontSize="24" FontWeight="SemiBold" TextAlignment="Center" Margin="0,0,0,30" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 
-		<mapsui:MapControl x:Name="CarMap"
-                          Height="900"
-                          Width="1300"/>
+						<TextBox Watermark="Marka" Text="{Binding BrandFilter, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
 
-		<TextBlock Text="{Binding ErrorMessage}"
-                  HorizontalAlignment="Center"
-                  Foreground="Red"
-                  Margin="10"/>
-	</StackPanel>
+						<StackPanel Spacing="10">
+							<TextBox Watermark="Min. pojemność silnika" Text="{Binding MinEngineCapacity, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+							<TextBox Watermark="Maks. pojemność silnika" Text="{Binding MaxEngineCapacity, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+						</StackPanel>
+
+						<ComboBox PlaceholderText="Wybierz rodzaj paliwa" SelectedItem="{Binding FuelTypeFilter, UpdateSourceTrigger=PropertyChanged}" Width="300">
+							<ComboBoxItem Content="Wszystkie rodzaje paliwa"/>
+							<ComboBoxItem Content="Benzyna"/>
+							<ComboBoxItem Content="Diesel"/>
+							<ComboBoxItem Content="Benzyna + gaz"/>
+							<ComboBoxItem Content="Elektryczny"/>
+							<ComboBoxItem Content="Hybryda"/>
+							<ComboBoxItem Content="Etanol"/>
+							<ComboBoxItem Content="Wodór"/>
+						</ComboBox>
+
+						<ComboBox PlaceholderText="Wybierz typ nadwozia" SelectedItem="{Binding CarTypeFilter, UpdateSourceTrigger=PropertyChanged}" Width="300">
+							<ComboBoxItem Content="Wszystkie typy nadwozia"/>
+							<ComboBoxItem Content="Sedan"/>
+							<ComboBoxItem Content="Kombi"/>
+							<ComboBoxItem Content="Kompakt"/>
+							<ComboBoxItem Content="Coupe"/>
+							<ComboBoxItem Content="Kabriolet"/>
+							<ComboBoxItem Content="SUV"/>
+							<ComboBoxItem Content="Minivan"/>
+						</ComboBox>
+
+						<TextBox Watermark="Min. liczba miejsc" Text="{Binding MinSeatsFilter, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+
+						<StackPanel Spacing="10">
+							<TextBox Watermark="Min. cena za dzień" Text="{Binding MinPrice, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+							<TextBox Watermark="Maks. cena za dzień" Text="{Binding MaxPrice, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+						</StackPanel>
+
+						<TextBox Watermark="Adres (np. Pawia 1, Lubin)" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+
+						<TextBox Watermark="Maks. zasięg (km, opcjonalne)" Text="{Binding MaxRange, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+
+						<CheckBox Content="Pokazuj tylko dostępne" IsChecked="{Binding ShowOnlyAvailable, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+
+						<Button Content="Filtruj" Command="{Binding FilterCarsCommand}" Classes="ok" Width="200" HorizontalAlignment="Center"/>
+						<Button Content="Resetuj filtry" Command="{Binding ResetFiltersCommand}" Classes="delete" Width="200" HorizontalAlignment="Center"/>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+
+			<!-- Map -->
+			<Border Grid.Column="1" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,8,8,0" BoxShadow="0 2 4 0 #0000001A">
+				<mapsui:MapControl x:Name="CarMap" Height="700" />
+			</Border>
+		</Grid>
+
+		<!-- Error panel -->
+		
+			
+			<TextBlock Text="{Binding ErrorMessage}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{DynamicResource ErrorForeground}" Margin="0,10,0,0" TextWrapping="Wrap"/>
+		
+	</Grid>
 </UserControl>

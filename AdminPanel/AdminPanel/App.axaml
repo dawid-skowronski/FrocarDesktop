@@ -3,60 +3,164 @@
              x:Class="AdminPanel.App"
              xmlns:local="using:AdminPanel"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+	<!-- Domyślnie Default - system -->
 
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-  
-    <Application.Styles>
-        <FluentTheme />
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+	
 
-		<!-- Styl dla przycisków z klasą "ok" -->
-		<Style Selector="Button.ok">
-			<Setter Property="Background" Value="#6B9071"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="Padding" Value="20,10"/>
-			<Setter Property="CornerRadius" Value="8"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-		</Style>
-
-		<!-- Styl dla stanu najechania myszą dla przycisków z klasą "ok" -->
-		<Style Selector="Button.ok:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="#A1C2A6"/>
-		</Style>
-
-		<!-- Styl dla stanu kliknięcia -->
-		<Style Selector="Button.ok:pressed /template/ ContentPresenter">
-			<Setter Property="Background" Value="#557A5A"/>
-			<!-- Przy kliknięciu (ciemniejszy odcień #6B9071) -->
-		</Style>
-
-
-
-		<!-- Styl dla przycisków z klasą "delete" -->
-		<Style Selector="Button.delete">
-			<Setter Property="Background" Value="#DC143C"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="Padding" Value="20,10"/>
-			<Setter Property="CornerRadius" Value="8"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-		</Style>
-
-		<!-- Styl dla stanu najechania myszą dla przycisków z klasą "delete" -->
-		<Style Selector="Button.delete:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="#B22222"/>
-		</Style>
-
-		<!-- Styl dla stanu kliknięcia -->
-		<Style Selector="Button.delete:pressed /template/ ContentPresenter">
-			<Setter Property="Background" Value="#720D0D"/>
-			<!-- Przy kliknięciu (ciemniejszy odcień #720D0D) -->
-		</Style>
+	<Application.Resources>
 		
-    </Application.Styles>
+		<ResourceDictionary>
+			<ResourceDictionary.ThemeDictionaries>
+				<!-- Light Mode -->
+				<ResourceDictionary x:Key="Light">
+					<!-- Tło okna -->
+					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#FAFAFA"/>
+					<!-- Tło kontrolek (TextBox, ComboBox, Border) -->
+					<SolidColorBrush x:Key="ThemeControlMidBrush" Color="#FFFFFF"/>
+					<!-- Tło dla ScrollViewer -->
+					<SolidColorBrush x:Key="ThemeControlLowBrush" Color="#F0F0F0"/>
+					<!-- Tekst -->
+					<SolidColorBrush x:Key="ThemeForegroundBrush" Color="#333333"/>
+					<!-- Akcent (np. fokus, przyciski) -->
+					<SolidColorBrush x:Key="ThemeAccentBrush" Color="#2E7D32"/>
+					<!-- Akcent przy najechaniu -->
+					<SolidColorBrush x:Key="ThemeAccentBrush2" Color="#3d9440"/>
+					<!-- Akcent przy kliknięciu -->
+					<SolidColorBrush x:Key="ThemeAccentBrush3" Color="#296B2C"/>
+					<!-- Tło Navbaru -->
+					<SolidColorBrush x:Key="ThemeControlHighBrush" Color="#E8F5E9"/>
+					<!-- Ramka kontrolek -->
+					<SolidColorBrush x:Key="ThemeBorderMidBrush" Color="#A0A0A0"/>
+					<!-- Błędy -->
+					<SolidColorBrush x:Key="ErrorForeground" Color="#D32F2F"/>
+				</ResourceDictionary>
+
+				<!-- Dark Mode -->
+				<ResourceDictionary x:Key="Dark">
+					<!-- Tło okna -->
+					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#1E1E1E"/>
+					<!-- Tło kontrolek (TextBox, ComboBox, Border) -->
+					<SolidColorBrush x:Key="ThemeControlMidBrush" Color="#2D2D2D"/>
+					<!-- Tło dla ScrollViewer -->
+					<SolidColorBrush x:Key="ThemeControlLowBrush" Color="#252525"/>
+					<!-- Tekst -->
+					<SolidColorBrush x:Key="ThemeForegroundBrush" Color="#D4D4D4"/>
+					<!-- Akcent (np. fokus, przyciski) -->
+					<SolidColorBrush x:Key="ThemeAccentBrush" Color="#2E7D32"/>
+					<!-- Akcent przy najechaniu -->
+					<SolidColorBrush x:Key="ThemeAccentBrush2" Color="#3d9440"/>
+					<!-- Akcent przy kliknięciu -->
+					<SolidColorBrush x:Key="ThemeAccentBrush3" Color="#296B2C"/>
+					<!-- Tło Navbaru -->
+					<SolidColorBrush x:Key="ThemeControlHighBrush" Color="#263628"/>
+					<!-- Ramka kontrolek -->
+					<SolidColorBrush x:Key="ThemeBorderMidBrush" Color="#666666"/>
+					<!-- Błędy -->
+					<SolidColorBrush x:Key="ErrorForeground" Color="#EF5350"/>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+
+	<Application.Styles>
+		<FluentTheme/>
+		<!-- Usunięto atrybut Mode -->
+
+		<!-- Styl dla Window -->
+		<Style Selector="Window">
+			<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+			<Setter Property="FontFamily" Value="Segoe UI, Arial"/>
+		</Style>
+
+		<!-- Styl dla Border -->
+		<Style Selector="Border">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BoxShadow" Value="0 2 4 0 #0000001A"/>
+		</Style>
+
+		<!-- Styl dla TextBox -->
+		<Style Selector="TextBox">
+			<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="8"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+
+		<!-- Styl dla ComboBox -->
+		<Style Selector="ComboBox">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="8"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="ComboBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+
+		<!-- Styl dla przycisków .ok -->
+		<Style Selector="Button.ok">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Padding" Value="20,8"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Transitions">
+				<Transitions>
+					<BrushTransition Property="Background" Duration="0:0:0.2"/>
+				</Transitions>
+			</Setter>
+		</Style>
+		<Style Selector="Button.ok:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush2}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.ok:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush3}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+
+		<!-- Styl dla przycisków .delete -->
+		<Style Selector="Button.delete">
+			<Setter Property="Background" Value="#C62828"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Padding" Value="20,8"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Transitions">
+				<Transitions>
+					<BrushTransition Property="Background" Duration="0:0:0.2"/>
+				</Transitions>
+			</Setter>
+		</Style>
+		<Style Selector="Button.delete:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#D32F2F"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.delete:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="#B71C1C"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+
+	</Application.Styles>
 </Application>

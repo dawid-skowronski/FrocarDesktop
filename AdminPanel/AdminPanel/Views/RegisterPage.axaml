@@ -3,32 +3,16 @@
              xmlns:vm="clr-namespace:AdminPanel.ViewModels"
              x:Class="AdminPanel.Views.RegisterPage"
              x:DataType="vm:RegisterPageViewModel">
-
-	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" >
-		<TextBlock Text="Zarejestruj się" FontSize="30" HorizontalAlignment="Center" />
-
-		<TextBox Text="{Binding Username}" Watermark="Nazwa użytkownika" Width="250" Grid.Row="1" />
-
-		<TextBox Text="{Binding Email}" Watermark="E-mail" Width="250" Grid.Row="2" />
-
-		<TextBox Text="{Binding Password}" Watermark="Hasło" Width="250" Grid.Row="3" PasswordChar="●" />
-
-		<TextBox Text="{Binding ConfirmPassword}" Watermark="Potwierdź hasło" Width="250" Grid.Row="4" PasswordChar="●" />
-
-		<Button Content="Zarejestruj się"
-				Classes="ok"
-                Command="{Binding RegisterCommand}"
-                Grid.Row="5"
-				HorizontalAlignment="Center"
-				Width="250"/>
-		
-		<Button Content="Powrót" 
-				Classes="ok"
-				Command="{Binding GoBackToHomeCommand}"
-				Grid.Row="6"
-				HorizontalAlignment="Center"
-				Width="250"/>
-		
-		<TextBlock Text="{Binding ErrorMessage}" Grid.Row="7" HorizontalAlignment="Center" Margin="10"/>
-	</StackPanel>
+	<Border Background="{DynamicResource ContainerBackground}" Padding="30" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<StackPanel Spacing="20">
+			<TextBlock Text="Zarejestruj się" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+			<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}"/>
+			<TextBox Watermark="E-mail" Text="{Binding Email}"/>
+			<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●"/>
+			<TextBox Watermark="Potwierdź hasło" Text="{Binding ConfirmPassword}" PasswordChar="●"/>
+			<Button Content="Zarejestruj się" Classes="ok" Command="{Binding RegisterCommand}" HorizontalAlignment="Center" Width="200"/>
+			<Button Content="Powrót" Classes="ok" Command="{Binding GoBackToHomeCommand}" HorizontalAlignment="Center" Width="200"/>
+			<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+		</StackPanel>
+	</Border>
 </UserControl>

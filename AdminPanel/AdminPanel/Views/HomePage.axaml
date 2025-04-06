@@ -5,7 +5,7 @@
 			 x:DataType="vm:HomePageViewModel">
 	
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-		<TextBlock Text="Frocar" FontSize="89" FontWeight="Bold" Foreground="#6B9071" />
+		<TextBlock Text="Frocar" FontSize="89" FontWeight="Bold" Foreground="{DynamicResource ThemeAccentBrush}" />
 		
 		<TextBlock Text="Admin Panel" FontSize="30" HorizontalAlignment="Center" Grid.Row="1" />
 		

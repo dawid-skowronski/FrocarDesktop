@@ -4,6 +4,8 @@ using System.Reactive;
 using AdminPanel.Views;
 using Splat;
 using AdminPanel.Services;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Styling;
 
 namespace AdminPanel.ViewModels
 {
@@ -17,14 +19,18 @@ namespace AdminPanel.ViewModels
         }
 
         public ReactiveCommand<Unit, Unit> ShowHomePageCommand { get; }
+
         //users
         public ReactiveCommand<Unit, Unit> ShowUsersListCommand { get; }
+
         //cars
         public ReactiveCommand<Unit, Unit> ShowCreateCarCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowCarsListCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowCarMapCommand { get; } // Nowa komenda
 
+        //system
         public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
+        public ReactiveCommand<Unit, Unit> ToggleThemeCommand { get; }
 
         public DashboardPageViewModel()
         {
@@ -38,6 +44,7 @@ namespace AdminPanel.ViewModels
             ShowCarsListCommand = ReactiveCommand.Create(() => ChangeView(new CarsList()));
             ShowCarMapCommand = ReactiveCommand.Create(() => ChangeView(new CarMapView())); // Obsługa nowego widoku
             LogoutCommand = ReactiveCommand.Create(Logout);
+            ToggleThemeCommand = ReactiveCommand.Create(ToggleTheme);
         }
 
         // Metoda zmieniająca widok
@@ -53,6 +60,16 @@ namespace AdminPanel.ViewModels
             {
                 DataContext = new HomePageViewModel()
             };
+        }
+
+        private void ToggleTheme()
+        {
+            var app = (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+            if (app != null)
+            {
+                var currentTheme = app.ActualThemeVariant;
+                app.RequestedThemeVariant = currentTheme == ThemeVariant.Dark ? ThemeVariant.Light : ThemeVariant.Dark;
+            }
         }
     }
 }

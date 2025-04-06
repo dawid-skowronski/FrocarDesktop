@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using Avalonia.Media;
-using Avalonia;
-using Avalonia.Layout;
+using AdminPanel.Views;
+using Avalonia.Styling;
+using System;
 
 namespace AdminPanel.ViewModels
 {
@@ -22,172 +22,91 @@ namespace AdminPanel.ViewModels
         {
             RefreshCommand = ReactiveCommand.CreateFromTask(LoadCars);
             DeleteCommand = ReactiveCommand.CreateFromTask<int>(ConfirmDeleteCar);
-            _ = LoadCars(); // Pobieranie listy na starcie
+            _ = LoadCars();
         }
 
         private async Task LoadCars()
         {
-            var cars = await ApiService.GetCarListings();
-            Cars.Clear();
-            foreach (var car in cars)
+            try
             {
-                car.DeleteCommand = ReactiveCommand.CreateFromTask<int>(ConfirmDeleteCar);
-                Cars.Add(car);
+                var cars = await ApiService.GetCarListings();
+                Cars.Clear();
+                foreach (var car in cars)
+                {
+                    car.DeleteCommand = ReactiveCommand.CreateFromTask<int>(ConfirmDeleteCar);
+                    Cars.Add(car);
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageBox("Błąd", $"Wystąpił błąd podczas ładowania listy pojazdów: {ex.Message}");
             }
         }
 
         private async Task ConfirmDeleteCar(int carId)
         {
-            bool confirmed = await ShowConfirmDeleteDialog(carId);
-            if (confirmed)
+            try
             {
-                await DeleteCar(carId);
+                bool confirmed = await ShowConfirmDeleteDialog(carId);
+                if (confirmed)
+                {
+                    await DeleteCar(carId);
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageBox("Błąd", $"Wystąpił błąd podczas usuwania pojazdu: {ex.Message}");
             }
         }
 
         private async Task DeleteCar(int carId)
         {
-            var result = await ApiService.DeleteCarListing(carId);
-            if (result.IsSuccess)
+            try
             {
-                var carToRemove = Cars.FirstOrDefault(c => c.Id == carId);
-                if (carToRemove != null)
+                var (isSuccess, errorMessage) = await ApiService.DeleteCarListing(carId);
+                if (isSuccess)
                 {
-                    Cars.Remove(carToRemove);
-                    await ShowMessageBox("Sukces", "Pojazd został usunięty!");
+                    var carToRemove = Cars.FirstOrDefault(c => c.Id == carId);
+                    if (carToRemove != null)
+                    {
+                        Cars.Remove(carToRemove);
+                        await ShowMessageBox("Sukces", "Pojazd został usunięty!");
+                    }
+                    else
+                    {
+                        await ShowMessageBox("Błąd", "Nie znaleziono pojazdu do usunięcia.");
+                    }
+                }
+                else
+                {
+                    await ShowMessageBox("Błąd", errorMessage ?? "Nie udało się usunąć pojazdu.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await ShowMessageBox("Błąd", "Nie udało się usunąć pojazdu.");
+                await ShowMessageBox("Błąd", $"Wystąpił błąd podczas usuwania pojazdu: {ex.Message}");
             }
         }
 
         private async Task<bool> ShowConfirmDeleteDialog(int carId)
         {
-            var window = new Window
+            var dialog = new ConfirmMessageBoxView("Potwierdzenie usunięcia")
             {
-                Title = "Potwierdzenie usunięcia",
-                Width = 350,
-                Height = 200,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Background = new SolidColorBrush(Color.FromRgb(240, 240, 240)),
-                CanResize = false,
-                ShowInTaskbar = false
+                Message = $"Czy na pewno chcesz usunąć pojazd o ID {carId}?",
+                RequestedThemeVariant = App.MainWindow?.RequestedThemeVariant ?? ThemeVariant.Default
             };
-
-            var stackPanel = new StackPanel
-            {
-                Spacing = 15,
-                Margin = new Thickness(20),
-                VerticalAlignment = VerticalAlignment.Center
-            };
-
-            var textBlock = new TextBlock
-            {
-                Text = $"Czy na pewno chcesz usunąć pojazd o ID {carId}?",
-                FontSize = 16,
-                Foreground = new SolidColorBrush(Colors.Black),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                TextAlignment = TextAlignment.Center,
-                TextWrapping = TextWrapping.Wrap
-            };
-
-            var buttonPanel = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Spacing = 20
-            };
-
-            var yesButton = new Button
-            {
-                Content = "Tak",
-                Width = 100,
-                Background = new SolidColorBrush(Color.FromRgb(107, 144, 113)), // Zielony #6B9071
-                Foreground = Brushes.White,
-                HorizontalContentAlignment = HorizontalAlignment.Center
-            };
-            yesButton.Classes.Add("ok"); // Styl z App.axaml dla "ok"
-
-            var noButton = new Button
-            {
-                Content = "Nie",
-                Width = 100,
-                Background = new SolidColorBrush(Color.FromRgb(220, 20, 60)), // Czerwony #DC143C
-                Foreground = Brushes.White,
-                HorizontalContentAlignment = HorizontalAlignment.Center
-            };
-            noButton.Classes.Add("delete"); // Styl z App.axaml dla "delete"
-
-            bool? result = null;
-            yesButton.Click += (_, _) => { result = true; window.Close(); };
-            noButton.Click += (_, _) => { result = false; window.Close(); };
-
-            buttonPanel.Children.Add(yesButton);
-            buttonPanel.Children.Add(noButton);
-
-            stackPanel.Children.Add(textBlock);
-            stackPanel.Children.Add(buttonPanel);
-
-            window.Content = stackPanel;
-
-            window.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
-            window.Background = new SolidColorBrush(Color.FromArgb(200, 240, 240, 240));
-
-            await window.ShowDialog(App.MainWindow);
-            return result ?? false; // Zwraca true, jeśli "Tak", false w przeciwnym razie
+            await dialog.ShowDialog(App.MainWindow);
+            return await dialog.Result.Task;
         }
 
         private async Task ShowMessageBox(string title, string message)
         {
-            var window = new Window
+            var dialog = new MessageBoxView(title)
             {
-                Title = title,
-                Width = 350,
-                Height = 180,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Background = new SolidColorBrush(Color.FromRgb(240, 240, 240)),
-                CanResize = false,
-                ShowInTaskbar = false
+                Message = message,
+                RequestedThemeVariant = App.MainWindow?.RequestedThemeVariant ?? ThemeVariant.Default
             };
-
-            var stackPanel = new StackPanel
-            {
-                Spacing = 15,
-                Margin = new Thickness(20),
-                VerticalAlignment = VerticalAlignment.Center
-            };
-
-            var textBlock = new TextBlock
-            {
-                Text = message,
-                FontSize = 16,
-                Foreground = new SolidColorBrush(Colors.Black),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                TextAlignment = TextAlignment.Center,
-                TextWrapping = TextWrapping.Wrap
-            };
-
-            var okButton = new Button
-            {
-                Content = "OK",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Width = 100
-            };
-            okButton.Classes.Add("ok"); // Dodajemy klasę "ok"
-
-            okButton.Click += (_, _) => window.Close();
-
-            stackPanel.Children.Add(textBlock);
-            stackPanel.Children.Add(okButton);
-
-            window.Content = stackPanel;
-
-            window.TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
-            window.Background = new SolidColorBrush(Color.FromArgb(200, 240, 240, 240));
-
-            await window.ShowDialog(App.MainWindow);
+            await dialog.ShowDialog(App.MainWindow);
         }
     }
 }

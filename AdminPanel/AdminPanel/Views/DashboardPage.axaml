@@ -3,35 +3,30 @@
              xmlns:vm="clr-namespace:AdminPanel.ViewModels"
              x:Class="AdminPanel.Views.DashboardPage"
              x:DataType="vm:DashboardPageViewModel">
-
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="250"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
-		<!-- Panel boczny (Navbar) -->
-		<StackPanel Background="#6B9071" Grid.Column="0" Width="250">
-			<Button FontSize="16" Content="Strona główna" Command="{Binding ShowHomePageCommand}" Foreground="White" Width="250"/>
-			<TextBlock></TextBlock>
+		<!-- Navbar -->
+		<Border Grid.Column="0" Background="{DynamicResource NavbarBackground}" CornerRadius="0,10,10,0" BoxShadow="2 0 4 0 #00000033">
+			<StackPanel Spacing="10">
+				<TextBlock Text="Admin Panel" FontSize="20" FontWeight="SemiBold" TextAlignment="Center" Foreground="{DynamicResource TextForeground}"/>
+				<Button Content="Strona główna" Command="{Binding ShowHomePageCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<TextBlock Text="Użytkownicy" FontSize="14" TextAlignment="Center" Foreground="#A0A0A0"/>
+				<Button Content="Użytkownicy" Command="{Binding ShowUsersListCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<TextBlock Text="Samochody" FontSize="14" TextAlignment="Center" Foreground="#A0A0A0"/>
+				<Button Content="Dodaj pojazd" Command="{Binding ShowCreateCarCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<Button Content="Lista pojazdów" Command="{Binding ShowCarsListCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<Button Content="Mapa pojazdów" Command="{Binding ShowCarMapCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<StackPanel VerticalAlignment="Stretch"/>
+				<Button Content="Wyloguj" Command="{Binding LogoutCommand}" Background="Transparent" Foreground="{DynamicResource TextForeground}" HorizontalContentAlignment="Center" Padding="10" Width="250"/>
+				<Button Classes="ok" Content="Toggle Theme" Command="{Binding ToggleThemeCommand}"  Width="250"/>
+			</StackPanel>
+		</Border>
 
-			<TextBlock FontSize="20" Foreground="#f5f5f5" TextAlignment="Center">Użytkownicy</TextBlock>
-			<Button FontSize="16" Content="Użytkownicy" Command="{Binding ShowUsersListCommand}" Foreground="White" Width="250"/>
-			<TextBlock></TextBlock>
-
-			<TextBlock FontSize="20" Foreground="#f5f5f5" TextAlignment="Center">Samochody</TextBlock>
-			<Button FontSize="16" Content="Dodaj pojazd" Command="{Binding ShowCreateCarCommand}" Foreground="White" Width="250"/>
-			<Button FontSize="16" Content="Lista pojazdów" Command="{Binding ShowCarsListCommand}" Foreground="White" Width="250"/>
-			<Button FontSize="16" Content="Mapa pojazdów" Command="{Binding ShowCarMapCommand}" Foreground="White" Width="250"/>
-			<!-- Nowy przycisk -->
-			<TextBlock></TextBlock>
-
-			<Button FontSize="16" Content="Wyloguj" Command="{Binding LogoutCommand}" Foreground="White" Width="250" />
-		</StackPanel>
-
-		<!-- Dynamiczny obszar na treść -->
-		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
-			<ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
-		</StackPanel>
+		<!-- Treść -->
+		<ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="20"/>
 	</Grid>
 </UserControl>

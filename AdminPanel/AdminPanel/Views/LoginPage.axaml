@@ -1,30 +1,16 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
              x:Class="AdminPanel.Views.LoginPage"
-			 x:DataType="vm:LoginPageViewModel">
-
-	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-		<TextBlock Text="Zaloguj się" FontSize="30" HorizontalAlignment="Center" />
-		
-		<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}" Width="250" Grid.Row="1"/>
-		
-		<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●" Width="250" Grid.Row="2" />
-		
-		<Button Content="Zaloguj się"
-				Classes="ok"
-				Command="{Binding LoginCommand}" 		
-				Grid.Row="3"
-                HorizontalAlignment="Center"
-                Width="250"/>
-		
-		<Button Content="Powrót" 
-				Classes="ok"
-				Command="{Binding GoBackToHomeCommand}" 
-				Grid.Row="4"
-                HorizontalAlignment="Center"
-                Width="250"/>
-		
-		<TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Grid.Row="5" HorizontalAlignment="Center" />
-	</StackPanel>
+             x:DataType="vm:LoginPageViewModel">
+	<Border Background="{DynamicResource ContainerBackground}" Padding="30" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<StackPanel Spacing="20">
+			<TextBlock Text="Zaloguj się" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+			<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}"/>
+			<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●"/>
+			<Button Content="Zaloguj się" Classes="ok" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Width="200"/>
+			<Button Content="Powrót" Classes="ok" Command="{Binding GoBackToHomeCommand}" HorizontalAlignment="Center" Width="200"/>
+			<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+		</StackPanel>
+	</Border>
 </UserControl>

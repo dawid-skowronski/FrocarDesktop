@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:views="clr-namespace:AdminPanel.Views"
+        x:Class="AdminPanel.Views.ConfirmMessageBoxView"
+        x:DataType="views:ConfirmMessageBoxView"
+        Width="350" Height="150"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False"
+        SystemDecorations="None"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="{DynamicResource ThemeBackgroundBrush}"
+		CornerRadius="8">
+	<Border BorderBrush="{DynamicResource ThemeAccentBrush}"
+            BorderThickness="2"
+            CornerRadius="8"
+            Margin="5"
+            Background="{DynamicResource ThemeControlMidBrush}">
+		<StackPanel Spacing="15" Margin="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock Text="{Binding Message}"
+                       FontSize="14"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       Foreground="{DynamicResource ThemeForegroundBrush}"/>
+			<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+				<Button Content="Tak" x:Name="YesButton" Classes="ok"/>
+				<Button Content="Nie" x:Name="NoButton" Classes="delete"/>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</Window>
