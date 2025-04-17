@@ -142,7 +142,7 @@ namespace AdminPanel.Views
                     var result = results[0];
 
                     Console.WriteLine($"Wynik: Lat = {result.Lat}, Lon = {result.Lon}");
-                    //_viewModel.ErrorMessage = $"Wynik: Lat = {result.Lat}, Lon = {result.Lon}";
+                    _viewModel.ErrorMessage = $"Wynik: Lat = {result.Lat}, Lon = {result.Lon}";
 
                     // Przypisanie do pól tekstowych
                     // Przypisanie do pól tekstowych z zamian¹ separatora na zgodny z kultur¹ systemow¹
@@ -177,18 +177,6 @@ namespace AdminPanel.Views
                 //_viewModel.ErrorMessage = $"B³¹d: {ex.Message}";
                 Console.WriteLine($"B³¹d: {ex.Message}");
             }
-        }
-
-        public class NominatimResult
-        {
-            [JsonPropertyName("lat")]
-            public string Lat { get; set; }
-
-            [JsonPropertyName("lon")]
-            public string Lon { get; set; }
-
-            [JsonPropertyName("display_name")]
-            public string DisplayName { get; set; }
         }
 
     }

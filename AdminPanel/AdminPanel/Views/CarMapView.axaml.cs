@@ -70,7 +70,7 @@ namespace AdminPanel.Views
                     var position = SphericalMercator.FromLonLat(car.Longitude, car.Latitude);
                     var feature = new PointFeature(new MPoint(position.x, position.y));
                     feature["CarData"] = car;
-                    var color = car.IsAvailable ? new Color(0, 255, 0) : new Color(255, 165, 0);
+                    var color = car.IsAvailable ? new Color(61, 148, 64) : new Color(255, 165, 0);
                     feature.Styles = new List<IStyle>
             {
                 new SymbolStyle

@@ -8,7 +8,7 @@ namespace AdminPanel.Views
         public UsersList()
         {
             InitializeComponent();
-            DataContext = new UsersListViewModel(); // <- Ustawienie ViewModelu
+            DataContext = new UsersListViewModel();
         }
     }
 }

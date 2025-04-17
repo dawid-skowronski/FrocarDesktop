@@ -43,10 +43,10 @@
 				</ComboBox>
 				<TextBox Watermark="Liczba miejsc" Text="{Binding Seats}" Width="300"/>
 				<TextBox Watermark="Dodatkowe wyposażenie" Text="{Binding FeaturesText}" Width="300"/>
+				<TextBox Watermark="Cena za dzień (PLN)" Text="{Binding RentalPricePerDay}" Width="300"/>
 				<TextBox Watermark="Szerokość geograficzna" Text="{Binding Latitude}" Width="300"/>
 				<TextBox Watermark="Długość geograficzna" Text="{Binding Longitude}" Width="300"/>
-				
-				<TextBox Watermark="Cena za dzień (PLN)" Text="{Binding RentalPricePerDay}" Width="300"/>
+
 			</StackPanel>
 		</Border>
 

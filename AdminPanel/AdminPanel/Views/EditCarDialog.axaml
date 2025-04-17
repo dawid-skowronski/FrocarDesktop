@@ -1,0 +1,115 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+        x:Class="AdminPanel.Views.EditCarDialog"
+        x:DataType="vm:EditCarDialogViewModel"
+        Title="{Binding Title}"
+        Width="800"
+        Height="600"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False"
+        SystemDecorations="None"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="{DynamicResource ThemeBackgroundBrush}">
+
+    <Border BorderBrush="{DynamicResource ThemeAccentBrush}"
+            BorderThickness="2"
+            CornerRadius="8"
+            Margin="5"
+            Background="{DynamicResource ThemeControlMidBrush}">
+        <Grid RowDefinitions="Auto,*,Auto,Auto">
+            <!-- Nagłówek -->
+            <TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="20" FontWeight="SemiBold"
+                      HorizontalAlignment="Center" Margin="0,20,0,20" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+
+            <!-- Zawartość -->
+            <Grid Grid.Row="1" ColumnDefinitions="*,*" Margin="20">
+                <!-- Lewa kolumna -->
+                <StackPanel Grid.Column="0" Spacing="15">
+                    <!-- Marka -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Marka" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding CarListing.Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź markę" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Pojemność silnika -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Pojemność silnika" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding EngineCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź pojemność" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Typ paliwa -->
+                    <StackPanel Spacing="5" Margin="35,0,0,0">
+                        <TextBlock Text="Typ paliwa" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <ComboBox SelectedValue="{Binding CarListing.FuelType, Mode=TwoWay}"
+                                 ItemsSource="{Binding FuelTypes}"
+                                 PlaceholderText="Wybierz typ paliwa" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Liczba miejsc -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Liczba miejsc" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding Seats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź liczbę miejsc" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Typ nadwozia -->
+                    <StackPanel Spacing="5" Margin="35,0,0,0">
+                        <TextBlock Text="Typ nadwozia" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <ComboBox SelectedValue="{Binding CarListing.CarType, Mode=TwoWay}"
+                                 ItemsSource="{Binding CarTypes}"
+                                 PlaceholderText="Wybierz typ nadwozia" Width="300"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Prawa kolumna -->
+                <StackPanel Grid.Column="1" Spacing="15">
+                    <!-- Cena za dzień -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Cena za dzień" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding RentalPricePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź cenę" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Wyposażenie -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Wyposażenie (oddzielone przecinkami)" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding FeaturesString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="np. Klimatyzacja, GPS, Kamera cofania" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Adres -->
+                    <StackPanel Spacing="5" Margin="35,0,0,0">
+                        <TextBlock Text="Adres (np. Pawia 1, Lubin)" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBox Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Watermark="Wprowadź adres" Width="190"/>
+                            <Button Content="Wyszukaj" Command="{Binding SearchAddressCommand}" Classes="ok" Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Szerokość geograficzna -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Szerokość geograficzna" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding Latitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź szerokość geograficzną" Width="300"/>
+                    </StackPanel>
+
+                    <!-- Długość geograficzna -->
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Długość geograficzna" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+                        <TextBox Text="{Binding Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="Wprowadź długość geograficzną" Width="300"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Przyciski -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="0,20">
+                <Button Content="Zapisz" Command="{Binding SaveCommand}" Classes="ok" Width="100"/>
+                <Button Content="Odrzuć" Command="{Binding CancelCommand}" Classes="delete" Width="100"/>
+            </StackPanel>
+
+            <!-- Ogólny komunikat błędu -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" TextWrapping="Wrap" MaxWidth="700"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

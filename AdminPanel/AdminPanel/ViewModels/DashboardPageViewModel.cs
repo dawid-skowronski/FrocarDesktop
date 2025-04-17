@@ -6,6 +6,7 @@ using Splat;
 using AdminPanel.Services;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
+using Avalonia;
 
 namespace AdminPanel.ViewModels
 {
@@ -64,11 +65,10 @@ namespace AdminPanel.ViewModels
 
         private void ToggleTheme()
         {
-            var app = (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-            if (app != null)
+            if (Application.Current != null)
             {
-                var currentTheme = app.ActualThemeVariant;
-                app.RequestedThemeVariant = currentTheme == ThemeVariant.Dark ? ThemeVariant.Light : ThemeVariant.Dark;
+                var currentTheme = Application.Current.RequestedThemeVariant;
+                Application.Current.RequestedThemeVariant = currentTheme == ThemeVariant.Dark ? ThemeVariant.Light : ThemeVariant.Dark;
             }
         }
     }

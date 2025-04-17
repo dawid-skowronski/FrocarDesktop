@@ -12,7 +12,7 @@ namespace AdminPanel.ViewModels
         //private string _password = string.Empty;
         private string _errorMessage = string.Empty;
 
-        private string _username = "dawid";                 //wypierdol to to tylko do testow :PPPP
+        private string _username = "dawid";                 //usun to to tylko do testow :PPPP
         private string _password = "Dawid123!";
 
         public string Username
