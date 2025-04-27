@@ -15,53 +15,59 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AdminPanel
-build_property.ProjectDir = C:\Users\vidsontoziomal\Desktop\edycja car — kopia\AdminPanel\
+build_property.ProjectDir = C:\Users\vidsontoziomal\Desktop\carstoapprove robimy\AdminPanel\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/App.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/CarMapView.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/CarMapView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/CarsList.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/CarsList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/ConfirmMessageBoxView.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/CarsToApprove.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/CreateCar.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/ConfirmMessageBoxView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/DashboardPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/CreateCar.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/EditCarDialog.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/DashboardPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/EditUserDialog.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/EditCarDialog.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/HomePage.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/EditUserDialog.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/HomePageAdmin.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/HomePage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/LoginPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/HomePageAdmin.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/MainWindow.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/LoginPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/MessageBoxView.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/RegisterPage.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/MessageBoxView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/vidsontoziomal/Desktop/edycja car — kopia/AdminPanel/Views/UsersList.axaml]
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/RegisterPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/RentalsList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/vidsontoziomal/Desktop/carstoapprove robimy/AdminPanel/Views/UsersList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net;
+using System.Diagnostics;
 
 namespace AdminPanel.Services
 {
@@ -30,7 +31,6 @@ namespace AdminPanel.Services
                 return (true, "Zalogowano pomyślnie");
             }
 
-            // Dodana obsługa komunikatów błędów z JSON
             if (!string.IsNullOrEmpty(response.Content))
             {
                 try
@@ -47,7 +47,6 @@ namespace AdminPanel.Services
             var errorMessage = response.Content ?? "Błędne dane logowania";
             return (false, errorMessage);
         }
-
 
         public static async Task<(bool IsSuccess, string Message)> Register(string username, string email, string password, string confirmPassword)
         {
@@ -67,7 +66,6 @@ namespace AdminPanel.Services
                 return (true, "Rejestracja zakończona sukcesem");
             }
 
-            // Dodana obsługa komunikatów błędów z JSON
             if (!string.IsNullOrEmpty(response.Content))
             {
                 try
@@ -85,7 +83,6 @@ namespace AdminPanel.Services
             return (false, errorMessage);
         }
 
-
         public static async Task<(bool IsSuccess, List<UserDto> Users, string Message)> GetUsers()
         {
             var request = new RestRequest("api/Admin/users", Method.Get);
@@ -100,7 +97,6 @@ namespace AdminPanel.Services
 
             return (false, null, response.Content ?? "Błąd podczas pobierania użytkowników");
         }
-
 
         public static async Task<(bool IsSuccess, UserDto User, string Message)> GetUserFromId(int userId)
         {
@@ -118,7 +114,6 @@ namespace AdminPanel.Services
             return (false, null, response.Content ?? "Błąd podczas pobierania użytkownika");
         }
 
-
         public static async Task<(bool IsSuccess, string Message)> CreateCar(CarListing car)
         {
             try
@@ -127,8 +122,7 @@ namespace AdminPanel.Services
                 request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
                 request.AddHeader("Content-Type", "application/json");
 
-                // Pobierz userId z tokena i ustaw w obiekcie CarListing
-                var userId = TokenService.GetUserId(); // Upewnij się, że masz taką metodę!
+                var userId = TokenService.GetUserId();
                 car.UserId = userId;
 
                 request.AddJsonBody(car);
@@ -151,7 +145,6 @@ namespace AdminPanel.Services
             }
         }
 
-
         public static async Task<List<CarListing>> GetCarListings()
         {
             var request = new RestRequest("api/Admin/listings", Method.Get);
@@ -164,9 +157,8 @@ namespace AdminPanel.Services
                 return response.Data;
             }
 
-            return new List<CarListing>(); // Pusta lista w razie błędu
+            return new List<CarListing>();
         }
-
 
         public static async Task<(bool IsSuccess, string Message)> DeleteCarListing(int carId)
         {
@@ -183,7 +175,6 @@ namespace AdminPanel.Services
             return (false, response.Content ?? "Błąd podczas usuwania pojazdu");
         }
 
-        // In ApiService.cs, add this method
         public static async Task<(bool IsSuccess, string Message)> UpdateCarListing(CarListing car)
         {
             try
@@ -220,8 +211,6 @@ namespace AdminPanel.Services
             }
         }
 
-
-        // Metoda do usuwania użytkownika
         public static async Task<(bool IsSuccess, string Message)> DeleteUser(int userId)
         {
             try
@@ -258,7 +247,6 @@ namespace AdminPanel.Services
             }
         }
 
-        // Metoda do edycji użytkownika
         public static async Task<(bool IsSuccess, string Message)> UpdateUser(int userId, string username, string email, string password)
         {
             try
@@ -304,6 +292,189 @@ namespace AdminPanel.Services
             }
         }
 
+        public static async Task<(bool IsSuccess, List<CarRentalDto> Rentals, string Message)> GetCarRentals()
+        {
+            try
+            {
+                var request = new RestRequest("api/CarRental/list", Method.Get);
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
 
+                Debug.WriteLine("Wysyłam żądanie GET /api/CarRental/list...");
+                var response = await _client.ExecuteAsync(request);
+
+                Debug.WriteLine($"Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.IsSuccessful)
+                {
+                    var rentals = JsonSerializer.Deserialize<List<CarRentalDto>>(response.Content, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    Debug.WriteLine($"Zdeserializowano {rentals?.Count ?? 0} wypożyczeń.");
+                    return (true, rentals, "Pobrano wypożyczenia");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas pobierania wypożyczeń: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"Błąd API: {errorMessage}");
+                return (false, null, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Wyjątek w GetCarRentals: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, null, $"Błąd: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> UpdateRentalStatus(int rentalId, string status)
+        {
+            try
+            {
+                var request = new RestRequest($"api/CarRental/{rentalId}/status", Method.Put);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddBody($"\"{status}\"", ContentType.Json);
+
+                Debug.WriteLine($"Wysyłam żądanie PUT /api/CarRental/{rentalId}/status z statusem={status}...");
+                var response = await _client.ExecuteAsync(request);
+
+                Debug.WriteLine($"Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.IsSuccessful)
+                {
+                    return (true, "Status wypożyczenia zmieniony pomyślnie");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas zmiany statusu wypożyczenia: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"Błąd API: {errorMessage}");
+                return (false, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Wyjątek w UpdateRentalStatus: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, $"Błąd: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> UpdateCarAvailability(int carListingId, bool isAvailable)
+        {
+            try
+            {
+                var request = new RestRequest($"api/CarListings/{carListingId}/availability", Method.Put);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddBody(isAvailable.ToString().ToLower(), ContentType.Json);
+
+                Debug.WriteLine($"Wysyłam żądanie PUT /api/CarListings/{carListingId}/availability z isAvailable={isAvailable}...");
+                var response = await _client.ExecuteAsync(request);
+
+                Debug.WriteLine($"Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.IsSuccessful)
+                {
+                    return (true, "Dostępność samochodu zmieniona pomyślnie");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas zmiany dostępności samochodu: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"Błąd API: {errorMessage}");
+                return (false, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Wyjątek w UpdateCarAvailability: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, $"Błąd: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> DeleteCarRental(int rentalId)
+        {
+            try
+            {
+                var request = new RestRequest($"api/CarRental/{rentalId}", Method.Delete);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+
+                Debug.WriteLine($"Wysyłam żądanie DELETE /api/CarRental/{rentalId}...");
+                var response = await _client.ExecuteAsync(request);
+
+                Debug.WriteLine($"Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.IsSuccessful)
+                {
+                    return (true, "Wypożyczenie usunięte pomyślnie");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas usuwania wypożyczenia: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"Błąd API: {errorMessage}");
+                return (false, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Wyjątek w DeleteCarRental: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, $"Błąd: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> ApproveCarListing(int carId)
+        {
+            try
+            {
+                var request = new RestRequest($"api/CarListings/{carId}/approve", Method.Put);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+
+                Debug.WriteLine($"Wysyłam żądanie PUT /api/CarListings/{carId}/approve...");
+                var response = await _client.ExecuteAsync(request);
+
+                Debug.WriteLine($"Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.IsSuccessful)
+                {
+                    try
+                    {
+                        var json = JsonDocument.Parse(response.Content);
+                        if (json.RootElement.TryGetProperty("message", out var message))
+                        {
+                            return (true, message.GetString());
+                        }
+                        return (true, "Pojazd zatwierdzony pomyślnie");
+                    }
+                    catch (JsonException)
+                    {
+                        return (true, "Pojazd zatwierdzony pomyślnie");
+                    }
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas zatwierdzania pojazdu: {response.StatusCode}"
+                    : response.Content;
+                try
+                {
+                    var json = JsonDocument.Parse(response.Content);
+                    if (json.RootElement.TryGetProperty("message", out var message))
+                    {
+                        errorMessage = message.GetString();
+                    }
+                }
+                catch (JsonException) { }
+
+                Debug.WriteLine($"Błąd API: {errorMessage}");
+                return (false, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Wyjątek w ApproveCarListing: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, $"Błąd: {ex.Message}");
+            }
+        }
     }
 }

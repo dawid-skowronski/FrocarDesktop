@@ -1,54 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\",
+  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\viewmodels\\userslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\viewmodels\\userslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\views\\carstoapprove.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\carstoapprove.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\views\\carstoapprove.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\carstoapprove.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\messageboxview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\messageboxview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\viewmodels\\carstoapproveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\viewmodels\\carstoapproveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\confirmmessageboxview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\confirmmessageboxview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\models\\carlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\models\\carlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\edituserdialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\edituserdialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\viewmodels\\edituserdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\viewmodels\\edituserdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\userslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\userslist.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\userslist.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\userslist.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\views\\edituserdialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\edituserdialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\edycja car \u2014 kopia\\adminpanel\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\carstoapprove robimy\\adminpanel\\converters\\booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\converters\\booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,157 +34,83 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MessageBoxView.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\MessageBoxView.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\MessageBoxView.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\MessageBoxView.axaml",
-              "RelativeToolTip": "AdminPanel\\Views\\MessageBoxView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T17:04:54.585Z",
+              "DocumentIndex": 5,
+              "Title": "BooleanToColorConverter.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Converters\\BooleanToColorConverter.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Converters\\BooleanToColorConverter.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Converters\\BooleanToColorConverter.cs",
+              "RelativeToolTip": "AdminPanel\\Converters\\BooleanToColorConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T10:02:58.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ConfirmMessageBoxView.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\ConfirmMessageBoxView.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\ConfirmMessageBoxView.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\ConfirmMessageBoxView.axaml",
-              "RelativeToolTip": "AdminPanel\\Views\\ConfirmMessageBoxView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T17:04:46.459Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "App.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\App.axaml.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\App.axaml.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\App.axaml.cs",
-              "RelativeToolTip": "AdminPanel\\App.axaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA5wBgAAAAVAAAAAAAAAA==",
+              "Title": "CarListing.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Models\\CarListing.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Models\\CarListing.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Models\\CarListing.cs",
+              "RelativeToolTip": "AdminPanel\\Models\\CarListing.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAiwCUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:56:47.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "App.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\App.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\App.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\App.axaml",
-              "RelativeToolTip": "AdminPanel\\App.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T16:48:39.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EditUserDialogViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\ViewModels\\EditUserDialogViewModel.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\ViewModels\\EditUserDialogViewModel.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\ViewModels\\EditUserDialogViewModel.cs",
-              "RelativeToolTip": "AdminPanel\\ViewModels\\EditUserDialogViewModel.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAqwFkAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:46:20.074Z",
+              "WhenOpened": "2025-04-27T09:58:16.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "EditUserDialog.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\EditUserDialog.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\EditUserDialog.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\EditUserDialog.axaml",
-              "RelativeToolTip": "AdminPanel\\Views\\EditUserDialog.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T16:45:20.385Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "EditUserDialog.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\EditUserDialog.axaml.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\EditUserDialog.axaml.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\EditUserDialog.axaml.cs",
-              "RelativeToolTip": "AdminPanel\\Views\\EditUserDialog.axaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:45:20.282Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "ApiService.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Services\\ApiService.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Services\\ApiService.cs",
               "RelativeDocumentMoniker": "AdminPanel\\Services\\ApiService.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Services\\ApiService.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Services\\ApiService.cs",
               "RelativeToolTip": "AdminPanel\\Services\\ApiService.cs",
-              "ViewState": "AgIAABgBAAAAAAAAAAAcwBwBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALsBAAAAAAAAAAAcwN8BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:39:40.911Z",
+              "WhenOpened": "2025-04-27T09:58:10.111Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Models\\UserDto.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Models\\UserDto.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Models\\UserDto.cs",
-              "RelativeToolTip": "AdminPanel\\Models\\UserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Title": "CarsToApprove.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Views\\CarsToApprove.axaml.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\CarsToApprove.axaml.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Views\\CarsToApprove.axaml.cs",
+              "RelativeToolTip": "AdminPanel\\Views\\CarsToApprove.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:38:59.368Z",
+              "WhenOpened": "2025-04-27T09:57:54.977Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersListViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\ViewModels\\UsersListViewModel.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\ViewModels\\UsersListViewModel.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\ViewModels\\UsersListViewModel.cs",
-              "RelativeToolTip": "AdminPanel\\ViewModels\\UsersListViewModel.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAqwKoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:38:52.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UsersList.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\UsersList.axaml.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\UsersList.axaml.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\UsersList.axaml.cs",
-              "RelativeToolTip": "AdminPanel\\Views\\UsersList.axaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:38:40.843Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UsersList.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\UsersList.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\UsersList.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\edycja car \u2014 kopia\\AdminPanel\\Views\\UsersList.axaml",
-              "RelativeToolTip": "AdminPanel\\Views\\UsersList.axaml",
+              "Title": "CarsToApprove.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Views\\CarsToApprove.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\CarsToApprove.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\Views\\CarsToApprove.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\CarsToApprove.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T16:38:39.613Z",
+              "WhenOpened": "2025-04-27T09:57:54.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CarsToApproveViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\carstoapprove robimy\\AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "RelativeToolTip": "AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAcwIMBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T09:57:52.814Z",
               "EditorCaption": ""
             }
           ]
