@@ -35,7 +35,7 @@
 				</Border>
 
 				<!-- Lista użytkowników z przewijaniem -->
-				<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="600">
+				<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="700">
 					<ItemsControl ItemsSource="{Binding Users}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
@@ -54,11 +54,12 @@
 										<TextBlock Text="{Binding Role}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
 											<Button Content="Edytuj" Classes="edit" Width="80"
-                                                    Command="{Binding EditCommand}"
-                                                    CommandParameter="{Binding}"/>
+													Command="{Binding EditCommand}"
+													CommandParameter="{Binding}"/>
 											<Button Content="Usuń" Classes="delete" Width="80"
-                                                    Command="{Binding DeleteCommand}"
-                                                    CommandParameter="{Binding}"/>
+													Command="{Binding DeleteCommand}"
+													CommandParameter="{Binding}"
+													IsVisible="{Binding !IsCurrentUser}"/>
 										</StackPanel>
 									</Grid>
 								</Border>

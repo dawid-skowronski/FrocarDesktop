@@ -118,7 +118,7 @@
 				</Border>
 
 				<!-- Zawartość tabeli -->
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="650">
 					<ItemsControl ItemsSource="{Binding FilteredCars}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
@@ -156,7 +156,7 @@
                                                  Fill="{Binding IsAvailable, Converter={StaticResource BooleanToColorConverter}}"/>
 										<Ellipse Grid.Column="9" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                  Fill="{Binding IsApproved, Converter={StaticResource BooleanToColorConverter}}"/>
-										<ItemsControl Grid.Column="10" ItemsSource="{Binding Features}" HorizontalAlignment="Center">
+										<ItemsControl Grid.Column="10" ItemsSource="{Binding Features}" HorizontalAlignment="Left">
 											<ItemsControl.ItemTemplate>
 												<DataTemplate>
 													<StackPanel Orientation="Horizontal">

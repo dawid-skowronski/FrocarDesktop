@@ -50,8 +50,11 @@ namespace AdminPanel.ViewModels
             {
                 _allUsers.Clear();
                 Users.Clear();
+                //int currentUserId = 32; // Pobierz ID zalogowanego użytkownika
+                int currentUserId = TokenService.GetUserId(); // Pobierz ID zalogowanego użytkownika
                 foreach (var user in result.Users)
                 {
+                    user.IsCurrentUser = user.Id == currentUserId; // Ustaw flagę
                     user.EditCommand = ReactiveCommand.CreateFromTask<UserDto>(EditUser);
                     user.DeleteCommand = ReactiveCommand.CreateFromTask<UserDto>(ConfirmDeleteUser);
                     _allUsers.Add(user);
@@ -111,6 +114,12 @@ namespace AdminPanel.ViewModels
 
         private async Task ConfirmDeleteUser(UserDto user)
         {
+            if (user.Id == TokenService.GetUserId())
+            {
+                await ShowMessageBox("Błąd", "Nie możesz usunąć własnego konta!");
+                return;
+            }
+
             try
             {
                 bool confirmed = await ShowConfirmDeleteDialog(user.Id);

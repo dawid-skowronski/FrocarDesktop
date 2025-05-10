@@ -59,6 +59,8 @@
 			<!-- Konwertery -->
 			<converters:BooleanToYesNoConverter x:Key="BooleanToYesNoConverter"/>
 			<converters:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
+			<converters:DecimalToVisibilityConverter x:Key="DecimalToVisibilityConverter"/>
+			<converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 		</ResourceDictionary>
 	</Application.Resources>
 
@@ -114,11 +116,6 @@
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="Transitions">
-				<Transitions>
-					<BrushTransition Property="Background" Duration="0:0:0.2"/>
-				</Transitions>
-			</Setter>
 		</Style>
 		<Style Selector="Button.ok:pointerover /template/ ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush2}"/>
@@ -138,11 +135,6 @@
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="Transitions">
-				<Transitions>
-					<BrushTransition Property="Background" Duration="0:0:0.2"/>
-				</Transitions>
-			</Setter>
 		</Style>
 		<Style Selector="Button.delete:pointerover /template/ ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource ThemeDeleteHoverBrush}"/>
@@ -162,11 +154,6 @@
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="Transitions">
-				<Transitions>
-					<BrushTransition Property="Background" Duration="0:0:0.2"/>
-				</Transitions>
-			</Setter>
 		</Style>
 		<Style Selector="Button.edit:pointerover /template/ ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource ThemeEditHoverBrush}"/>
@@ -184,11 +171,6 @@
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="FontSize" Value="14"/>
 			<Setter Property="CornerRadius" Value="4"/>
-			<Setter Property="Transitions">
-				<Transitions>
-					<BrushTransition Property="Background" Duration="0:0:0.2"/>
-				</Transitions>
-			</Setter>
 		</Style>
 		<Style Selector="Button.nav:pointerover /template/ ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource ThemeControlHoverBrush}"/>

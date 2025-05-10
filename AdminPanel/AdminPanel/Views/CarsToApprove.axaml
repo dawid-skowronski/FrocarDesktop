@@ -112,7 +112,7 @@
 				</Border>
 
 				<!-- Zawartość tabeli -->
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="650">
 					<ItemsControl ItemsSource="{Binding FilteredCars}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
@@ -146,7 +146,7 @@
 										<TextBlock Grid.Column="6" Text="{Binding CarType}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<TextBlock Grid.Column="7" Text="{Binding RentalPricePerDay, StringFormat=N2}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<Ellipse Grid.Column="8" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{DynamicResource ThemeEditBrush}"/>
-										<ItemsControl Grid.Column="9" ItemsSource="{Binding Features}" HorizontalAlignment="Center">
+										<ItemsControl Grid.Column="9" ItemsSource="{Binding Features}" HorizontalAlignment="Left">
 											<ItemsControl.ItemTemplate>
 												<DataTemplate>
 													<StackPanel Orientation="Horizontal">

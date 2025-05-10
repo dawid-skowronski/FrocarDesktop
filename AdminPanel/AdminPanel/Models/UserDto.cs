@@ -14,6 +14,7 @@ namespace AdminPanel.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public bool IsCurrentUser { get; set; } // Nowa właściwość
 
         public ReactiveCommand<UserDto, Unit> EditCommand { get; set; }
         public ReactiveCommand<UserDto, Unit> DeleteCommand { get; set; }

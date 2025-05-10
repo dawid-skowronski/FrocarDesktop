@@ -19,6 +19,7 @@
 					<!-- Sekcja: Strona główna -->
 					<TextBlock Text="Panel" FontSize="12" FontWeight="SemiBold" TextAlignment="Left" Foreground="#A0A0A0" Margin="10,0,0,5"/>
 					<Button Content="Strona główna" Classes="nav" Classes.active="{Binding IsHomeView}" Command="{Binding ShowHomePageCommand}" Width="245" Margin="2,2"/>
+					<Button Content="Statystyki" Classes="nav" Classes.active="{Binding IsStatisticsView}" Command="{Binding ShowStatisticsCommand}" Width="245" Margin="2,2"/>
 
 					<!-- Sekcja: Użytkownicy -->
 					<TextBlock Text="Użytkownicy" FontSize="12" FontWeight="SemiBold" TextAlignment="Left" Foreground="#A0A0A0" Margin="10,10,0,5"/>

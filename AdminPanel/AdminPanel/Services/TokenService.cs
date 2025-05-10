@@ -27,7 +27,8 @@ namespace AdminPanel.Services
 
             var handler = new JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(Token);
-            var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "nameidentifier")?.Value;
+            var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "nameidentifier")?.Value
+                ?? jwtToken.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
 
             return int.TryParse(userIdClaim, out int userId) ? userId : 0;
         }

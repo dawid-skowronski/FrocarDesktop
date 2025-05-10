@@ -27,6 +27,7 @@ namespace AdminPanel.ViewModels
         private bool _isCarMapView;
         private bool _isRentalsListView;
         private bool _isCarsToApproveView;
+        private bool _isStatisticsView;
 
         public bool IsHomeView
         {
@@ -63,6 +64,11 @@ namespace AdminPanel.ViewModels
             get => _isCarsToApproveView;
             set => this.RaiseAndSetIfChanged(ref _isCarsToApproveView, value);
         }
+        public bool IsStatisticsView
+        {
+            get => _isStatisticsView;
+            set => this.RaiseAndSetIfChanged(ref _isStatisticsView, value);
+        }
 
         public ReactiveCommand<Unit, Unit> ShowHomePageCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowUsersListCommand { get; }
@@ -71,6 +77,7 @@ namespace AdminPanel.ViewModels
         public ReactiveCommand<Unit, Unit> ShowCarMapCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowRentalsListCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowCarsToApproveCommand { get; }
+        public ReactiveCommand<Unit, Unit> ShowStatisticsCommand { get; }
         public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
         public ReactiveCommand<Unit, Unit> ToggleThemeCommand { get; }
 
@@ -88,6 +95,7 @@ namespace AdminPanel.ViewModels
             ShowCarMapCommand = ReactiveCommand.Create(() => ChangeView(new CarMapView(), nameof(IsCarMapView)));
             ShowRentalsListCommand = ReactiveCommand.Create(() => ChangeView(new RentalsList(), nameof(IsRentalsListView)));
             ShowCarsToApproveCommand = ReactiveCommand.Create(() => ChangeView(new CarsToApprove(), nameof(IsCarsToApproveView)));
+            ShowStatisticsCommand = ReactiveCommand.Create(() => ChangeView(new StatisticsView(), nameof(IsStatisticsView)));
             LogoutCommand = ReactiveCommand.Create(Logout);
             ToggleThemeCommand = ReactiveCommand.Create(ToggleTheme);
         }
@@ -104,6 +112,7 @@ namespace AdminPanel.ViewModels
             IsCarMapView = false;
             IsRentalsListView = false;
             IsCarsToApproveView = false;
+            IsStatisticsView = false;
             // Ustaw odpowiednią właściwość na true
             switch (activeViewProperty)
             {
@@ -114,6 +123,7 @@ namespace AdminPanel.ViewModels
                 case nameof(IsCarMapView): IsCarMapView = true; break;
                 case nameof(IsRentalsListView): IsRentalsListView = true; break;
                 case nameof(IsCarsToApproveView): IsCarsToApproveView = true; break;
+                case nameof(IsStatisticsView): IsStatisticsView = true; break;
             }
         }
 
