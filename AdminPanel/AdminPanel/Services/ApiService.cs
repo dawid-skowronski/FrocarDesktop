@@ -296,7 +296,7 @@ namespace AdminPanel.Services
         {
             try
             {
-                var request = new RestRequest("api/CarRental/list", Method.Get);
+                var request = new RestRequest("api/Admin/rentals", Method.Get);
                 request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
 
                 Debug.WriteLine("Wysyłam żądanie GET /api/CarRental/list...");
@@ -477,6 +477,91 @@ namespace AdminPanel.Services
             }
         }
 
+
+        public static async Task<(bool IsSuccess, List<ReviewDto> Reviews, string Message)> GetReviews()
+        {
+            try
+            {
+                Debug.WriteLine($"GetReviews: Token={(string.IsNullOrEmpty(TokenService.Token) ? "BRAK TOKENU" : "Ustawiony")}");
+                var request = new RestRequest("api/Admin/reviews", Method.Get);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+
+                Debug.WriteLine("GetReviews: Wysyłam żądanie GET /api/Admin/reviews...");
+                var response = await _client.ExecuteAsync(request);
+                Debug.WriteLine($"GetReviews: Odpowiedź API: StatusCode={response.StatusCode}, Content={(response.Content?.Length > 1000 ? response.Content.Substring(0, 1000) + "..." : response.Content)}");
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    try
+                    {
+                        var reviews = JsonSerializer.Deserialize<List<ReviewDto>>(response.Content, new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+                            //IgnoreUnknownProperties = true
+                        });
+                        Debug.WriteLine($"GetReviews: Zdeserializowano {reviews?.Count ?? 0} ocen.");
+                        return (true, reviews ?? new List<ReviewDto>(), "Pobrano oceny pomyślnie");
+                    }
+                    catch (JsonException jsonEx)
+                    {
+                        Debug.WriteLine($"GetReviews: Błąd deserializacji: {jsonEx.Message}\nStackTrace: {jsonEx.StackTrace}");
+                        return (false, null, $"Błąd deserializacji: {jsonEx.Message}");
+                    }
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    Debug.WriteLine("GetReviews: Błąd autoryzacji - nieprawidłowy lub brak tokenu.");
+                    return (false, null, "Błąd autoryzacji: Sprawdź token");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas pobierania ocen: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"GetReviews: Błąd API: {errorMessage}");
+                return (false, null, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"GetReviews: Wyjątek: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, null, $"Błąd: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> DeleteReview(int reviewId)
+        {
+            try
+            {
+                Debug.WriteLine($"DeleteReview: Usuwanie recenzji ID={reviewId}, Token={(string.IsNullOrEmpty(TokenService.Token) ? "BRAK TOKENU" : "Ustawiony")}");
+                var request = new RestRequest($"api/Admin/review/{reviewId}", Method.Delete);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Authorization", $"Bearer {TokenService.Token}");
+
+                var response = await _client.ExecuteAsync(request);
+                Debug.WriteLine($"DeleteReview: Odpowiedź API: StatusCode={response.StatusCode}, Content={response.Content}");
+
+                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    return (true, "Recenzja usunięta pomyślnie");
+                }
+
+                string errorMessage = string.IsNullOrEmpty(response.Content)
+                    ? $"Błąd podczas usuwania recenzji: {response.StatusCode}"
+                    : response.Content;
+                Debug.WriteLine($"DeleteReview: Błąd API: {errorMessage}");
+                return (false, errorMessage);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"DeleteReview: Wyjątek: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return (false, $"Błąd: {ex.Message}");
+            }
+        }
+
+
+
+
+
         public static async Task<(bool IsSuccess, StatisticsDto Statistics, string Message)> GetStatistics()
         {
             try
@@ -486,13 +571,14 @@ namespace AdminPanel.Services
                 var usersResult = await GetUsers();
                 var carsResult = await GetCarListings();
                 var rentalsResult = await GetCarRentals();
+                var reviewsResult = await GetReviews();
 
-                Debug.WriteLine($"GetStatistics: UsersResult.IsSuccess: {usersResult.IsSuccess}, CarsResult: {carsResult?.Count ?? 0} samochodów, RentalsResult.IsSuccess: {rentalsResult.IsSuccess}");
-                Debug.WriteLine($"GetStatistics: UsersResult.Message: {usersResult.Message}, RentalsResult.Message: {rentalsResult.Message}");
+                Debug.WriteLine($"GetStatistics: UsersResult.IsSuccess: {usersResult.IsSuccess}, CarsResult: {carsResult?.Count ?? 0} samochodów, RentalsResult.IsSuccess: {rentalsResult.IsSuccess}, ReviewsResult.IsSuccess: {reviewsResult.IsSuccess}");
+                Debug.WriteLine($"GetStatistics: UsersResult.Message: {usersResult.Message}, RentalsResult.Message: {rentalsResult.Message}, ReviewsResult.Message: {reviewsResult.Message}");
 
-                if (!usersResult.IsSuccess || !rentalsResult.IsSuccess)
+                if (!usersResult.IsSuccess || !rentalsResult.IsSuccess || !reviewsResult.IsSuccess)
                 {
-                    string errorMessage = usersResult.Message ?? rentalsResult.Message ?? "Błąd podczas pobierania danych statystyk";
+                    string errorMessage = usersResult.Message ?? rentalsResult.Message ?? reviewsResult.Message ?? "Błąd podczas pobierania danych statystyk";
                     Debug.WriteLine($"GetStatistics: Błąd - {errorMessage}");
 
                     var testStats = new StatisticsDto
@@ -521,18 +607,25 @@ namespace AdminPanel.Services
                         LongestRentalDuration = 10,
                         AverageRentalCost = 250.00m,
                         MostExpensiveRentalCost = 500.00m,
+                        TotalReviews = 15, // Nowe pole w danych testowych
                         TopSpenders = new List<TopSpender>
-                        {
-                            new TopSpender { Rank = 1, Username = "TestUser1", Email = "user1@test.com", TotalSpent = 1000.00m },
-                            new TopSpender { Rank = 2, Username = "TestUser2", Email = "user2@test.com", TotalSpent = 800.00m },
-                            new TopSpender { Rank = 3, Username = "TestUser3", Email = "user3@test.com", TotalSpent = 600.00m }
-                        },
+                {
+                    new TopSpender { Rank = 1, Username = "TestUser1", Email = "user1@test.com", TotalSpent = 1000.00m },
+                    new TopSpender { Rank = 2, Username = "TestUser2", Email = "user2@test.com", TotalSpent = 800.00m },
+                    new TopSpender { Rank = 3, Username = "TestUser3", Email = "user3@test.com", TotalSpent = 600.00m }
+                },
                         TopProfitableCars = new List<TopProfitableCar>
-                        {
-                            new TopProfitableCar { Rank = 1, Brand = "Toyota", OwnerUsername = "CarOwner1", TotalRevenue = 1200.00m },
-                            new TopProfitableCar { Rank = 2, Brand = "Honda", OwnerUsername = "CarOwner2", TotalRevenue = 900.00m },
-                            new TopProfitableCar { Rank = 3, Brand = "BMW", OwnerUsername = "CarOwner3", TotalRevenue = 700.00m }
-                        }
+                {
+                    new TopProfitableCar { Rank = 1, Brand = "Toyota", OwnerUsername = "CarOwner1", TotalRevenue = 1200.00m },
+                    new TopProfitableCar { Rank = 2, Brand = "Honda", OwnerUsername = "CarOwner2", TotalRevenue = 900.00m },
+                    new TopProfitableCar { Rank = 3, Brand = "BMW", OwnerUsername = "CarOwner3", TotalRevenue = 700.00m }
+                },
+                        TopRatedCars = new List<TopRatedCar>
+                {
+                    new TopRatedCar { Rank = 1, Brand = "Toyota", OwnerUsername = "CarOwner1", AverageRating = 4.8 },
+                    new TopRatedCar { Rank = 2, Brand = "Honda", OwnerUsername = "CarOwner2", AverageRating = 4.5 },
+                    new TopRatedCar { Rank = 3, Brand = "BMW", OwnerUsername = "CarOwner3", AverageRating = 4.2 }
+                }
                     };
                     return (true, testStats, "Użyto danych testowych z powodu błędu API");
                 }
@@ -540,8 +633,9 @@ namespace AdminPanel.Services
                 var users = usersResult.Users ?? new List<UserDto>();
                 var cars = carsResult ?? new List<CarListing>();
                 var rentals = rentalsResult.Rentals ?? new List<CarRentalDto>();
+                var reviews = reviewsResult.Reviews ?? new List<ReviewDto>();
 
-                Debug.WriteLine($"GetStatistics: Pobrano dane - Użytkownicy: {users.Count}, Samochody: {cars.Count}, Wypożyczenia: {rentals.Count}");
+                Debug.WriteLine($"GetStatistics: Pobrano dane - Użytkownicy: {users.Count}, Samochody: {cars.Count}, Wypożyczenia: {rentals.Count}, Oceny: {reviews.Count}");
 
                 var stats = new StatisticsDto
                 {
@@ -552,7 +646,8 @@ namespace AdminPanel.Services
                     AvailableCars = cars.Count(c => c.IsAvailable),
                     PendingApprovalCars = cars.Count(c => !c.IsApproved),
                     ActiveRentals = rentals.Count(r => r.RentalStatus == "Active"),
-                    TotalRevenue = rentals.Sum(r => r.RentalPrice)
+                    TotalRevenue = rentals.Sum(r => r.RentalPrice),
+                    TotalReviews = reviews.Count // Nowe pole
                 };
 
                 stats.RevenueLast30Days = rentals
@@ -613,6 +708,29 @@ namespace AdminPanel.Services
                     })
                     .ToList();
 
+                stats.TopRatedCars = reviews
+                    .GroupBy(r => r.CarRental.CarListingId)
+                    .Select(g => new
+                    {
+                        CarListingId = g.Key,
+                        AverageRating = g.Average(r => r.Rating)
+                    })
+                    .OrderByDescending(g => g.AverageRating)
+                    .Take(3)
+                    .Select((g, index) =>
+                    {
+                        var car = cars.FirstOrDefault(c => c.Id == g.CarListingId);
+                        var owner = users.FirstOrDefault(u => u.Id == car?.UserId);
+                        return new TopRatedCar
+                        {
+                            Rank = index + 1,
+                            Brand = car?.Brand ?? "Brak danych",
+                            OwnerUsername = owner?.Username ?? "Brak danych",
+                            AverageRating = Math.Round(g.AverageRating, 2)
+                        };
+                    })
+                    .ToList();
+
                 var topSpender = stats.TopSpenders.FirstOrDefault();
                 stats.TopSpenderUsername = topSpender?.Username ?? "Brak danych";
                 stats.TopSpenderAmount = topSpender?.TotalSpent ?? 0m;
@@ -651,7 +769,7 @@ namespace AdminPanel.Services
                     ? rentals.Average(r => (r.RentalEndDate - r.RentalStartDate).TotalDays)
                     : 0;
 
-                Debug.WriteLine($"GetStatistics: Statystyki obliczone - TotalUsers: {stats.TotalUsers}, TotalCars: {stats.TotalCars}, TotalRevenue: {stats.TotalRevenue}");
+                Debug.WriteLine($"GetStatistics: Statystyki obliczone - TotalUsers: {stats.TotalUsers}, TotalCars: {stats.TotalCars}, TotalRevenue: {stats.TotalRevenue}, TotalReviews: {stats.TotalReviews}, TopRatedCars: {stats.TopRatedCars.Count}");
 
                 return (true, stats, "Pobrano statystyki pomyślnie");
             }

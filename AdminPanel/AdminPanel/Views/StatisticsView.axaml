@@ -21,7 +21,8 @@
                    FontSize="24"
                    FontWeight="SemiBold"
                    Foreground="{DynamicResource ThemeForegroundBrush}"
-                   Margin="0,0,0,20"/>
+				   HorizontalAlignment="Center"
+                   Margin="0,0,0,0"/>
 
 		<!-- Loading and Error Message -->
 		<StackPanel Grid.Row="1" Spacing="10">
@@ -68,6 +69,9 @@
                                        FontSize="14"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
 							<TextBlock Text="{Binding UserWithMostCarsFormatted}"
+                                       FontSize="14"
+                                       Foreground="{DynamicResource ThemeForegroundBrush}"/>
+							<TextBlock Text="{Binding Statistics.TotalReviews, StringFormat='Łącznie wystawionych recenzji: {0}'}"
                                        FontSize="14"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
 						</StackPanel>
@@ -227,6 +231,95 @@
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"
                                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										</Grid>
+									</Border>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+				</Border>
+
+				<!-- Top 3 Highest Rated Cars Table -->
+				<Border IsVisible="{Binding !IsLoading}"
+						Background="{DynamicResource ThemeControlMidBrush}"
+						CornerRadius="8"
+						Padding="20">
+					<StackPanel Spacing="5" Width="800" HorizontalAlignment="Center">
+						<TextBlock Text="Top 3 najlepiej oceniane pojazdy"
+								   FontSize="18"
+								   FontWeight="SemiBold"
+								   Foreground="{DynamicResource ThemeForegroundBrush}"
+								   HorizontalAlignment="Center"
+								   Margin="0,0,0,5"/>
+						<Border Background="{DynamicResource ThemeControlHighBrush}"
+								Padding="15"
+								CornerRadius="8 8 0 0">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition MinWidth="100" Width="*"/>
+									<ColumnDefinition MinWidth="200" Width="*"/>
+									<ColumnDefinition MinWidth="300" Width="*"/>
+									<ColumnDefinition MinWidth="200" Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Text="Miejsce"
+										   FontWeight="Bold"
+										   Grid.Column="0"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Center"
+										   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+								<TextBlock Text="Marka"
+										   FontWeight="Bold"
+										   Grid.Column="1"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Center"
+										   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+								<TextBlock Text="Właściciel"
+										   FontWeight="Bold"
+										   Grid.Column="2"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Center"
+										   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+								<TextBlock Text="Średnia ocena"
+										   FontWeight="Bold"
+										   Grid.Column="3"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Center"
+										   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+							</Grid>
+						</Border>
+						<ItemsControl ItemsSource="{Binding Statistics.TopRatedCars}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Border Padding="15"
+											Margin="0,0,0,5"
+											Background="{DynamicResource ThemeControlLowBrush}">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition MinWidth="100" Width="*"/>
+												<ColumnDefinition MinWidth="200" Width="*"/>
+												<ColumnDefinition MinWidth="300" Width="*"/>
+												<ColumnDefinition MinWidth="200" Width="*"/>
+											</Grid.ColumnDefinitions>
+											<TextBlock Text="{Binding Rank}"
+													   Grid.Column="0"
+													   VerticalAlignment="Center"
+													   HorizontalAlignment="Center"
+													   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+											<TextBlock Text="{Binding Brand}"
+													   Grid.Column="1"
+													   VerticalAlignment="Center"
+													   HorizontalAlignment="Center"
+													   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+											<TextBlock Text="{Binding OwnerUsername}"
+													   Grid.Column="2"
+													   VerticalAlignment="Center"
+													   HorizontalAlignment="Center"
+													   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+											<TextBlock Text="{Binding AverageRating, StringFormat='{}{0:F2}'}"
+													   Grid.Column="3"
+													   VerticalAlignment="Center"
+													   HorizontalAlignment="Center"
+													   Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										</Grid>
 									</Border>
 								</DataTemplate>

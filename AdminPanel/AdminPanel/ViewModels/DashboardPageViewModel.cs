@@ -7,6 +7,7 @@ using AdminPanel.Services;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
 using Avalonia;
+using AdminPanel.ViewModels;
 
 namespace AdminPanel.ViewModels
 {
@@ -28,6 +29,7 @@ namespace AdminPanel.ViewModels
         private bool _isRentalsListView;
         private bool _isCarsToApproveView;
         private bool _isStatisticsView;
+        private bool _isReviewsListView;
 
         public bool IsHomeView
         {
@@ -69,6 +71,11 @@ namespace AdminPanel.ViewModels
             get => _isStatisticsView;
             set => this.RaiseAndSetIfChanged(ref _isStatisticsView, value);
         }
+        public bool IsReviewsListView
+        {
+            get => _isReviewsListView;
+            set => this.RaiseAndSetIfChanged(ref _isReviewsListView, value);
+        }
 
         public ReactiveCommand<Unit, Unit> ShowHomePageCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowUsersListCommand { get; }
@@ -78,6 +85,7 @@ namespace AdminPanel.ViewModels
         public ReactiveCommand<Unit, Unit> ShowRentalsListCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowCarsToApproveCommand { get; }
         public ReactiveCommand<Unit, Unit> ShowStatisticsCommand { get; }
+        public ReactiveCommand<Unit, Unit> ShowReviewsListCommand { get; }
         public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
         public ReactiveCommand<Unit, Unit> ToggleThemeCommand { get; }
 
@@ -96,6 +104,7 @@ namespace AdminPanel.ViewModels
             ShowRentalsListCommand = ReactiveCommand.Create(() => ChangeView(new RentalsList(), nameof(IsRentalsListView)));
             ShowCarsToApproveCommand = ReactiveCommand.Create(() => ChangeView(new CarsToApprove(), nameof(IsCarsToApproveView)));
             ShowStatisticsCommand = ReactiveCommand.Create(() => ChangeView(new StatisticsView(), nameof(IsStatisticsView)));
+            ShowReviewsListCommand = ReactiveCommand.Create(() => ChangeView(new ReviewsList { DataContext = new ReviewsListViewModel() }, nameof(IsReviewsListView)));
             LogoutCommand = ReactiveCommand.Create(Logout);
             ToggleThemeCommand = ReactiveCommand.Create(ToggleTheme);
         }
@@ -113,6 +122,7 @@ namespace AdminPanel.ViewModels
             IsRentalsListView = false;
             IsCarsToApproveView = false;
             IsStatisticsView = false;
+            IsReviewsListView = false;
             // Ustaw odpowiednią właściwość na true
             switch (activeViewProperty)
             {
@@ -124,6 +134,7 @@ namespace AdminPanel.ViewModels
                 case nameof(IsRentalsListView): IsRentalsListView = true; break;
                 case nameof(IsCarsToApproveView): IsCarsToApproveView = true; break;
                 case nameof(IsStatisticsView): IsStatisticsView = true; break;
+                case nameof(IsReviewsListView): IsReviewsListView = true; break;
             }
         }
 

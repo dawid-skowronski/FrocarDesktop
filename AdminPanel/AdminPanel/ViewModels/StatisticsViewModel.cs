@@ -24,6 +24,7 @@ namespace AdminPanel.ViewModels
                 this.RaisePropertyChanged(nameof(UserWithMostCarsFormatted));
                 this.RaisePropertyChanged(nameof(Statistics.TopSpenders));
                 this.RaisePropertyChanged(nameof(Statistics.TopProfitableCars));
+                this.RaisePropertyChanged(nameof(Statistics.TopRatedCars)); // New line
                 this.RaisePropertyChanged(nameof(Statistics.MostExpensiveRentalCost));
             }
         }

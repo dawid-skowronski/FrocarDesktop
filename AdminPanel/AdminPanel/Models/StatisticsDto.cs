@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace AdminPanel.Models
 {
@@ -14,14 +10,14 @@ namespace AdminPanel.Models
         public int TotalCars { get; set; }
         public int AvailableCars { get; set; }
         public int PendingApprovalCars { get; set; }
-        public string MostPopularCarBrand { get; set; }
         public int ActiveRentals { get; set; }
-        public double AverageRentalDuration { get; set; }
         public decimal TotalRevenue { get; set; }
         public decimal RevenueLast30Days { get; set; }
         public decimal RevenueLast60Days { get; set; }
         public decimal RevenueLast90Days { get; set; }
         public decimal RevenueLast365Days { get; set; }
+        public string MostPopularCarBrand { get; set; }
+        public double AverageRentalDuration { get; set; }
         public string TopSpenderUsername { get; set; }
         public decimal TopSpenderAmount { get; set; }
         public string UserWithMostCarsUsername { get; set; }
@@ -32,8 +28,10 @@ namespace AdminPanel.Models
         public int LongestRentalDuration { get; set; }
         public decimal AverageRentalCost { get; set; }
         public decimal MostExpensiveRentalCost { get; set; }
-        public List<TopSpender> TopSpenders { get; set; } = new List<TopSpender>();
-        public List<TopProfitableCar> TopProfitableCars { get; set; } = new List<TopProfitableCar>();
+        public List<TopSpender> TopSpenders { get; set; }
+        public List<TopProfitableCar> TopProfitableCars { get; set; }
+        public List<TopRatedCar> TopRatedCars { get; set; }
+        public int TotalReviews { get; set; } // Nowe pole
     }
 
     public class TopSpender
@@ -50,5 +48,13 @@ namespace AdminPanel.Models
         public string Brand { get; set; }
         public string OwnerUsername { get; set; }
         public decimal TotalRevenue { get; set; }
+    }
+
+    public class TopRatedCar
+    {
+        public int Rank { get; set; }
+        public string Brand { get; set; }
+        public string OwnerUsername { get; set; }
+        public double AverageRating { get; set; }
     }
 }

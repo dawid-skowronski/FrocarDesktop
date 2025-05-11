@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia\\AdminPanel\\AdminPanel.csproj": {}
+    "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia — kopia\\AdminPanel\\AdminPanel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia\\AdminPanel\\AdminPanel.csproj": {
+    "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia — kopia\\AdminPanel\\AdminPanel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia\\AdminPanel\\AdminPanel.csproj",
+        "projectUniqueName": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia — kopia\\AdminPanel\\AdminPanel.csproj",
         "projectName": "AdminPanel",
-        "projectPath": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia\\AdminPanel\\AdminPanel.csproj",
+        "projectPath": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia — kopia\\AdminPanel\\AdminPanel.csproj",
         "packagesPath": "C:\\Users\\vidsontoziomal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia\\AdminPanel\\obj\\",
+        "outputPath": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala — kopia — kopia\\AdminPanel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
