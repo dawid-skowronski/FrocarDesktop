@@ -754,7 +754,7 @@ namespace AdminPanel.Services
 
                 stats.AverageRentalPrice = cars.Any() ? Convert.ToDecimal(cars.Average(c => c.RentalPricePerDay)) : 0m;
                 stats.CurrentlyRentedCars = rentals.Count(r => r.RentalStatus == "Active");
-                stats.CompletedRentals = rentals.Count(r => r.RentalStatus == "Completed");
+                stats.CompletedRentals = rentals.Count(r => r.RentalStatus == "Ended");
                 stats.LongestRentalDuration = (int)(rentals.Any()
                     ? rentals.Max(r => (r.RentalEndDate - r.RentalStartDate).TotalDays)
                     : 0);

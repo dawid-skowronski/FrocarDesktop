@@ -1,22 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\",
+  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\adminpanel\\models\\statisticsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\models\\statisticsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\adminpanel\\views\\statisticsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\statisticsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\adminpanel\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\adminpanel\\viewmodels\\statisticsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\viewmodels\\statisticsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\dziala minimalizacja\\adminpanel\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,51 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "StatisticsDto.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Models\\StatisticsDto.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Models\\StatisticsDto.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Models\\StatisticsDto.cs",
-              "RelativeToolTip": "AdminPanel\\Models\\StatisticsDto.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAAADUAAAAFAAAAAAAAAA==",
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\AdminPanel\\Views\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\MainWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\AdminPanel\\Views\\MainWindow.axaml.cs",
+              "RelativeToolTip": "AdminPanel\\Views\\MainWindow.axaml.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAA9wF8AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T18:10:36.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StatisticsView.axaml",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\StatisticsView.axaml",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\StatisticsView.axaml",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\StatisticsView.axaml",
-              "RelativeToolTip": "AdminPanel\\Views\\StatisticsView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-11T18:07:02.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StatisticsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\ViewModels\\StatisticsViewModel.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\ViewModels\\StatisticsViewModel.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\ViewModels\\StatisticsViewModel.cs",
-              "RelativeToolTip": "AdminPanel\\ViewModels\\StatisticsViewModel.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAYwGkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T18:07:00.204Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApiService.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Services\\ApiService.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Services\\ApiService.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\top 3 dziala \u2014 kopia \u2014 kopia\\AdminPanel\\Services\\ApiService.cs",
-              "RelativeToolTip": "AdminPanel\\Services\\ApiService.cs",
-              "ViewState": "AgIAAOMCAAAAAAAAAAAYwAsDAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T18:06:40.554Z",
+              "WhenOpened": "2025-05-13T19:32:36.29Z",
               "EditorCaption": ""
             }
           ]

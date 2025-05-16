@@ -20,52 +20,82 @@
                     CornerRadius="8"
                     Padding="20"
                     Margin="20">
-				<StackPanel Spacing="5" >
+				<StackPanel Spacing="5">
 					<Border Background="{DynamicResource ThemeControlHighBrush}"
                             Padding="15"
                             CornerRadius="8 8 0 0">
 						<Grid>
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition MinWidth="150" Width="*"/>
-								<ColumnDefinition MinWidth="150" Width="*"/>
-								<ColumnDefinition MinWidth="80" Width="*"/>
-								<ColumnDefinition MinWidth="300" Width="2*"/>
-								<ColumnDefinition MinWidth="150" Width="*"/>
 								<ColumnDefinition MinWidth="100" Width="*"/>
+								<!-- New: Rental ID -->
+								<ColumnDefinition MinWidth="150" Width="*"/>
+								<!-- New: Start Date -->
+								<ColumnDefinition MinWidth="150" Width="*"/>
+								<!-- New: End Date -->
+								<ColumnDefinition MinWidth="150" Width="*"/>
+								<!-- Marka -->
+								<ColumnDefinition MinWidth="150" Width="*"/>
+								<!-- Użytkownik -->
+								<ColumnDefinition MinWidth="80" Width="*"/>
+								<!-- Ocena -->
+								<ColumnDefinition MinWidth="300" Width="2*"/>
+								<!-- Komentarz -->
+								<ColumnDefinition MinWidth="150" Width="*"/>
+								<!-- Data -->
+								<ColumnDefinition MinWidth="100" Width="*"/>
+								<!-- Akcje -->
 							</Grid.ColumnDefinitions>
-							<TextBlock Text="Marka"
+							<TextBlock Text="ID Wypożyczenia"
                                        FontWeight="Bold"
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
-							<TextBlock Text="Użytkownik"
+							<TextBlock Text="Data Rozpoczęcia"
                                        FontWeight="Bold"
                                        Grid.Column="1"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
-							<TextBlock Text="Ocena"
+							<TextBlock Text="Data Zakończenia"
                                        FontWeight="Bold"
                                        Grid.Column="2"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
-							<TextBlock Text="Komentarz"
+							<TextBlock Text="Marka"
                                        FontWeight="Bold"
                                        Grid.Column="3"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
-							<TextBlock Text="Data"
+							<TextBlock Text="Użytkownik"
                                        FontWeight="Bold"
                                        Grid.Column="4"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
-							<TextBlock Text="Akcje"
+							<TextBlock Text="Ocena"
                                        FontWeight="Bold"
                                        Grid.Column="5"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource ThemeForegroundBrush}"/>
+							<TextBlock Text="Komentarz"
+                                       FontWeight="Bold"
+                                       Grid.Column="6"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource ThemeForegroundBrush}"/>
+							<TextBlock Text="Data"
+                                       FontWeight="Bold"
+                                       Grid.Column="7"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource ThemeForegroundBrush}"/>
+							<TextBlock Text="Akcje"
+                                       FontWeight="Bold"
+                                       Grid.Column="8"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
@@ -79,41 +109,68 @@
                                         Background="{DynamicResource ThemeControlLowBrush}">
 									<Grid>
 										<Grid.ColumnDefinitions>
-											<ColumnDefinition MinWidth="150" Width="*"/>
-											<ColumnDefinition MinWidth="150" Width="*"/>
-											<ColumnDefinition MinWidth="80" Width="*"/>
-											<ColumnDefinition MinWidth="300" Width="2*"/>
-											<ColumnDefinition MinWidth="150" Width="*"/>
 											<ColumnDefinition MinWidth="100" Width="*"/>
+											<!-- New: Rental ID -->
+											<ColumnDefinition MinWidth="150" Width="*"/>
+											<!-- New: Start Date -->
+											<ColumnDefinition MinWidth="150" Width="*"/>
+											<!-- New: End Date -->
+											<ColumnDefinition MinWidth="150" Width="*"/>
+											<!-- Marka -->
+											<ColumnDefinition MinWidth="150" Width="*"/>
+											<!-- Użytkownik -->
+											<ColumnDefinition MinWidth="80" Width="*"/>
+											<!-- Ocena -->
+											<ColumnDefinition MinWidth="300" Width="2*"/>
+											<!-- Komentarz -->
+											<ColumnDefinition MinWidth="150" Width="*"/>
+											<!-- Data -->
+											<ColumnDefinition MinWidth="100" Width="*"/>
+											<!-- Akcje -->
 										</Grid.ColumnDefinitions>
-										<TextBlock Text="{Binding CarRental.CarListing.Brand, FallbackValue='Brak danych'}"
+										<TextBlock Text="{Binding CarRentalId, FallbackValue='Brak danych'}"
                                                    Grid.Column="0"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
-										<TextBlock Text="{Binding User.Username, FallbackValue='Brak danych'}"
+										<TextBlock Text="{Binding CarRental.RentalStartDate, StringFormat='dd.MM.yyyy HH:mm', FallbackValue='Brak danych'}"
                                                    Grid.Column="1"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
-										<TextBlock Text="{Binding Rating, FallbackValue='Brak danych'}"
+										<TextBlock Text="{Binding CarRental.RentalEndDate, StringFormat='dd.MM.yyyy HH:mm', FallbackValue='Brak danych'}"
                                                    Grid.Column="2"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
-										<TextBlock Text="{Binding Comment, FallbackValue='Brak danych'}"
+										<TextBlock Text="{Binding CarRental.CarListing.Brand, FallbackValue='Brak danych'}"
                                                    Grid.Column="3"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding User.Username, FallbackValue='Brak danych'}"
+                                                   Grid.Column="4"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Rating, FallbackValue='Brak danych'}"
+                                                   Grid.Column="5"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Comment, FallbackValue='Brak danych'}"
+                                                   Grid.Column="6"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Left"
                                                    TextWrapping="Wrap"
                                                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<TextBlock Text="{Binding CreatedAt, StringFormat='dd.MM.yyyy HH:mm', FallbackValue='Brak danych'}"
-                                                   Grid.Column="4"
+                                                   Grid.Column="7"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<Button Content="Usuń"
-                                                Grid.Column="5"
+                                                Grid.Column="8"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Command="{Binding DeleteCommand}"
