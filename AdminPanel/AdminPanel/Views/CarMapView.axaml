@@ -65,14 +65,14 @@
 
 			<!-- Map -->
 			<Border Grid.Column="1" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,8,8,0" BoxShadow="0 2 4 0 #0000001A">
-				<mapsui:MapControl x:Name="CarMap" Height="700" />
+				<StackPanel>
+					<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
+					<mapsui:MapControl x:Name="CarMap" Height="700"/>
+				</StackPanel>
 			</Border>
 		</Grid>
 
 		<!-- Error panel -->
-		
-			
-			<TextBlock Text="{Binding ErrorMessage}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{DynamicResource ErrorForeground}" Margin="0,10,0,0" TextWrapping="Wrap"/>
-		
+		<TextBlock Text="{Binding ErrorMessage}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{DynamicResource ErrorForeground}" Margin="0,10,0,0" TextWrapping="Wrap"/>
 	</Grid>
 </UserControl>

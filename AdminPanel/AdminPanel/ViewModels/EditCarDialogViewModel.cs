@@ -24,7 +24,6 @@ namespace AdminPanel.ViewModels
         private string _title;
         private readonly Window _dialog;
 
-        // Stringi do przechowywania wartości numerycznych w polach TextBox
         private string _engineCapacity;
         private string _seats;
         private string _rentalPricePerDay;
@@ -125,7 +124,6 @@ namespace AdminPanel.ViewModels
                 RentalPricePerDay = car.RentalPricePerDay
             };
 
-            // Inicjalizacja stringów dla pól numerycznych
             EngineCapacity = car.EngineCapacity.ToString("N1", CultureInfo.CurrentCulture);
             Seats = car.Seats.ToString();
             RentalPricePerDay = car.RentalPricePerDay.ToString("N2", CultureInfo.CurrentCulture);
@@ -145,7 +143,7 @@ namespace AdminPanel.ViewModels
 
         private async void FetchUsernameAndSetTitle(int userId, string brand, int carId)
         {
-            var (isSuccess, user, message) = await ApiService.GetUserFromId(userId);
+            var (isSuccess, user, message) = await UserService.GetUserFromId(userId);
             if (isSuccess && user != null)
             {
                 Title = $"{brand} o id {carId} użytkownika {user.Username}";
@@ -216,10 +214,8 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                // Resetowanie ogólnego komunikatu błędu
                 ErrorMessage = "";
 
-                // Parsowanie wartości numerycznych i zabezpieczenie przed 0 lub wartościami ujemnymi
                 if (!double.TryParse(EngineCapacity, NumberStyles.Float, CultureInfo.CurrentCulture, out double engineCapacity))
                 {
                     ErrorMessage = "Pojemność silnika musi być poprawną liczbą.";
@@ -277,14 +273,14 @@ namespace AdminPanel.ViewModels
                         .Where(f => !string.IsNullOrEmpty(f))
                         .ToList();
 
-                var (isSuccess, message) = await ApiService.UpdateCarListing(CarListing);
+                var (isSuccess, message) = await CarService.UpdateCarListing(CarListing);
                 if (isSuccess)
                 {
                     _dialog.Close();
                 }
                 else
                 {
-                    ErrorMessage = message; // Wyświetlamy komunikat z API w ogólnym ErrorMessage
+                    ErrorMessage = message;
                 }
             }
             catch (Exception ex)

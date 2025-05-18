@@ -62,7 +62,6 @@ namespace AdminPanel.ViewModels
             _dialog = dialog;
             User = user;
 
-            // Inicjalizacja pól
             Username = user.Username;
             Email = user.Email;
             Title = $"Edycja użytkownika {user.Username} (ID: {user.Id})";
@@ -75,10 +74,8 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                // Resetowanie komunikatu błędu
                 ErrorMessage = "";
 
-                // Podstawowa walidacja
                 if (string.IsNullOrWhiteSpace(Username))
                 {
                     ErrorMessage = "Nazwa użytkownika jest wymagana.";
@@ -91,18 +88,16 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Wywołanie API do aktualizacji użytkownika
-                var (isSuccess, message) = await ApiService.UpdateUser(User.Id, Username, Email, Password);
+                var (isSuccess, message) = await UserService.UpdateUser(User.Id, Username, Email, Password);
                 if (isSuccess)
                 {
-                    // Aktualizacja lokalnego obiektu po pomyślnym zapisie
                     User.Username = Username;
                     User.Email = Email;
                     _dialog.Close();
                 }
                 else
                 {
-                    ErrorMessage = message; // Wyświetlamy komunikat z API
+                    ErrorMessage = message;
                 }
             }
             catch (Exception ex)

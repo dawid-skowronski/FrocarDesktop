@@ -72,10 +72,9 @@ namespace AdminPanel.ViewModels
                 return;
             }
 
-            var (isSuccess, message) = await ApiService.Register(Username, Email, Password, ConfirmPassword);
+            var (isSuccess, message) = await UserService.Register(Username, Email, Password, ConfirmPassword);
             if (isSuccess)
             {
-                // Po udanej rejestracji przechodzimy na stronę logowania
                 App.MainWindow.Content = new LoginPage
                 {
                     DataContext = new LoginPageViewModel()
@@ -88,7 +87,6 @@ namespace AdminPanel.ViewModels
         }
         private void GoBackToHome()
         {
-            // Przejście do HomePage
             App.MainWindow.Content = new HomePage
             {
                 DataContext = new HomePageViewModel()

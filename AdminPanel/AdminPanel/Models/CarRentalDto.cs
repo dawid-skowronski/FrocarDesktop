@@ -8,7 +8,6 @@ namespace AdminPanel.Models
     public class CarRentalDto : ReactiveObject
     {
         private string _rentalStatus;
-
         public int CarRentalId { get; set; }
         public int CarListingId { get; set; }
         public CarListing CarListing { get; set; }
@@ -27,6 +26,6 @@ namespace AdminPanel.Models
 
         public ReactiveCommand<int, Unit> CancelCommand { get; set; }
         public ReactiveCommand<int, Unit> ResumeCommand { get; set; }
-        public ReactiveCommand<int, Unit> DeleteCommand { get; set; } // Nowy command dla przycisku "Usuń"
+        public ReactiveCommand<int, Unit> DeleteCommand { get; set; } 
     }
 }

@@ -9,7 +9,6 @@ namespace AdminPanel.Views
         public StatisticsView()
         {
             InitializeComponent();
-            // Ustawiamy DataContext na StatisticsViewModel
             DataContext = new StatisticsViewModel();
         }
 

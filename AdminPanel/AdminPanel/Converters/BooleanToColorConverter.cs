@@ -13,7 +13,7 @@ namespace AdminPanel.Converters
             {
                 return isTrue ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
             }
-            return new SolidColorBrush(Colors.Red); // Domyślnie czerwony
+            return new SolidColorBrush(Colors.Red);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

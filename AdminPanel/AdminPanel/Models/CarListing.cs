@@ -27,7 +27,7 @@ namespace AdminPanel.Models
         public bool IsAvailable { get; set; }
         public bool IsApproved { get; set; }
         public double RentalPricePerDay { get; set; }
-        public double? AverageRating { get; set; } // Zmieniono na double?
+        public double? AverageRating { get; set; }
 
         public string FeaturesAsString => string.Join(", ", Features ?? new List<string>());
         public ReactiveCommand<int, Unit>? DeleteCommand { get; set; }

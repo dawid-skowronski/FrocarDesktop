@@ -20,7 +20,6 @@ namespace AdminPanel.ViewModels
             set => this.RaiseAndSetIfChanged(ref _currentView, value);
         }
 
-        // Właściwości do wskazywania aktywnego widoku
         private bool _isHomeView;
         private bool _isUsersListView;
         private bool _isCreateCarView;
@@ -91,11 +90,9 @@ namespace AdminPanel.ViewModels
 
         public DashboardPageViewModel()
         {
-            // Domyślny widok po zalogowaniu
             CurrentView = new HomePageAdmin();
             IsHomeView = true;
 
-            // Inicjalizacja komend
             ShowHomePageCommand = ReactiveCommand.Create(() => ChangeView(new HomePageAdmin(), nameof(IsHomeView)));
             ShowUsersListCommand = ReactiveCommand.Create(() => ChangeView(new UsersList(), nameof(IsUsersListView)));
             ShowCreateCarCommand = ReactiveCommand.Create(() => ChangeView(new CreateCar(), nameof(IsCreateCarView)));
@@ -109,11 +106,9 @@ namespace AdminPanel.ViewModels
             ToggleThemeCommand = ReactiveCommand.Create(ToggleTheme);
         }
 
-        // Metoda zmieniająca widok i aktualizująca aktywny stan
         private void ChangeView(UserControl newView, string activeViewProperty)
         {
             CurrentView = newView;
-            // Resetuj wszystkie właściwości
             IsHomeView = false;
             IsUsersListView = false;
             IsCreateCarView = false;
@@ -123,7 +118,6 @@ namespace AdminPanel.ViewModels
             IsCarsToApproveView = false;
             IsStatisticsView = false;
             IsReviewsListView = false;
-            // Ustaw odpowiednią właściwość na true
             switch (activeViewProperty)
             {
                 case nameof(IsHomeView): IsHomeView = true; break;

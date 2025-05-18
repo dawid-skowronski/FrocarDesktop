@@ -77,7 +77,7 @@ namespace AdminPanel.Views
                 {
                     SymbolType = SymbolType.Ellipse,
                     Fill = new Brush(color),
-                    Outline = new Pen(Color.White, 2), // Zakomentowane - brak obwódki
+                    Outline = new Pen(Color.White, 2),
                     SymbolScale = 0.4
                 }
             };
@@ -85,7 +85,7 @@ namespace AdminPanel.Views
                 }).ToList();
 
                 _carsLayer.Features = features;
-                _carsLayer.Style = null; // Wy³¹czamy jakikolwiek domyœlny styl warstwy
+                _carsLayer.Style = null; 
 
                 if (_isInitialZoom && features.Any())
                 {
@@ -99,7 +99,7 @@ namespace AdminPanel.Views
             else
             {
                 _carsLayer.Features = Array.Empty<IFeature>();
-                _carsLayer.Style = null; // Wy³¹czamy styl równie¿ w przypadku pustej listy
+                _carsLayer.Style = null; 
                 _mapControl.Refresh();
             }
         }

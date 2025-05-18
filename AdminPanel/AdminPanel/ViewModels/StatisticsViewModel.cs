@@ -2,7 +2,6 @@
 using AdminPanel.Services;
 using ReactiveUI;
 using System;
-using System.Diagnostics;
 using System.Reactive;
 using System.Threading.Tasks;
 
@@ -24,7 +23,7 @@ namespace AdminPanel.ViewModels
                 this.RaisePropertyChanged(nameof(UserWithMostCarsFormatted));
                 this.RaisePropertyChanged(nameof(Statistics.TopSpenders));
                 this.RaisePropertyChanged(nameof(Statistics.TopProfitableCars));
-                this.RaisePropertyChanged(nameof(Statistics.TopRatedCars)); // New line
+                this.RaisePropertyChanged(nameof(Statistics.TopRatedCars));
                 this.RaisePropertyChanged(nameof(Statistics.MostExpensiveRentalCost));
             }
         }
@@ -65,42 +64,26 @@ namespace AdminPanel.ViewModels
 
         public StatisticsViewModel()
         {
-            Debug.WriteLine("StatisticsViewModel: Tworzenie instancji...");
             LoadStatisticsCommand = ReactiveCommand.CreateFromTask(LoadStatistics);
-
-            Debug.WriteLine("StatisticsViewModel: Inicjalizacja widoku, wywołuję LoadStatisticsCommand...");
-            LoadStatisticsCommand.Execute().Subscribe(
-                _ => Debug.WriteLine("StatisticsViewModel: LoadStatisticsCommand zakończone sukcesem."),
-                ex => Debug.WriteLine($"StatisticsViewModel: Błąd w LoadStatisticsCommand: {ex.Message}")
-            );
-
-            this.WhenAnyValue(x => x.Statistics)
-                .Subscribe(statistics => Debug.WriteLine($"Statistics zmienione: TotalUsers={statistics?.TotalUsers}"));
+            LoadStatisticsCommand.Execute().Subscribe();
         }
 
         private async Task LoadStatistics()
         {
-            Debug.WriteLine("LoadStatistics: Rozpoczynam ładowanie statystyk...");
             IsLoading = true;
             ErrorMessage = null;
 
-            var result = await ApiService.GetStatistics();
-            Debug.WriteLine($"LoadStatistics: Wynik ApiService.GetStatistics - IsSuccess: {result.IsSuccess}, Message: {result.Message}");
-
+            var result = await StatisticsService.GetStatistics();
             if (result.IsSuccess)
             {
-                Debug.WriteLine($"LoadStatistics: Statystyki załadowane. TotalUsers: {result.Statistics?.TotalUsers}, TotalCars: {result.Statistics?.TotalCars}");
                 Statistics = result.Statistics;
             }
             else
             {
-                Debug.WriteLine($"LoadStatistics: Błąd podczas ładowania statystyk: {result.Message}");
                 ErrorMessage = result.Message;
             }
 
             IsLoading = false;
-            IsLoading = false;
-            Debug.WriteLine("LoadStatistics: Zakończono ładowanie statystyk.");
         }
     }
 }

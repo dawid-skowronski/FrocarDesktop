@@ -13,7 +13,7 @@
 			<ResourceDictionary.ThemeDictionaries>
 				<!-- Light Mode -->
 				<ResourceDictionary x:Key="Light">
-					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#FAFAFA"/>
+					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#F8F9FA"/>
 					<SolidColorBrush x:Key="ThemeControlMidBrush" Color="#FFFFFF"/>
 					<SolidColorBrush x:Key="ThemeControlLowBrush" Color="#F0F0F0"/>
 					<SolidColorBrush x:Key="ThemeControlHoverBrush" Color="#D4E8D6"/>
@@ -53,6 +53,7 @@
 					<SolidColorBrush x:Key="ThemeDeleteHoverBrush" Color="#D32F2F"/>
 					<SolidColorBrush x:Key="ThemeDeletePressedBrush" Color="#B71C1C"/>
 					<SolidColorBrush x:Key="SelectionBrush" Color="#A5D6A7"/>
+					<SolidColorBrush x:Key="Czarny" Color="#121212"/>
 				</ResourceDictionary>
 			</ResourceDictionary.ThemeDictionaries>
 
@@ -72,14 +73,8 @@
 			<Setter Property="FontFamily" Value="Segoe UI, Arial"/>
 		</Style>
 
-		<Style Selector="Border">
-			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
-			<Setter Property="CornerRadius" Value="8"/>
-			<Setter Property="BoxShadow" Value="0 2 4 0 #0000001A"/>
-		</Style>
-
 		<Style Selector="TextBox">
-			<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
 			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
@@ -105,6 +100,23 @@
 		<Style Selector="ComboBox:focus /template/ Border#PART_BorderElement">
 			<Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
 			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+		<Style Selector="ComboBox /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+		</Style>
+		<Style Selector="ComboBoxItem">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlLowBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="Padding" Value="8"/>
+		</Style>
+		<Style Selector="ComboBoxItem:selected">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
+		</Style>
+		<Style Selector="ComboBoxItem:pointerover">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHoverBrush}"/>
+		</Style>
+		<Style Selector="ComboBox /template/ Path#PART_DropDownGlyph">
+			<Setter Property="Fill" Value="{DynamicResource ThemeForegroundBrush}"/>
 		</Style>
 
 		<Style Selector="Button.ok">

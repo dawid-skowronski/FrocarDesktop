@@ -1,10 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\",
+  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\dziala minimalizacja\\adminpanel\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\adminpanel\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\adminpanel\\views\\dashboardpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\dashboardpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\adminpanel\\views\\registerpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\registerpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\adminpanel\\views\\loginpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\views\\loginpage.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +26,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DashboardPage.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\DashboardPage.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\DashboardPage.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\DashboardPage.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\DashboardPage.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-18T20:10:09.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\AdminPanel\\Views\\MainWindow.axaml.cs",
-              "RelativeDocumentMoniker": "AdminPanel\\Views\\MainWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\dziala minimalizacja\\AdminPanel\\Views\\MainWindow.axaml.cs",
-              "RelativeToolTip": "AdminPanel\\Views\\MainWindow.axaml.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAA9wF8AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T19:32:36.29Z",
+              "Title": "App.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\App.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\App.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\App.axaml",
+              "RelativeToolTip": "AdminPanel\\App.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-18T20:09:38.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginPage.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\LoginPage.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\LoginPage.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\LoginPage.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\LoginPage.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-18T20:06:27.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegisterPage.axaml",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\RegisterPage.axaml",
+              "RelativeDocumentMoniker": "AdminPanel\\Views\\RegisterPage.axaml",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\refactor \u2014 dodaj refreshe \u2014 kopia \u2014 kopia\\AdminPanel\\Views\\RegisterPage.axaml",
+              "RelativeToolTip": "AdminPanel\\Views\\RegisterPage.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-18T20:05:08.047Z",
               "EditorCaption": ""
             }
           ]

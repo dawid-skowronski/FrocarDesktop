@@ -11,6 +11,7 @@
 		<!-- Tabela wypożyczeń -->
 		<Border Grid.Row="1" Padding="15" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A">
 			<StackPanel>
+				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
 				<!-- Nagłówki -->
 				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="10" CornerRadius="8 8 0 0" Margin="0,0,0,5">
 					<Grid>
@@ -23,7 +24,6 @@
 							<ColumnDefinition MinWidth="100" Width="*"/>
 							<ColumnDefinition MinWidth="100" Width="*"/>
 							<ColumnDefinition MinWidth="300" Width="*"/>
-							<!-- Zwiększono dla trzech przycisków -->
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 						<TextBlock Grid.Column="1" Text="Samochód" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
@@ -52,7 +52,6 @@
 											<ColumnDefinition MinWidth="100" Width="*"/>
 											<ColumnDefinition MinWidth="100" Width="*"/>
 											<ColumnDefinition MinWidth="300" Width="*"/>
-											<!-- Zwiększono dla trzech przycisków -->
 										</Grid.ColumnDefinitions>
 										<TextBlock Grid.Column="0" Text="{Binding CarRentalId}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<TextBlock Grid.Column="1" Text="{Binding CarListing.Brand}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>

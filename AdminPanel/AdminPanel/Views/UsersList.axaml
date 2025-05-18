@@ -15,7 +15,9 @@
 
 		<!-- Cała tabela w jednym białym polu -->
 		<Border Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A" Padding="20">
+			
 			<StackPanel>
+				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
 				<!-- Nagłówki tabeli -->
 				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="15" Margin="0,0,0,5" CornerRadius="8 8 0 0">
 					<Grid>

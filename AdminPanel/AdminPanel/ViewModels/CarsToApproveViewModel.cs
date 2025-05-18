@@ -40,7 +40,6 @@ namespace AdminPanel.ViewModels
             set => this.RaiseAndSetIfChanged(ref _errorMessage, value);
         }
 
-        // Właściwości filtrów
         public string IdFilter { get => _idFilter; set => this.RaiseAndSetIfChanged(ref _idFilter, value); }
         private string _idFilter = "";
 
@@ -86,7 +85,6 @@ namespace AdminPanel.ViewModels
         public double? Longitude { get => _longitude; set => this.RaiseAndSetIfChanged(ref _longitude, value); }
         private double? _longitude;
 
-        // Komendy
         public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
         public ReactiveCommand<Unit, Unit> FilterCarsCommand { get; }
         public ReactiveCommand<Unit, Unit> ResetFiltersCommand { get; }
@@ -101,19 +99,19 @@ namespace AdminPanel.ViewModels
             CarTypeFilter = new ComboBoxItem { Content = "Wszystkie typy nadwozia" };
             IsAvailableFilter = new ComboBoxItem { Content = "Wszystkie" };
 
-            _ = LoadCars(); // Wczytaj dane przy starcie
+            _ = LoadCars();
         }
 
         private async Task LoadCars()
         {
             try
             {
-                var cars = await ApiService.GetCarListings();
+                var cars = await CarService.GetCarListings();
                 Cars.Clear();
                 FilteredCars.Clear();
-                foreach (var car in cars.Where(c => !c.IsApproved)) // Tylko niezatwierdzone pojazdy
+                foreach (var car in cars.Where(c => !c.IsApproved))
                 {
-                    var (isSuccess, user, message) = await ApiService.GetUserFromId(car.UserId);
+                    var (isSuccess, user, message) = await UserService.GetUserFromId(car.UserId);
                     car.Username = isSuccess && user != null ? user.Username : "Nieznany";
                     car.ApproveCommand = ReactiveCommand.CreateFromTask<int>(ApproveCar);
                     car.DeleteCommand = ReactiveCommand.CreateFromTask<int>(ConfirmDeleteCar);
@@ -132,7 +130,7 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                var (isSuccess, errorMessage) = await ApiService.ApproveCarListing(carId);
+                var (isSuccess, errorMessage) = await CarService.ApproveCarListing(carId);
                 if (isSuccess)
                 {
                     var carToRemove = Cars.FirstOrDefault(c => c.Id == carId);
@@ -181,7 +179,7 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                var (isSuccess, errorMessage) = await ApiService.DeleteCarListing(carId);
+                var (isSuccess, errorMessage) = await CarService.DeleteCarListing(carId);
                 if (isSuccess)
                 {
                     var carToRemove = Cars.FirstOrDefault(c => c.Id == carId);
@@ -349,7 +347,7 @@ namespace AdminPanel.ViewModels
 
         private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {
-            const double R = 6371; // Promień Ziemi w kilometrach
+            const double R = 6371;
             var dLat = ToRadians(lat2 - lat1);
             var dLon = ToRadians(lon2 - lon1);
             var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +

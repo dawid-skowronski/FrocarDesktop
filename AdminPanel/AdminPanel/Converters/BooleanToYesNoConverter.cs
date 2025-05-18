@@ -13,20 +13,20 @@ namespace AdminPanel.Converters
             {
                 return boolValue ? "Tak" : "Nie";
             }
-            return "Nie"; // Domyślna wartość, gdy value nie jest typu bool
+            return "Nie"; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == AvaloniaProperty.UnsetValue)
             {
-                return false; // Domyślna wartość dla unset
+                return false;
             }
             if (value is string strValue)
             {
                 return strValue == "Tak";
             }
-            return false; // Domyślna wartość, gdy value nie jest stringiem
+            return false; 
         }
     }
 }

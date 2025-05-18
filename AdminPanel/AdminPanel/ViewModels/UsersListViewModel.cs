@@ -45,16 +45,15 @@ namespace AdminPanel.ViewModels
 
         private async Task GetUsersAsync()
         {
-            var result = await ApiService.GetUsers();
+            var result = await UserService.GetUsers();
             if (result.IsSuccess)
             {
                 _allUsers.Clear();
                 Users.Clear();
-                //int currentUserId = 32; // Pobierz ID zalogowanego użytkownika
-                int currentUserId = TokenService.GetUserId(); // Pobierz ID zalogowanego użytkownika
+                int currentUserId = TokenService.GetUserId();
                 foreach (var user in result.Users)
                 {
-                    user.IsCurrentUser = user.Id == currentUserId; // Ustaw flagę
+                    user.IsCurrentUser = user.Id == currentUserId;
                     user.EditCommand = ReactiveCommand.CreateFromTask<UserDto>(EditUser);
                     user.DeleteCommand = ReactiveCommand.CreateFromTask<UserDto>(ConfirmDeleteUser);
                     _allUsers.Add(user);
@@ -103,7 +102,6 @@ namespace AdminPanel.ViewModels
                 dialog.DataContext = new EditUserDialogViewModel(user, dialog);
                 await dialog.ShowDialog(App.MainWindow);
 
-                // Odśwież listę po zamknięciu dialogu
                 await GetUsersAsync();
             }
             catch (Exception ex)
@@ -138,7 +136,7 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                var (isSuccess, errorMessage) = await ApiService.DeleteUser(user.Id);
+                var (isSuccess, errorMessage) = await UserService.DeleteUser(user.Id);
                 if (isSuccess)
                 {
                     _allUsers.Remove(user);

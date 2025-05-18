@@ -43,7 +43,7 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                var result = await ApiService.GetCarRentals();
+                var result = await RentalService.GetCarRentals();
                 bool isSuccess = result.IsSuccess;
                 List<CarRentalDto> rentals = result.Rentals;
                 string message = result.Message;
@@ -53,7 +53,7 @@ namespace AdminPanel.ViewModels
                     Rentals.Clear();
                     foreach (var rental in rentals)
                     {
-                        var userResult = await ApiService.GetUserFromId(rental.UserId);
+                        var userResult = await UserService.GetUserFromId(rental.UserId);
                         if (userResult.IsSuccess && userResult.User != null)
                         {
                             rental.Username = userResult.User.Username;
@@ -72,8 +72,7 @@ namespace AdminPanel.ViewModels
                 else
                 {
                     ErrorMessage = message ?? "Nie udało się pobrać listy wypożyczeń. Sprawdź połączenie z API lub dostępność endpointu.";
-                    Rentals.Clear(); // Wyczyść listę, ale nie pokazuj błędu
-                    //await ShowMessageBox("Błąd", ErrorMessage);
+                    Rentals.Clear();
                 }
             }
             catch (Exception ex)
@@ -108,8 +107,7 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Krok 1: Zmiana statusu wypożyczenia na "Cancelled"
-                var statusResult = await ApiService.UpdateRentalStatus(rentalId, "Cancelled");
+                var statusResult = await RentalService.UpdateRentalStatus(rentalId, "Cancelled");
                 if (!statusResult.IsSuccess)
                 {
                     ErrorMessage = statusResult.Message ?? "Nie udało się anulować wypożyczenia.";
@@ -117,14 +115,12 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Aktualizacja statusu w obiekcie lokalnym
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     rentalToCancel.RentalStatus = "Cancelled";
                 });
 
-                // Krok 2: Przywrócenie dostępności samochodu
-                var availabilityResult = await ApiService.UpdateCarAvailability(rentalToCancel.CarListingId, true);
+                var availabilityResult = await CarService.UpdateCarAvailability(rentalToCancel.CarListingId, true);
                 if (!availabilityResult.IsSuccess)
                 {
                     ErrorMessage = availabilityResult.Message ?? "Nie udało się przywrócić dostępności samochodu.";
@@ -160,7 +156,6 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Sprawdzenie, czy termin wypożyczenia jeszcze nie minął
                 if (rentalToResume.RentalEndDate < DateTime.Now)
                 {
                     ErrorMessage = $"Nie można wznowić wypożyczenia o ID {rentalId}, ponieważ termin zakończenia ({rentalToResume.RentalEndDate:dd.MM.yyyy HH:mm}) już minął.";
@@ -174,8 +169,7 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Krok 1: Zmiana statusu wypożyczenia na "Active"
-                var statusResult = await ApiService.UpdateRentalStatus(rentalId, "Active");
+                var statusResult = await RentalService.UpdateRentalStatus(rentalId, "Active");
                 if (!statusResult.IsSuccess)
                 {
                     ErrorMessage = statusResult.Message ?? "Nie udało się wznowić wypożyczenia.";
@@ -183,14 +177,12 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Aktualizacja statusu w obiekcie lokalnym
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     rentalToResume.RentalStatus = "Active";
                 });
 
-                // Krok 2: Ustawienie samochodu jako niedostępny
-                var availabilityResult = await ApiService.UpdateCarAvailability(rentalToResume.CarListingId, false);
+                var availabilityResult = await CarService.UpdateCarAvailability(rentalToResume.CarListingId, false);
                 if (!availabilityResult.IsSuccess)
                 {
                     ErrorMessage = availabilityResult.Message ?? "Nie udało się ustawić samochodu jako niedostępny.";
@@ -232,8 +224,7 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Krok 1: Usunięcie wypożyczenia przez API
-                var deleteResult = await ApiService.DeleteCarRental(rentalId);
+                var deleteResult = await RentalService.DeleteCarRental(rentalId);
                 if (!deleteResult.IsSuccess)
                 {
                     ErrorMessage = deleteResult.Message ?? "Nie udało się usunąć wypożyczenia.";
@@ -241,8 +232,7 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Krok 2: Przywrócenie dostępności samochodu
-                var availabilityResult = await ApiService.UpdateCarAvailability(rentalToDelete.CarListingId, true);
+                var availabilityResult = await CarService.UpdateCarAvailability(rentalToDelete.CarListingId, true);
                 if (!availabilityResult.IsSuccess)
                 {
                     ErrorMessage = availabilityResult.Message ?? "Nie udało się przywrócić dostępności samochodu.";
@@ -250,7 +240,6 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                // Usunięcie wypożyczenia z lokalnej listy
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     Rentals.Remove(rentalToDelete);

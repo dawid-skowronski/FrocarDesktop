@@ -31,7 +31,7 @@ namespace AdminPanel.Models
         public List<TopSpender> TopSpenders { get; set; }
         public List<TopProfitableCar> TopProfitableCars { get; set; }
         public List<TopRatedCar> TopRatedCars { get; set; }
-        public int TotalReviews { get; set; } // Nowe pole
+        public int TotalReviews { get; set; }
     }
 
     public class TopSpender

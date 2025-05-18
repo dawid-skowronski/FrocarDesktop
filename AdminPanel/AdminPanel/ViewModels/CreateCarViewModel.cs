@@ -98,7 +98,7 @@ namespace AdminPanel.ViewModels
                 RentalPricePerDay = rentalPricePerDay
             };
 
-            var result = await ApiService.CreateCar(car);
+            var result = await CarService.CreateCar(car);
             if (result.IsSuccess)
             {
                 await ShowMessageBox("Sukces", "Pojazd został dodany!");

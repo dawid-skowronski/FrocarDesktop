@@ -21,6 +21,7 @@
                     Padding="20"
                     Margin="20">
 				<StackPanel Spacing="5">
+					<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
 					<Border Background="{DynamicResource ThemeControlHighBrush}"
                             Padding="15"
                             CornerRadius="8 8 0 0">

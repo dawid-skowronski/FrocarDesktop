@@ -33,5 +33,4 @@ namespace AdminPanel.Services
             return int.TryParse(userIdClaim, out int userId) ? userId : 0;
         }
     }
-
 }

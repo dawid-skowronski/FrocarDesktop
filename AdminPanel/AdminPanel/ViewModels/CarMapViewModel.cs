@@ -45,7 +45,6 @@ namespace AdminPanel.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedCoordinates, value);
         }
 
-        // Właściwości filtrów
         public string BrandFilter { get => _brandFilter; set => this.RaiseAndSetIfChanged(ref _brandFilter, value); }
         private string _brandFilter = "";
 
@@ -74,7 +73,7 @@ namespace AdminPanel.ViewModels
         private string _address = "";
 
         public string MaxRange { get => _maxRange; set => this.RaiseAndSetIfChanged(ref _maxRange, value); }
-        private string _maxRange = ""; // Domyślnie puste
+        private string _maxRange = "";
 
         public bool ShowOnlyAvailable { get => _showOnlyAvailable; set => this.RaiseAndSetIfChanged(ref _showOnlyAvailable, value); }
         private bool _showOnlyAvailable = false;
@@ -87,6 +86,7 @@ namespace AdminPanel.ViewModels
 
         public ReactiveCommand<Unit, Unit> FilterCarsCommand { get; }
         public ReactiveCommand<Unit, Unit> ResetFiltersCommand { get; }
+        public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
 
         public CarMapViewModel()
         {
@@ -95,6 +95,7 @@ namespace AdminPanel.ViewModels
 
             FilterCarsCommand = ReactiveCommand.Create(FilterCars);
             ResetFiltersCommand = ReactiveCommand.Create(ResetFilters);
+            RefreshCommand = ReactiveCommand.CreateFromTask(LoadCarsAsync);
 
             FuelTypeFilter = new ComboBoxItem { Content = "Wszystkie rodzaje paliwa" };
             CarTypeFilter = new ComboBoxItem { Content = "Wszystkie typy nadwozia" };
@@ -105,7 +106,7 @@ namespace AdminPanel.ViewModels
             ErrorMessage = string.Empty;
             try
             {
-                var cars = await ApiService.GetCarListings();
+                var cars = await CarService.GetCarListings();
                 if (cars != null)
                 {
                     Cars = cars;
@@ -126,7 +127,6 @@ namespace AdminPanel.ViewModels
         {
             if (Cars == null) return;
 
-            // Wyszukiwanie adresu, jeśli podano
             if (!string.IsNullOrWhiteSpace(Address))
             {
                 try
@@ -186,9 +186,8 @@ namespace AdminPanel.ViewModels
                 }
             }
 
-            // Wyciągamy string z ComboBoxItem
-            string fuelType = FuelTypeFilter is ComboBoxItem fuelItem ? fuelItem.Content?.ToString() : null;
-            string carType = CarTypeFilter is ComboBoxItem carItem ? carItem.Content?.ToString() : null;
+            string? fuelType = FuelTypeFilter is ComboBoxItem fuelItem ? fuelItem.Content?.ToString() : null;
+            string? carType = CarTypeFilter is ComboBoxItem carItem ? carItem.Content?.ToString() : null;
 
             var filtered = Cars.Where(car =>
             {
@@ -220,7 +219,7 @@ namespace AdminPanel.ViewModels
                 {
                     var distance = CalculateDistance(Latitude.Value, Longitude.Value, car.Latitude, car.Longitude);
                     matches &= distance <= maxRange;
-                    ErrorMessage = $"Odległość do {car.Brand}: {distance:F2} km"; // Debugowanie
+                    ErrorMessage = $"Odległość do {car.Brand}: {distance:F2} km";
                 }
 
                 if (ShowOnlyAvailable)
@@ -254,7 +253,7 @@ namespace AdminPanel.ViewModels
 
         private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {
-            const double R = 6371; // Promień Ziemi w kilometrach
+            const double R = 6371;
             var dLat = ToRadians(lat2 - lat1);
             var dLon = ToRadians(lon2 - lon1);
             var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +

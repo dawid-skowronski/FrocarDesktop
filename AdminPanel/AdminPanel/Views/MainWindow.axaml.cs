@@ -2,6 +2,11 @@ using Avalonia.Controls;
 using Avalonia.Platform;
 using System;
 using System.ComponentModel;
+using System.Linq;
+using AdminPanel.Services;
+using AdminPanel.Models;
+using System.Threading.Tasks;
+using Avalonia.Threading;
 
 namespace AdminPanel.Views
 {
@@ -9,19 +14,18 @@ namespace AdminPanel.Views
     {
         private TrayIcon? _trayIcon;
         private NativeMenu? _trayMenu;
+        private NotificationService? _notificationService;
 
         public MainWindow()
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
 
-            // Inicjalizacja tray'a systemowego
             _trayIcon = new TrayIcon();
 
-            // Ustawienie ikony tray'a
             var iconPath = OperatingSystem.IsWindows()
-                ? "avares://AdminPanel/Assets/frocar.ico" // Ikona dla Windows
-                : "avares://AdminPanel/Assets/icon.png"; // PNG dla macOS/Linux, jeœli istnieje
+                ? "avares://AdminPanel/Assets/frocar.ico"
+                : "avares://AdminPanel/Assets/icon.png";
             try
             {
                 _trayIcon.Icon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)));
@@ -31,14 +35,11 @@ namespace AdminPanel.Views
                 Console.WriteLine($"B³¹d ³adowania ikony tray'a: {ex.Message}");
             }
 
-            // Ustawienie tooltipa
             _trayIcon.ToolTipText = "Frocar Admin Panel";
 
-            // Tworzenie menu kontekstowego
             _trayMenu = CreateTrayMenu();
             _trayIcon.Menu = _trayMenu;
 
-            // Obs³uga klikniêcia LPM na ikonie tray'a
             _trayIcon.Clicked += (sender, args) =>
             {
                 if (this.WindowState == WindowState.Minimized || !this.IsVisible)
@@ -47,26 +48,40 @@ namespace AdminPanel.Views
                 }
             };
 
-            // Ustawienie ikony jako widocznej
             _trayIcon.IsVisible = true;
 
-            // Obs³uga zamykania okna
+            _notificationService = new NotificationService();
+            _notificationService.Start(async notifications =>
+            {
+                foreach (var notification in notifications)
+                {
+                    await ShowNotificationPopup(notification);
+                    await Task.Delay(200);
+                }
+            });
+
             Closing += OnWindowClosing;
+        }
+
+        private async Task ShowNotificationPopup(NotificationDto notification)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                var popup = new NotificationPopup(notification, _notificationService);
+                popup.Show();
+            }, DispatcherPriority.Render);
         }
 
         private NativeMenu CreateTrayMenu()
         {
             var menu = new NativeMenu();
 
-            // Opcja "Przywróæ"
             var restoreItem = new NativeMenuItem("Przywróæ");
             restoreItem.Click += (sender, args) => RestoreFromTray();
             menu.Add(restoreItem);
 
-            // Separator
             menu.Add(new NativeMenuItemSeparator());
 
-            // Opcja "Zamknij"
             var exitItem = new NativeMenuItem("Zamknij");
             exitItem.Click += (sender, args) => CloseApplication();
             menu.Add(exitItem);
@@ -83,19 +98,19 @@ namespace AdminPanel.Views
 
         private void CloseApplication()
         {
-            // Prawdziwe zamkniêcie aplikacji
-            Closing -= OnWindowClosing; // Usuñ obs³ugê zamykania, ¿eby nie zminimalizowaæ ponownie
+            Closing -= OnWindowClosing;
+            _notificationService?.Stop();
+            NotificationManager.CloseAllNotifications();
             if (_trayIcon != null)
             {
-                _trayIcon.IsVisible = false; // Ukryj ikonê tray'a
-                _trayIcon.Dispose(); // Zwolnij zasoby
+                _trayIcon.IsVisible = false;
+                _trayIcon.Dispose();
             }
             this.Close();
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            // Zamiast zamykaæ, minimalizujemy do tray'a
             if (_trayIcon != null)
             {
                 e.Cancel = true;

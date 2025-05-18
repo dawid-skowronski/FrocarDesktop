@@ -40,7 +40,6 @@ namespace AdminPanel.ViewModels
             set => this.RaiseAndSetIfChanged(ref _errorMessage, value);
         }
 
-        // Właściwości filtrów
         public string IdFilter { get => _idFilter; set => this.RaiseAndSetIfChanged(ref _idFilter, value); }
         private string _idFilter = "";
 
@@ -89,7 +88,6 @@ namespace AdminPanel.ViewModels
         public double? Longitude { get => _longitude; set => this.RaiseAndSetIfChanged(ref _longitude, value); }
         private double? _longitude;
 
-        // Komendy
         public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
         public ReactiveCommand<int, Unit> DeleteCommand { get; }
         public ReactiveCommand<Unit, Unit> FilterCarsCommand { get; }
@@ -109,20 +107,19 @@ namespace AdminPanel.ViewModels
             IsAvailableFilter = new ComboBoxItem { Content = "Wszystkie" };
             IsApprovedFilter = new ComboBoxItem { Content = "Wszystkie" };
 
-            _ = LoadCars(); // Wczytaj dane przy starcie
+            _ = LoadCars();
         }
 
         private async Task LoadCars()
         {
             try
             {
-                var cars = await ApiService.GetCarListings();
+                var cars = await CarService.GetCarListings();
                 Cars.Clear();
                 FilteredCars.Clear();
                 foreach (var car in cars)
                 {
-                    // Pobierz nazwę użytkownika dla każdego pojazdu
-                    var (isSuccess, user, message) = await ApiService.GetUserFromId(car.UserId);
+                    var (isSuccess, user, message) = await UserService.GetUserFromId(car.UserId);
                     car.Username = isSuccess && user != null ? user.Username : "Nieznany";
 
                     car.DeleteCommand = ReactiveCommand.CreateFromTask<int>(ConfirmDeleteCar);
@@ -159,7 +156,7 @@ namespace AdminPanel.ViewModels
         {
             try
             {
-                var (isSuccess, errorMessage) = await ApiService.DeleteCarListing(carId);
+                var (isSuccess, errorMessage) = await CarService.DeleteCarListing(carId);
                 if (isSuccess)
                 {
                     var carToRemove = Cars.FirstOrDefault(c => c.Id == carId);
@@ -204,7 +201,6 @@ namespace AdminPanel.ViewModels
 
                 await dialog.ShowDialog(App.MainWindow);
 
-                // Refresh the list after editing
                 await LoadCars();
             }
             catch (Exception ex)
@@ -218,7 +214,6 @@ namespace AdminPanel.ViewModels
         {
             if (Cars == null || !Cars.Any()) return;
 
-            // Wyszukiwanie lokalizacji po adresie
             if (!string.IsNullOrWhiteSpace(Address))
             {
                 try
@@ -273,13 +268,11 @@ namespace AdminPanel.ViewModels
                 }
             }
 
-            // Pobierz wartości z ComboBoxów
             string fuelType = FuelTypeFilter is ComboBoxItem fuelItem ? fuelItem.Content?.ToString() : null;
             string carType = CarTypeFilter is ComboBoxItem carItem ? carItem.Content?.ToString() : null;
             string isAvailable = IsAvailableFilter is ComboBoxItem availableItem ? availableItem.Content?.ToString() : null;
             string isApproved = IsApprovedFilter is ComboBoxItem approvedItem ? approvedItem.Content?.ToString() : null;
 
-            // Filtruj pojazdy
             var filtered = Cars.Where(car =>
             {
                 bool matches = true;
@@ -362,7 +355,7 @@ namespace AdminPanel.ViewModels
 
         private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {
-            const double R = 6371; // Promień Ziemi w kilometrach
+            const double R = 6371;
             var dLat = ToRadians(lat2 - lat1);
             var dLon = ToRadians(lon2 - lon1);
             var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +

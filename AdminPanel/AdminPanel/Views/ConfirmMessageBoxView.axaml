@@ -4,7 +4,7 @@
         xmlns:views="clr-namespace:AdminPanel.Views"
         x:Class="AdminPanel.Views.ConfirmMessageBoxView"
         x:DataType="views:ConfirmMessageBoxView"
-        Width="350" Height="150"
+        Width="375" Height="150"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
         ShowInTaskbar="False"

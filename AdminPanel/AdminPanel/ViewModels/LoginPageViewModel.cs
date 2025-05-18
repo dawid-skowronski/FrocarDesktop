@@ -45,12 +45,11 @@ namespace AdminPanel.ViewModels
 
         private async Task LoginAsync()
         {
-            ErrorMessage = string.Empty; // Wyczyść poprzednie błędy
+            ErrorMessage = string.Empty;
 
-            var result = await ApiService.Login(Username, Password);
+            var result = await UserService.Login(Username, Password);
             if (result.IsSuccess)
             {
-                // Przejście do DashboardPage
                 App.MainWindow.Content = new DashboardPage
                 {
                     DataContext = new DashboardPageViewModel()
@@ -63,7 +62,6 @@ namespace AdminPanel.ViewModels
         }
         private void GoBackToHome()
         {
-            // Przejście do HomePage
             App.MainWindow.Content = new HomePage
             {
                 DataContext = new HomePageViewModel()
