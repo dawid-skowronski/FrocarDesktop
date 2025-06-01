@@ -22,7 +22,7 @@
                    FontWeight="SemiBold"
                    Foreground="{DynamicResource ThemeForegroundBrush}"
 				   HorizontalAlignment="Center"
-                   Margin="0,0,0,0"/>
+                   Margin="0,0,0,20"/>
 
 		<!-- Loading and Error Message -->
 		<StackPanel Grid.Row="1" Spacing="10">

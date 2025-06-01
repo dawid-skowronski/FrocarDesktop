@@ -12,11 +12,13 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="{DynamicResource ThemeBackgroundBrush}"
 		CornerRadius="8">
+	
 	<Border BorderBrush="{DynamicResource ThemeAccentBrush}"
             BorderThickness="2"
             CornerRadius="8"
             Margin="5"
             Background="{DynamicResource ThemeControlMidBrush}">
+		
 		<StackPanel Spacing="15" Margin="15" VerticalAlignment="Center" HorizontalAlignment="Center">
 			<TextBlock Text="{Binding Message}"
                        FontSize="14"
@@ -24,7 +26,9 @@
                        TextWrapping="Wrap"
                        HorizontalAlignment="Center"
                        Foreground="{DynamicResource ThemeForegroundBrush}"/>
+			
 			<Button Content="OK" x:Name="OkButton" Classes="ok" HorizontalAlignment="Center"/>
 		</StackPanel>
+		
 	</Border>
 </Window>

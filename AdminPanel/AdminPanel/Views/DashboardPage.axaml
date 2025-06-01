@@ -12,7 +12,7 @@
 		<!-- Navbar -->
 		<Border Grid.Column="0" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,10,10,0" BoxShadow="2 0 4 0 #00000033">
 			<DockPanel LastChildFill="True" VerticalAlignment="Stretch">
-				<!-- Górna część: Logo i przyciski nawigacyjne -->
+				<!-- Górna część -->
 				<StackPanel DockPanel.Dock="Top" Spacing="5" Margin="0,20,0,20">
 					<TextBlock Text="FroCar" FontSize="69" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource ThemeAccentBrush}}" Margin="0,0,0,10"/>
 
@@ -38,7 +38,7 @@
 					<Button Content="Lista recenzji" Classes="nav" Classes.active="{Binding IsReviewsListView}" Command="{Binding ShowReviewsListCommand}" Width="245" Margin="2,2"/>
 				</StackPanel>
 
-				<!-- Dolna część: Przyciski Tryb jasny/ciemny i Wyloguj -->
+				<!-- Dolna część -->
 				<StackPanel DockPanel.Dock="Bottom" Spacing="5" Margin="2,20,2,10" VerticalAlignment="Bottom">
 					<Button Content="Tryb jasny/ciemny" Classes="nav" Command="{Binding ToggleThemeCommand}" Width="245" Margin="0,2"/>
 					<Button Content="Wyloguj" Classes="nav" Command="{Binding LogoutCommand}" Width="245" Margin="0,2"/>

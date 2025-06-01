@@ -10,7 +10,7 @@ namespace AdminPanel.Services
 {
     public static class CarService
     {
-        private static readonly RestClient _client = new RestClient("https://localhost:5001/");
+        private static readonly RestClient _client = new RestClient("https://projekt-tripify.hostingasp.pl/");
 
         public static async Task<(bool IsSuccess, string Message)> CreateCar(CarListing car)
         {

@@ -9,7 +9,7 @@ namespace AdminPanel.Services
 {
     public static class UserService
     {
-        private static readonly RestClient _client = new RestClient("https://localhost:5001/");
+        private static readonly RestClient _client = new RestClient("https://projekt-tripify.hostingasp.pl/");
 
         public static async Task<(bool IsSuccess, string Message)> Login(string username, string password)
         {
@@ -142,7 +142,12 @@ namespace AdminPanel.Services
             }
         }
 
-        public static async Task<(bool IsSuccess, string Message)> UpdateUser(int userId, string username, string email, string password)
+        public static async Task<(bool IsSuccess, string Message)> UpdateUser(
+    int userId,
+    string username,
+    string email,
+    string password,
+    string role = null)
         {
             try
             {
@@ -155,7 +160,8 @@ namespace AdminPanel.Services
                 {
                     username,
                     email,
-                    password
+                    password,
+                    role
                 };
                 request.AddJsonBody(body);
 
@@ -183,6 +189,42 @@ namespace AdminPanel.Services
             catch (Exception ex)
             {
                 return (false, $"Błąd podczas aktualizacji użytkownika: {ex.Message}");
+            }
+        }
+
+        public static async Task<(bool IsSuccess, string Message)> RequestPasswordReset(string email)
+        {
+            try
+            {
+                var request = new RestRequest("api/Account/request-password-reset", Method.Post);
+                request.AddHeader("accept", "*/*");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddStringBody($"\"{email}\"", ContentType.Json);
+
+                var response = await _client.ExecuteAsync(request);
+                if (response.IsSuccessful)
+                {
+                    return (true, "Prośba o reset hasła została wysłana");
+                }
+
+                if (!string.IsNullOrEmpty(response.Content))
+                {
+                    try
+                    {
+                        var json = JsonDocument.Parse(response.Content);
+                        if (json.RootElement.TryGetProperty("message", out var message))
+                        {
+                            return (false, message.GetString());
+                        }
+                    }
+                    catch (JsonException) { }
+                }
+
+                return (false, response.Content ?? "Błąd podczas wysyłania prośby o reset hasła");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Błąd podczas wysyłania prośby o reset hasła: {ex.Message}");
             }
         }
     }

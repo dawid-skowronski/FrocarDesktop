@@ -63,8 +63,6 @@ namespace AdminPanel.ViewModels
                             rental.Username = $"Nieznany (ID: {rental.UserId})";
                         }
 
-                        rental.CancelCommand = ReactiveCommand.CreateFromTask<int>(CancelRental);
-                        rental.ResumeCommand = ReactiveCommand.CreateFromTask<int>(ResumeRental);
                         rental.DeleteCommand = ReactiveCommand.CreateFromTask<int>(DeleteRental);
                         Rentals.Add(rental);
                     }
@@ -78,123 +76,6 @@ namespace AdminPanel.ViewModels
             catch (Exception ex)
             {
                 ErrorMessage = $"Wystąpił nieoczekiwany błąd podczas ładowania wypożyczeń: {ex.Message}";
-                await ShowMessageBox("Błąd", ErrorMessage);
-            }
-        }
-
-        private async Task CancelRental(int rentalId)
-        {
-            try
-            {
-                if (App.MainWindow == null)
-                {
-                    ErrorMessage = "Błąd: Główne okno aplikacji nie jest dostępne.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                bool confirmed = await ShowConfirmCancelDialog(rentalId);
-                if (!confirmed)
-                {
-                    return;
-                }
-
-                var rentalToCancel = Rentals.FirstOrDefault(r => r.CarRentalId == rentalId);
-                if (rentalToCancel == null)
-                {
-                    ErrorMessage = $"Nie znaleziono wypożyczenia o ID {rentalId}.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                var statusResult = await RentalService.UpdateRentalStatus(rentalId, "Cancelled");
-                if (!statusResult.IsSuccess)
-                {
-                    ErrorMessage = statusResult.Message ?? "Nie udało się anulować wypożyczenia.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    rentalToCancel.RentalStatus = "Cancelled";
-                });
-
-                var availabilityResult = await CarService.UpdateCarAvailability(rentalToCancel.CarListingId, true);
-                if (!availabilityResult.IsSuccess)
-                {
-                    ErrorMessage = availabilityResult.Message ?? "Nie udało się przywrócić dostępności samochodu.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                await ShowMessageBox("Sukces", "Wypożyczenie zostało anulowane, a samochód jest ponownie dostępny!");
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Błąd podczas anulowania wypożyczenia: {ex.Message}";
-                await ShowMessageBox("Błąd", ErrorMessage);
-            }
-        }
-
-        private async Task ResumeRental(int rentalId)
-        {
-            try
-            {
-                if (App.MainWindow == null)
-                {
-                    ErrorMessage = "Błąd: Główne okno aplikacji nie jest dostępne.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                var rentalToResume = Rentals.FirstOrDefault(r => r.CarRentalId == rentalId);
-                if (rentalToResume == null)
-                {
-                    ErrorMessage = $"Nie znaleziono wypożyczenia o ID {rentalId}.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                if (rentalToResume.RentalEndDate < DateTime.Now)
-                {
-                    ErrorMessage = $"Nie można wznowić wypożyczenia o ID {rentalId}, ponieważ termin zakończenia ({rentalToResume.RentalEndDate:dd.MM.yyyy HH:mm}) już minął.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                bool confirmed = await ShowConfirmResumeDialog(rentalId);
-                if (!confirmed)
-                {
-                    return;
-                }
-
-                var statusResult = await RentalService.UpdateRentalStatus(rentalId, "Active");
-                if (!statusResult.IsSuccess)
-                {
-                    ErrorMessage = statusResult.Message ?? "Nie udało się wznowić wypożyczenia.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    rentalToResume.RentalStatus = "Active";
-                });
-
-                var availabilityResult = await CarService.UpdateCarAvailability(rentalToResume.CarListingId, false);
-                if (!availabilityResult.IsSuccess)
-                {
-                    ErrorMessage = availabilityResult.Message ?? "Nie udało się ustawić samochodu jako niedostępny.";
-                    await ShowMessageBox("Błąd", ErrorMessage);
-                    return;
-                }
-
-                await ShowMessageBox("Sukces", "Wypożyczenie zostało wznowione, a samochód jest ponownie niedostępny!");
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Błąd podczas wznawiania wypożyczenia: {ex.Message}";
                 await ShowMessageBox("Błąd", ErrorMessage);
             }
         }
@@ -251,42 +132,6 @@ namespace AdminPanel.ViewModels
             {
                 ErrorMessage = $"Błąd podczas usuwania wypożyczenia: {ex.Message}";
                 await ShowMessageBox("Błąd", ErrorMessage);
-            }
-        }
-
-        private async Task<bool> ShowConfirmCancelDialog(int rentalId)
-        {
-            try
-            {
-                var dialog = new ConfirmMessageBoxView("Potwierdzenie anulowania")
-                {
-                    Message = $"Czy na pewno chcesz anulować wypożyczenie o ID {rentalId}?",
-                    RequestedThemeVariant = App.MainWindow?.RequestedThemeVariant ?? ThemeVariant.Default
-                };
-                await dialog.ShowDialog(App.MainWindow);
-                return await dialog.Result.Task;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private async Task<bool> ShowConfirmResumeDialog(int rentalId)
-        {
-            try
-            {
-                var dialog = new ConfirmMessageBoxView("Potwierdzenie wznowienia")
-                {
-                    Message = $"Czy na pewno chcesz wznowić wypożyczenie o ID {rentalId}?",
-                    RequestedThemeVariant = App.MainWindow?.RequestedThemeVariant ?? ThemeVariant.Default
-                };
-                await dialog.ShowDialog(App.MainWindow);
-                return await dialog.Result.Task;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
 

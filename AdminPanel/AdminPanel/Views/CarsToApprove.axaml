@@ -8,7 +8,8 @@
 	<StackPanel>
 		<TextBlock Text="Pojazdy do zatwierdzenia" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 	<Grid Margin="20" RowDefinitions="Auto,*">
-		<!-- Filters Section -->
+		
+		<!-- Sekcja filtrów -->
 		<Border Grid.Row="0" Padding="15" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A">
 			<Grid ColumnDefinitions="*,*,*,*,*,*,*,Auto" RowDefinitions="Auto,Auto" Margin="0,0,0,10">
 				<TextBlock Grid.Column="0" Grid.Row="0" Text="Filtry" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="{DynamicResource ThemeForegroundBrush}"/>
@@ -76,10 +77,11 @@
 			</Grid>
 		</Border>
 
-		<!-- Cars Table -->
+		<!-- Tabela -->
 		<Border Grid.Row="1" Padding="15" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A" Margin="0,10,0,0">
 			<StackPanel>
 				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
+				
 				<!-- Nagłówki -->
 				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="10" CornerRadius="8 8 0 0" Margin="0,0,0,5">
 					<Grid>
@@ -170,7 +172,7 @@
 				</ScrollViewer>
 			</StackPanel>
 		</Border>
-
+		<!-- Error panel -->
 		<TextBlock Text="{Binding ErrorMessage}" Grid.Row="1" HorizontalAlignment="Center" Foreground="{DynamicResource ErrorForeground}" Margin="0,10,0,0" TextWrapping="Wrap"/>
 	</Grid>
 	</StackPanel>

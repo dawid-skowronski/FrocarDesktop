@@ -13,12 +13,12 @@
 			<Button Content="Resetuj" Classes="delete" Command="{Binding ResetSearchCommand}" Width="100"/>
 		</StackPanel>
 
-		<!-- Cała tabela w jednym białym polu -->
+		<!-- Tabela -->
 		<Border Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A" Padding="20">
 			
 			<StackPanel>
 				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
-				<!-- Nagłówki tabeli -->
+				<!-- Nagłówki -->
 				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="15" Margin="0,0,0,5" CornerRadius="8 8 0 0">
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
 					</Grid>
 				</Border>
 
-				<!-- Lista użytkowników z przewijaniem -->
+				<!-- Zawartość -->
 				<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="700">
 					<ItemsControl ItemsSource="{Binding Users}">
 						<ItemsControl.ItemTemplate>

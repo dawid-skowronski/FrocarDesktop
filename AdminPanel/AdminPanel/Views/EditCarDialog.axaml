@@ -106,7 +106,7 @@
                 <Button Content="Odrzuć" Command="{Binding CancelCommand}" Classes="delete" Width="100"/>
             </StackPanel>
 
-            <!-- Ogólny komunikat błędu -->
+            <!-- Error panel -->
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
                 <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" TextWrapping="Wrap" MaxWidth="700"/>
             </StackPanel>

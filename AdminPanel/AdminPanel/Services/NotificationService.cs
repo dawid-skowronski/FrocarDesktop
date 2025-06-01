@@ -18,7 +18,7 @@ namespace AdminPanel.Services
 
         public NotificationService()
         {
-            _client = new RestClient("https://localhost:5001/");
+            _client = new RestClient("https://projekt-tripify.hostingasp.pl/");
             _timer = new Timer(1000);
             _timer.Elapsed += async (s, e) => await FetchNotifications();
             _timer.AutoReset = true;

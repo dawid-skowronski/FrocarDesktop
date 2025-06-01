@@ -13,7 +13,7 @@
                    HorizontalAlignment="Center"
                    Margin="0,20,0,0"/>
 
-		<!-- Tabela z recenzjami -->
+		<!-- Tabela -->
 		<ScrollViewer Grid.Row="1">
 			<Border IsVisible="{Binding !IsLoading}"
                     Background="{DynamicResource ThemeControlMidBrush}"
@@ -28,11 +28,11 @@
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition MinWidth="100" Width="*"/>
-								<!-- New: Rental ID -->
+								<!-- Rental ID -->
 								<ColumnDefinition MinWidth="150" Width="*"/>
-								<!-- New: Start Date -->
+								<!-- Start Date -->
 								<ColumnDefinition MinWidth="150" Width="*"/>
-								<!-- New: End Date -->
+								<!-- End Date -->
 								<ColumnDefinition MinWidth="150" Width="*"/>
 								<!-- Marka -->
 								<ColumnDefinition MinWidth="150" Width="*"/>
@@ -111,11 +111,11 @@
 									<Grid>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition MinWidth="100" Width="*"/>
-											<!-- New: Rental ID -->
+											<!-- Rental ID -->
 											<ColumnDefinition MinWidth="150" Width="*"/>
-											<!-- New: Start Date -->
+											<!-- Start Date -->
 											<ColumnDefinition MinWidth="150" Width="*"/>
-											<!-- New: End Date -->
+											<!-- End Date -->
 											<ColumnDefinition MinWidth="150" Width="*"/>
 											<!-- Marka -->
 											<ColumnDefinition MinWidth="150" Width="*"/>
@@ -186,13 +186,5 @@
 				</StackPanel>
 			</Border>
 		</ScrollViewer>
-		<!-- Komunikat o błędzie lub braku danych -->
-		<TextBlock Grid.Row="2"
-                   Text="{Binding ErrorMessage, FallbackValue='Brak recenzji do wyświetlenia'}"
-                   IsVisible="{Binding !IsLoading}"
-                   Foreground="Red"
-                   FontSize="14"
-                   TextAlignment="Center"
-                   Margin="20,0,20,10"/>
 	</Grid>
 </UserControl>

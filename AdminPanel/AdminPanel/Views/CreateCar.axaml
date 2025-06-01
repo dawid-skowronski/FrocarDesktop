@@ -7,9 +7,7 @@
 	<Grid Margin="20">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*"/>
-			<!-- 33% dla formularza -->
 			<ColumnDefinition Width="2*"/>
-			<!-- 66% dla mapy -->
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
@@ -17,7 +15,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<!-- Lewa kolumna: Formularz -->
+		<!-- Lewa kolumna -->
 		<Border Grid.Column="0" Grid.Row="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8,0,0,8" BoxShadow="0 2 4 0 #0000001A">
 			<StackPanel Spacing="20" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="350">
 				<TextBlock Text="Dodaj nowy pojazd" FontSize="24" FontWeight="SemiBold" TextAlignment="Center" Margin="0,0,0,30"/>
@@ -50,7 +48,7 @@
 			</StackPanel>
 		</Border>
 
-		<!-- Prawa kolumna: Mapa -->
+		<!-- Prawa kolumna -->
 		<Border Grid.Column="1" Grid.Row="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,8,8,0" BoxShadow="0 2 4 0 #0000001A">
 			<StackPanel Spacing="20">
 				<mapsui:MapControl x:Name="CarLocationMap" Height="700"/>

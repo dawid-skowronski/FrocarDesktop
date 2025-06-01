@@ -120,8 +120,6 @@ namespace AdminPanel.Views
                 {
                     var result = results[0];
 
-                    _viewModel.ErrorMessage = $"Wynik: Lat = {result.Lat}, Lon = {result.Lon}";
-
                     _viewModel.Latitude = result.Lat.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                     _viewModel.Longitude = result.Lon.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
 

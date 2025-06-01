@@ -4,14 +4,23 @@
              x:Class="AdminPanel.Views.RentalsList"
              x:DataType="vm:RentalsListViewModel"
              Background="{DynamicResource ThemeBackgroundBrush}">
-	<Grid Margin="20" RowDefinitions="Auto,*">
+	<Grid Margin="20" RowDefinitions="Auto,Auto,*">
+		
 		<!-- Nagłówek -->
-		<TextBlock Grid.Row="0" Text="Lista wypożyczeń" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="{DynamicResource ThemeForegroundBrush}"/>
-
-		<!-- Tabela wypożyczeń -->
-		<Border Grid.Row="1" Padding="15" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A">
+		<TextBlock Grid.Row="0"
+                   Text="Lista wypożyczeń"
+                   FontSize="24"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource ThemeForegroundBrush}"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+		
+		<!-- Tabela -->
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+		<Border Padding="15" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A">
 			<StackPanel>
 				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
+				
 				<!-- Nagłówki -->
 				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="10" CornerRadius="8 8 0 0" Margin="0,0,0,5">
 					<Grid>
@@ -23,7 +32,7 @@
 							<ColumnDefinition MinWidth="150" Width="*"/>
 							<ColumnDefinition MinWidth="100" Width="*"/>
 							<ColumnDefinition MinWidth="100" Width="*"/>
-							<ColumnDefinition MinWidth="300" Width="*"/>
+							<ColumnDefinition MinWidth="100" Width="*"/>
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 						<TextBlock Grid.Column="1" Text="Samochód" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
@@ -36,8 +45,7 @@
 					</Grid>
 				</Border>
 
-				<!-- Zawartość tabeli -->
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+				<!-- Zawartość -->
 					<ItemsControl ItemsSource="{Binding Rentals}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
@@ -51,7 +59,7 @@
 											<ColumnDefinition MinWidth="150" Width="*"/>
 											<ColumnDefinition MinWidth="100" Width="*"/>
 											<ColumnDefinition MinWidth="100" Width="*"/>
-											<ColumnDefinition MinWidth="300" Width="*"/>
+											<ColumnDefinition MinWidth="100" Width="*"/>
 										</Grid.ColumnDefinitions>
 										<TextBlock Grid.Column="0" Text="{Binding CarRentalId}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<TextBlock Grid.Column="1" Text="{Binding CarListing.Brand}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
@@ -61,8 +69,6 @@
 										<TextBlock Grid.Column="5" Text="{Binding RentalPrice, StringFormat=N2}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<TextBlock Grid.Column="6" Text="{Binding RentalStatus}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
 										<StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
-											<Button Content="Wznów" Classes="ok" Width="90" Command="{Binding ResumeCommand}" CommandParameter="{Binding CarRentalId}"/>
-											<Button Content="Anuluj" Classes="edit" Width="90" Command="{Binding CancelCommand}" CommandParameter="{Binding CarRentalId}"/>
 											<Button Content="Usuń" Classes="delete" Width="90" Command="{Binding DeleteCommand}" CommandParameter="{Binding CarRentalId}"/>
 										</StackPanel>
 									</Grid>
@@ -70,10 +76,8 @@
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
-				</ScrollViewer>
-			</StackPanel>
-		</Border>
-
-		
+				</StackPanel>
+			</Border>
+		</ScrollViewer>
 	</Grid>
 </UserControl>

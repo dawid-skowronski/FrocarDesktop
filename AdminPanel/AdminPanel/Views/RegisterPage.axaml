@@ -5,13 +5,17 @@
              x:DataType="vm:RegisterPageViewModel">
 	<Border Background="{DynamicResource ThemeControlMidBrush}" Padding="30" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="8">
 		<StackPanel Spacing="10">
+			
 			<TextBlock Text="Zarejestruj się" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+			
 			<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}"/>
 			<TextBox Watermark="E-mail" Text="{Binding Email}"/>
 			<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●"/>
 			<TextBox Watermark="Potwierdź hasło" Text="{Binding ConfirmPassword}" PasswordChar="●"/>
+			
 			<Button Content="Zarejestruj się" Classes="ok" Command="{Binding RegisterCommand}" HorizontalAlignment="Center" Width="200" Margin="0,10,0,0"/>
 			<Button Content="Powrót" Classes="ok" Command="{Binding GoBackToHomeCommand}" HorizontalAlignment="Center" Width="200"/>
+			
 			<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
 		</StackPanel>
 	</Border>

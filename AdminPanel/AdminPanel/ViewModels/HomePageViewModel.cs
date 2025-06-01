@@ -8,11 +8,13 @@ namespace AdminPanel.ViewModels
     {
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
         public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
+        public ReactiveCommand<Unit, Unit> ResetPasswordCommand { get; }
 
         public HomePageViewModel()
         {
             LoginCommand = ReactiveCommand.Create(NavigateToLogin);
             RegisterCommand = ReactiveCommand.Create(NavigateToRegister);
+            ResetPasswordCommand = ReactiveCommand.Create(NavigateToPasswordReset);
         }
 
         private void NavigateToLogin()
@@ -28,6 +30,14 @@ namespace AdminPanel.ViewModels
             App.MainWindow.Content = new RegisterPage
             {
                 DataContext = new RegisterPageViewModel()
+            };
+        }
+
+        private void NavigateToPasswordReset()
+        {
+            App.MainWindow.Content = new PasswordResetPage
+            {
+                DataContext = new PasswordResetPageViewModel()
             };
         }
     }

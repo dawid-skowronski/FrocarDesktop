@@ -1,15 +1,41 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             xmlns:local="clr-namespace:AdminPanel.Converters"
              x:Class="AdminPanel.Views.LoginPage"
              x:DataType="vm:LoginPageViewModel">
+	<UserControl.Resources>
+		<local:BoolToPasswordCharConverter x:Key="PasswordCharConverter"/>
+		<local:BoolToToggleIconConverter x:Key="ToggleIconConverter"/>
+	</UserControl.Resources>
+
 	<Border Background="{DynamicResource ThemeControlMidBrush}" Padding="30" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="8">
 		<StackPanel Spacing="10">
 			<TextBlock Text="Zaloguj się" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+
 			<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}"/>
-			<TextBox Watermark="Hasło" Text="{Binding Password}" PasswordChar="●"/>
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Grid.Column="0"
+                         Watermark="Hasło"
+                         Text="{Binding Password}"
+                         PasswordChar="{Binding ShowPassword, Converter={StaticResource PasswordCharConverter}}"/>
+				<Button Grid.Column="1"
+                        Content="{Binding ShowPassword, Converter={StaticResource ToggleIconConverter}}"
+                        Command="{Binding TogglePasswordCommand}"
+                        Background="Transparent"
+						FontSize="24"
+                        BorderThickness="0"
+                        Padding="5,0"/>
+			</Grid>
+
 			<Button Content="Zaloguj się" Classes="ok" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Width="200" Margin="0,10,0,0"/>
 			<Button Content="Powrót" Classes="ok" Command="{Binding GoBackToHomeCommand}" HorizontalAlignment="Center" Width="200"/>
+
 			<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
 		</StackPanel>
 	</Border>

@@ -2,6 +2,7 @@
 using AdminPanel.Services;
 using ReactiveUI;
 using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -17,6 +18,8 @@ namespace AdminPanel.ViewModels
         private string _errorMessage = string.Empty;
         private string _title;
         private readonly Window _dialog;
+        private string _selectedRole;
+        private List<string> _roles = new List<string> { "User", "Admin" };
 
         public UserDto User
         {
@@ -54,6 +57,18 @@ namespace AdminPanel.ViewModels
             set => this.RaiseAndSetIfChanged(ref _title, value);
         }
 
+        public List<string> Roles
+        {
+            get => _roles;
+            set => this.RaiseAndSetIfChanged(ref _roles, value);
+        }
+
+        public string SelectedRole
+        {
+            get => _selectedRole;
+            set => this.RaiseAndSetIfChanged(ref _selectedRole, value);
+        }
+
         public ReactiveCommand<Unit, Unit> SaveCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
 
@@ -64,6 +79,7 @@ namespace AdminPanel.ViewModels
 
             Username = user.Username;
             Email = user.Email;
+            SelectedRole = user.Role;
             Title = $"Edycja użytkownika {user.Username} (ID: {user.Id})";
 
             SaveCommand = ReactiveCommand.CreateFromTask(Save);
@@ -88,11 +104,18 @@ namespace AdminPanel.ViewModels
                     return;
                 }
 
-                var (isSuccess, message) = await UserService.UpdateUser(User.Id, Username, Email, Password);
+                var (isSuccess, message) = await UserService.UpdateUser(
+                    User.Id,
+                    Username,
+                    Email,
+                    Password,
+                    SelectedRole);
+
                 if (isSuccess)
                 {
                     User.Username = Username;
                     User.Email = Email;
+                    User.Role = SelectedRole;
                     _dialog.Close();
                 }
                 else

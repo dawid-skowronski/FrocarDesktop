@@ -7,9 +7,8 @@
              Background="{DynamicResource ThemeBackgroundBrush}">
 
 	<Grid Margin="20" RowDefinitions="*,Auto">
-		<!-- Main content -->
 		<Grid Grid.Row="0" ColumnDefinitions="1*,2*">
-			<!-- Filters -->
+			<!-- Filtry -->
 			<Border Grid.Column="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8,0,0,8" BoxShadow="0 2 4 0 #0000001A">
 				<ScrollViewer>
 					<StackPanel Spacing="20" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="350">
@@ -63,7 +62,7 @@
 				</ScrollViewer>
 			</Border>
 
-			<!-- Map -->
+			<!-- Mapa -->
 			<Border Grid.Column="1" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,8,8,0" BoxShadow="0 2 4 0 #0000001A">
 				<StackPanel>
 					<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
