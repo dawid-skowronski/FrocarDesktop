@@ -1,0 +1,26 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.HomePage"
+             x:DataType="vm:HomePageViewModel">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+		<TextBlock Text="FroCar" FontSize="89" FontWeight="Bold" Foreground="{DynamicResource ThemeAccentBrush}" />
+		<TextBlock Text="Panel Administratora" FontSize="30" HorizontalAlignment="Center" />
+		<Button Content="Zaloguj się"
+                Classes="ok"
+                Command="{Binding LoginCommand}"
+                HorizontalAlignment="Center"
+                Width="200"/>
+		<Button Content="Zarejestruj się"
+                Classes="ok"
+                Command="{Binding RegisterCommand}"
+                HorizontalAlignment="Center"
+                Width="200" />
+		<Button Content="Resetuj hasło"
+                Classes="ok"
+                Command="{Binding ResetPasswordCommand}"
+                HorizontalAlignment="Center"
+                Width="200" />
+	</StackPanel>
+</UserControl>

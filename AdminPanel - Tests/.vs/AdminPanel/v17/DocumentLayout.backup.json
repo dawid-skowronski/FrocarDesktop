@@ -1,0 +1,131 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA240323-EDB2-4EB6-8F17-ADE07F2539A5}|AdminPanel.Tests\\AdminPanel.Tests.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel.tests\\axaml.cstests\\reviewslisttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA240323-EDB2-4EB6-8F17-ADE07F2539A5}|AdminPanel.Tests\\AdminPanel.Tests.csproj|solutionrelative:adminpanel.tests\\axaml.cstests\\reviewslisttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel\\viewmodels\\carstoapproveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\viewmodels\\carstoapproveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|c:\\users\\vidsontoziomal\\desktop\\testy \u2014 kopia\\adminpanel\\models\\carlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48F65DB1-47A3-4834-A291-FF9EE3EA4154}|AdminPanel\\AdminPanel.csproj|solutionrelative:adminpanel\\models\\carlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 401,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReviewsListTests.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel.Tests\\axaml.csTests\\ReviewsListTests.cs",
+              "RelativeDocumentMoniker": "AdminPanel.Tests\\axaml.csTests\\ReviewsListTests.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel.Tests\\axaml.csTests\\ReviewsListTests.cs",
+              "RelativeToolTip": "AdminPanel.Tests\\axaml.csTests\\ReviewsListTests.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T21:15:12.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CarListing.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Models\\CarListing.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Models\\CarListing.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Models\\CarListing.cs",
+              "RelativeToolTip": "AdminPanel\\Models\\CarListing.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:47:45.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Models\\UserDto.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Models\\UserDto.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Models\\UserDto.cs",
+              "RelativeToolTip": "AdminPanel\\Models\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:47:44.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Services\\UserService.cs",
+              "RelativeToolTip": "AdminPanel\\Services\\UserService.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAIwM4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:47:09.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CarService.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Services\\CarService.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\Services\\CarService.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\Services\\CarService.cs",
+              "RelativeToolTip": "AdminPanel\\Services\\CarService.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAIwMQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:47:08.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CarsToApproveViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "RelativeDocumentMoniker": "AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "ToolTip": "C:\\Users\\vidsontoziomal\\Desktop\\Testy \u2014 kopia\\AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "RelativeToolTip": "AdminPanel\\ViewModels\\CarsToApproveViewModel.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA4wBsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:46:26.5Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 199,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

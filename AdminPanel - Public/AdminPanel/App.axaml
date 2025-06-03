@@ -1,0 +1,195 @@
+<Application
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AdminPanel.App"
+	xmlns:local="using:AdminPanel"
+	xmlns:converters="using:AdminPanel.Converters"
+             RequestedThemeVariant="Default">
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#F8F9FA"/>
+					<SolidColorBrush x:Key="ThemeControlMidBrush" Color="#FFFFFF"/>
+					<SolidColorBrush x:Key="ThemeControlLowBrush" Color="#F0F0F0"/>
+					<SolidColorBrush x:Key="ThemeControlHoverBrush" Color="#D4E8D6"/>
+					<SolidColorBrush x:Key="ThemeForegroundBrush" Color="#333333"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush" Color="#2E7D32"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush2" Color="#3d9440"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush3" Color="#296B2C"/>
+					<SolidColorBrush x:Key="ThemeControlHighBrush" Color="#E8F5E9"/>
+					<SolidColorBrush x:Key="ThemeBorderMidBrush" Color="#A0A0A0"/>
+					<SolidColorBrush x:Key="ErrorForeground" Color="#D32F2F"/>
+					<SolidColorBrush x:Key="ThemeEditBrush" Color="#F5A623"/>
+					<SolidColorBrush x:Key="ThemeEditHoverBrush" Color="#FFB84D"/>
+					<SolidColorBrush x:Key="ThemeEditPressedBrush" Color="#E6951F"/>
+					<SolidColorBrush x:Key="ThemeDeleteBrush" Color="#C62828"/>
+					<SolidColorBrush x:Key="ThemeDeleteHoverBrush" Color="#D32F2F"/>
+					<SolidColorBrush x:Key="ThemeDeletePressedBrush" Color="#B71C1C"/>
+					<SolidColorBrush x:Key="SelectionBrush" Color="#A5D6A7"/>
+				</ResourceDictionary>
+				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="ThemeBackgroundBrush" Color="#1E1E1E"/>
+					<SolidColorBrush x:Key="ThemeControlMidBrush" Color="#2D2D2D"/>
+					<SolidColorBrush x:Key="ThemeControlLowBrush" Color="#252525"/>
+					<SolidColorBrush x:Key="ThemeControlHoverBrush" Color="#2A3C2B"/>
+					<SolidColorBrush x:Key="ThemeForegroundBrush" Color="#D4D4D4"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush" Color="#2E7D32"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush2" Color="#3d9440"/>
+					<SolidColorBrush x:Key="ThemeAccentBrush3" Color="#296B2C"/>
+					<SolidColorBrush x:Key="ThemeControlHighBrush" Color="#263628"/>
+					<SolidColorBrush x:Key="ThemeBorderMidBrush" Color="#666666"/>
+					<SolidColorBrush x:Key="ErrorForeground" Color="#EF5350"/>
+					<SolidColorBrush x:Key="ThemeEditBrush" Color="#F5A623"/>
+					<SolidColorBrush x:Key="ThemeEditHoverBrush" Color="#FFB84D"/>
+					<SolidColorBrush x:Key="ThemeEditPressedBrush" Color="#E6951F"/>
+					<SolidColorBrush x:Key="ThemeDeleteBrush" Color="#C62828"/>
+					<SolidColorBrush x:Key="ThemeDeleteHoverBrush" Color="#D32F2F"/>
+					<SolidColorBrush x:Key="ThemeDeletePressedBrush" Color="#B71C1C"/>
+					<SolidColorBrush x:Key="SelectionBrush" Color="#A5D6A7"/>
+					<SolidColorBrush x:Key="Czarny" Color="#121212"/>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
+			<converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter"/>
+			<converters:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
+			<converters:DecimalToVisibilityConverter x:Key="DecimalToVisibilityConverter"/>
+			<converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+		</ResourceDictionary>
+	</Application.Resources>
+	<Application.Styles>
+		<FluentTheme/>
+		<Style Selector="Window">
+			<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+			<Setter Property="FontFamily" Value="Segoe UI, Arial"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="8"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
+		</Style>
+		<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+		<Style Selector="ComboBox">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="8"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="ComboBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+		<Style Selector="ComboBox /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+		</Style>
+		<Style Selector="ComboBoxItem">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlLowBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="Padding" Value="8"/>
+		</Style>
+		<Style Selector="ComboBoxItem:selected">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
+		</Style>
+		<Style Selector="ComboBoxItem:pointerover">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHoverBrush}"/>
+		</Style>
+		<Style Selector="ComboBox /template/ Path#PART_DropDownGlyph">
+			<Setter Property="Fill" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+		<Style Selector="Button.ok">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Padding" Value="20,8"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="Button.ok:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush2}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.ok:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeAccentBrush3}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.delete">
+			<Setter Property="Background" Value="{DynamicResource ThemeDeleteBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Padding" Value="20,8"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="Button.delete:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeDeleteHoverBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.delete:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeDeletePressedBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.edit">
+			<Setter Property="Background" Value="{DynamicResource ThemeEditBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Padding" Value="20,8"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="Button.edit:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeEditHoverBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.edit:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeEditPressedBrush}"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button.nav">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlLowBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="CornerRadius" Value="4"/>
+		</Style>
+		<Style Selector="Button.nav:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHoverBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+		<Style Selector="Button.nav:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+		<Style Selector="Button.nav.active">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+		<Style Selector="Button.nav.active:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlHoverBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+		<Style Selector="Button.nav.active:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource ThemeControlLowBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+		</Style>
+	</Application.Styles>
+</Application>

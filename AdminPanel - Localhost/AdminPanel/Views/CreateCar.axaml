@@ -1,0 +1,58 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+	xmlns:mapsui="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
+             x:Class="AdminPanel.Views.CreateCar"
+             x:DataType="vm:CreateCarViewModel">
+	<Grid Margin="20">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="2*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Border Grid.Column="0" Grid.Row="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8,0,0,8" BoxShadow="0 2 4 0 #0000001A">
+			<StackPanel Spacing="20" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="350">
+				<TextBlock Text="Dodaj nowy pojazd" FontSize="24" FontWeight="SemiBold" TextAlignment="Center" Margin="0,0,0,30"/>
+				<TextBox Watermark="Marka" Text="{Binding Brand}" Width="300"/>
+				<TextBox Watermark="Pojemność silnika" Text="{Binding EngineCapacity}" Width="300"/>
+				<ComboBox PlaceholderText="Wybierz rodzaj paliwa" SelectedItem="{Binding FuelTypeItem, Mode=TwoWay}" Width="300">
+					<ComboBoxItem>Benzyna</ComboBoxItem>
+					<ComboBoxItem>Diesel</ComboBoxItem>
+					<ComboBoxItem>Benzyna + gaz</ComboBoxItem>
+					<ComboBoxItem>Elektryczny</ComboBoxItem>
+					<ComboBoxItem>Hybryda</ComboBoxItem>
+					<ComboBoxItem>Etanol</ComboBoxItem>
+					<ComboBoxItem>Wodór</ComboBoxItem>
+				</ComboBox>
+				<ComboBox PlaceholderText="Wybierz typ nadwozia" SelectedItem="{Binding CarTypeItem, Mode=TwoWay}" Width="300">
+					<ComboBoxItem>Sedan</ComboBoxItem>
+					<ComboBoxItem>Kombi</ComboBoxItem>
+					<ComboBoxItem>Kompakt</ComboBoxItem>
+					<ComboBoxItem>Coupe</ComboBoxItem>
+					<ComboBoxItem>Kabriolet</ComboBoxItem>
+					<ComboBoxItem>SUV</ComboBoxItem>
+					<ComboBoxItem>Minivan</ComboBoxItem>
+				</ComboBox>
+				<TextBox Watermark="Liczba miejsc" Text="{Binding Seats}" Width="300"/>
+				<TextBox Watermark="Dodatkowe wyposażenie" Text="{Binding FeaturesText}" Width="300"/>
+				<TextBox Watermark="Cena za dzień (PLN)" Text="{Binding RentalPricePerDay}" Width="300"/>
+				<TextBox Watermark="Szerokość geograficzna" Text="{Binding Latitude}" Width="300"/>
+				<TextBox Watermark="Długość geograficzna" Text="{Binding Longitude}" Width="300"/>
+			</StackPanel>
+		</Border>
+		<Border Grid.Column="1" Grid.Row="0" Padding="20" Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="0,8,8,0" BoxShadow="0 2 4 0 #0000001A">
+			<StackPanel Spacing="20">
+				<mapsui:MapControl x:Name="CarLocationMap" Height="700"/>
+				<TextBox Watermark="Adres (np. Pawia 1, Lubin)" Text="{Binding Address}" Width="300" HorizontalAlignment="Center"/>
+				<Button Content="Wyszukaj adres" Classes="ok" Click="OnSearchAddress" HorizontalAlignment="Center" Width="200"/>
+			</StackPanel>
+		</Border>
+		<Button Content="Dodaj pojazd" Classes="ok" Command="{Binding SubmitCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="200" Margin="0,20,0,0"/>
+		<TextBlock Text="{Binding ErrorMessage}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{DynamicResource ErrorForeground}" Margin="0,10,0,0"/>
+	</Grid>
+</UserControl>

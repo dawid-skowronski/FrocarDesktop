@@ -1,0 +1,9 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AdminPanel.Views.HomePageAdmin">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBlock Text="Panel administracyjny" FontSize="89" FontWeight="SemiBold" Foreground="{DynamicResource ThemeAccentBrush}" />
+		<TextBlock Text="Wybierz opcję z menu po lewej" FontSize="30" HorizontalAlignment="Center" />
+	</StackPanel>
+</UserControl>

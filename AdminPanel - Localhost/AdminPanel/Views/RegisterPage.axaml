@@ -1,0 +1,58 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+	xmlns:local="clr-namespace:AdminPanel.Converters"
+             x:Class="AdminPanel.Views.RegisterPage"
+             x:DataType="vm:RegisterPageViewModel">
+	<UserControl.Resources>
+		<local:BoolToPasswordCharConverter x:Key="PasswordCharConverter"/>
+		<local:BoolToToggleIconConverter x:Key="ToggleIconConverter"/>
+	</UserControl.Resources>
+	<Border Background="{DynamicResource ThemeControlMidBrush}" Padding="30" Width="450" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="8">
+		<StackPanel Spacing="10">
+			<TextBlock Text="Zarejestruj się" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+			<TextBox Watermark="Nazwa użytkownika" Text="{Binding Username}" Margin="43,0,43,0"/>
+			<TextBox Watermark="E-mail" Text="{Binding Email}" Margin="43,0,43,0"/>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Grid.Column="0"
+                         Watermark="Hasło"
+                         Text="{Binding Password}"
+                         PasswordChar="{Binding ShowPassword, Converter={StaticResource PasswordCharConverter}}"
+						 Margin="43,0,0,0"/>
+				<Button Grid.Column="1"
+                        Content="{Binding ShowPassword, Converter={StaticResource ToggleIconConverter}}"
+                        Command="{Binding TogglePasswordCommand}"
+                        Background="Transparent"
+						FontSize="24"
+                        BorderThickness="0"
+                        Padding="5,0"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Grid.Column="0"
+                         Watermark="Potwierdź hasło"
+                         Text="{Binding ConfirmPassword}"
+                         PasswordChar="{Binding ShowPassword, Converter={StaticResource PasswordCharConverter}}"
+						 Margin="43,0,0,0"/>
+				<Button Grid.Column="1"
+                        Content="{Binding ShowPassword, Converter={StaticResource ToggleIconConverter}}"
+                        Command="{Binding TogglePasswordCommand}"
+                        Background="Transparent"
+						FontSize="24"
+                        BorderThickness="0"
+                        Padding="5,0"/>
+			</Grid>
+			<Button Content="Zarejestruj się" Classes="ok" Command="{Binding RegisterCommand}" HorizontalAlignment="Center" Width="200" Margin="0,10,0,0"/>
+			<Button Content="Powrót" Classes="ok" Command="{Binding GoBackToHomeCommand}" HorizontalAlignment="Center" Width="200"/>
+			<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+		</StackPanel>
+	</Border>
+</UserControl>

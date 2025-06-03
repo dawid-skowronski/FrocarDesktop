@@ -1,0 +1,57 @@
+<Window
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+        x:Class="AdminPanel.Views.EditUserDialog"
+        x:DataType="vm:EditUserDialogViewModel"
+        Title="{Binding Title}"
+        Width="400"
+        Height="525"
+		WindowStartupLocation="CenterOwner"
+		CanResize="False"
+		ShowInTaskbar="False"
+		SystemDecorations="None"
+		TransparencyLevelHint="AcrylicBlur"
+		Background="{DynamicResource ThemeBackgroundBrush}">
+	<Border BorderBrush="{DynamicResource ThemeAccentBrush}"
+            BorderThickness="2"
+            CornerRadius="8"
+            Margin="5"
+            Background="{DynamicResource ThemeControlMidBrush}">
+		<Grid RowDefinitions="Auto,*,Auto,Auto">
+			<TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="20" FontWeight="SemiBold"
+                      HorizontalAlignment="Center" Margin="0,20,0,20" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+			<StackPanel Grid.Row="1" Spacing="15" Margin="20">
+				<StackPanel Spacing="5">
+					<TextBlock Text="Nazwa użytkownika" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					<TextBox Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Watermark="Wprowadź nazwę użytkownika" Width="300"/>
+				</StackPanel>
+				<StackPanel Spacing="5">
+					<TextBlock Text="Email" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					<TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Watermark="Wprowadź email" Width="300"/>
+				</StackPanel>
+				<StackPanel Spacing="5">
+					<TextBlock Text="Rola" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					<ComboBox ItemsSource="{Binding Roles}"
+							  Margin="25,0,0,0"
+							  SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+							  Width="300"/>
+				</StackPanel>
+				<StackPanel Spacing="5">
+					<TextBlock Text="Hasło" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					<TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Watermark="Wprowadź nowe hasło (opcjonalne)" Width="300"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="0,20">
+				<Button Content="Zapisz" Command="{Binding SaveCommand}" Classes="ok" Width="100"/>
+				<Button Content="Odrzuć" Command="{Binding CancelCommand}" Classes="delete" Width="100"/>
+			</StackPanel>
+			<StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+				<TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource ErrorForeground}" TextWrapping="Wrap" MaxWidth="350"/>
+			</StackPanel>
+		</Grid>
+	</Border>
+</Window>

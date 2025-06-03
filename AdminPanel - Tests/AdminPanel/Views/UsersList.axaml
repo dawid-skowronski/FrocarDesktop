@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:AdminPanel.ViewModels"
+             x:Class="AdminPanel.Views.UsersList"
+             x:DataType="vm:UsersListViewModel">
+	<StackPanel Spacing="20" Margin="20" HorizontalAlignment="Center">
+		<TextBlock Text="Lista użytkowników" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+
+		<!-- Wyszukiwarka i przyciski -->
+		<StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,10">
+			<TextBox Watermark="Szukaj (ID, nazwa, email)" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Width="775"/>
+			<Button Content="Szukaj" Classes="ok" Command="{Binding SearchCommand}" Width="100"/>
+			<Button Content="Resetuj" Classes="delete" Command="{Binding ResetSearchCommand}" Width="100"/>
+		</StackPanel>
+
+		<!-- Cała tabela w jednym białym polu -->
+		<Border Background="{DynamicResource ThemeControlMidBrush}" CornerRadius="8" BoxShadow="0 2 4 0 #0000001A" Padding="20">
+			
+			<StackPanel>
+				<Button Content="Odśwież" Classes="ok" Command="{Binding RefreshCommand}" Width="100" HorizontalAlignment="Right" Margin="0,0,0,20"/>
+				<!-- Nagłówki tabeli -->
+				<Border Background="{DynamicResource ThemeControlHighBrush}" Padding="15" Margin="0,0,0,5" CornerRadius="8 8 0 0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition MinWidth="75" Width="*"/>
+							<ColumnDefinition MinWidth="250" Width="*"/>
+							<ColumnDefinition MinWidth="300" Width="*"/>
+							<ColumnDefinition MinWidth="100" Width="*"/>
+							<ColumnDefinition MinWidth="200" Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="ID" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Nazwa użytkownika" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Email" FontWeight="Bold" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Rola" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+						<TextBlock Text="Akcje" FontWeight="Bold" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+					</Grid>
+				</Border>
+
+				<!-- Lista użytkowników z przewijaniem -->
+				<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="700">
+					<ItemsControl ItemsSource="{Binding Users}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border Padding="15" Margin="0,0,0,5" Background="{DynamicResource ThemeControlLowBrush}">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="75"/>
+											<ColumnDefinition Width="250"/>
+											<ColumnDefinition Width="300"/>
+											<ColumnDefinition Width="100"/>
+											<ColumnDefinition MinWidth="200" Width="*"/>
+										</Grid.ColumnDefinitions>
+										<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Username}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Email}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<TextBlock Text="{Binding Role}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ThemeForegroundBrush}"/>
+										<StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+											<Button Content="Edytuj" Classes="edit" Width="80"
+													Command="{Binding EditCommand}"
+													CommandParameter="{Binding}"/>
+											<Button Content="Usuń" Classes="delete" Width="80"
+													Command="{Binding DeleteCommand}"
+													CommandParameter="{Binding}"
+													IsVisible="{Binding !IsCurrentUser}"/>
+										</StackPanel>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</StackPanel>
+		</Border>
+	</StackPanel>
+</UserControl>

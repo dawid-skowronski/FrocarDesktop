@@ -1,0 +1,5 @@
+C:\Users\vidsontoziomal\Desktop\AdminPanel — Server\publish\windows\AdminPanel.pdb
+C:\Users\vidsontoziomal\Desktop\AdminPanel — Server\publish\windows\av_libglesv2.dll
+C:\Users\vidsontoziomal\Desktop\AdminPanel — Server\publish\windows\libHarfBuzzSharp.dll
+C:\Users\vidsontoziomal\Desktop\AdminPanel — Server\publish\windows\libSkiaSharp.dll
+C:\Users\vidsontoziomal\Desktop\AdminPanel — Server\publish\windows\AdminPanel.exe
