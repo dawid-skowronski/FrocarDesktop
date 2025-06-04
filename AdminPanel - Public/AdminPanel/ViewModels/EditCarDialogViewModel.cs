@@ -97,7 +97,7 @@ namespace AdminPanel.ViewModels
 
         public List<string> CarTypes { get; } = new List<string>
         {
-            "Sedan", "Kombi", "Kompakt", "Coupe", "Kabriolet", "SUV", "Minivan"
+            "Sedan", "Kombi", "Hatchback", "Coupe", "Kabriolet", "SUV", "Minivan"
         };
 
         public ReactiveCommand<Unit, Unit> SaveCommand { get; }

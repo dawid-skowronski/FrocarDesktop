@@ -35,7 +35,7 @@
 							<ComboBoxItem Content="Wszystkie typy nadwozia"/>
 							<ComboBoxItem Content="Sedan"/>
 							<ComboBoxItem Content="Kombi"/>
-							<ComboBoxItem Content="Kompakt"/>
+							<ComboBoxItem Content="Hatchback"/>
 							<ComboBoxItem Content="Coupe"/>
 							<ComboBoxItem Content="Kabriolet"/>
 							<ComboBoxItem Content="SUV"/>
